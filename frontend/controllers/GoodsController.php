@@ -41,7 +41,6 @@ class GoodsController extends Controller
     {
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
-        $this->layout = '/admin';
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
 

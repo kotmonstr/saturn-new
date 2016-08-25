@@ -6,7 +6,7 @@ use common\models\GoodsCategory;
 use backend\assets\AppAsset;
 use common\models\Brend;
 
-$this->registerJsFile('/js/custom/upload_goods.js', ['depends' => AppAsset::className()]);
+$this->registerJsFile('/js/upload_goods.js', ['depends' => AppAsset::className()]);
 $arrGoodsCategory = GoodsCategory::find()->all();
 $arrBrend = Brend::find()->all();
 ?>

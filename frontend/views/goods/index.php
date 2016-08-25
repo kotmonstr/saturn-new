@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute'=>'item',
                                 'format' => 'html',
                                 'value'=> function($dataProvider){
-                                    return  Html::a($dataProvider->item,'/goods/default/view?id='.$dataProvider->id);
+                                    return  Html::a($dataProvider->item,'/goods/view?id='.$dataProvider->id);
                                 }
                             ],
                             [
