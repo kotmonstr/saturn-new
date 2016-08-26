@@ -71,6 +71,7 @@ class GoodsController extends Controller
                 $model->image = $image->name;
                 $model->save();
             }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', ['model' => $model,]);

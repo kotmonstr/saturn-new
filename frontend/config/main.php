@@ -16,12 +16,12 @@ return [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => null,
-                    //'js' => ['http://code.jquery.com/jquery-3.1.0.js'] // тут путь до Вашего экземпляра jquery
-                    'js' => ['http://code.jquery.com/jquery-1.12.4.js'] // тут путь до Вашего экземпляра jquery
+                    'js' => ['http://code.jquery.com/jquery-3.1.0.js'] // тут путь до Вашего экземпляра jquery
                 ],
             ],
         ],
         'request' => [
+            'baseUrl' => '',
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
