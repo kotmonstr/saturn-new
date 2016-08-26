@@ -16,6 +16,7 @@ use frontend\models\ContactForm;
 use common\models\Article;
 use common\models\Goods;
 use common\models\GoodsCategory;
+use common\models\ArticleCategory;
 
 /**
  * Default controller for the `home` module
