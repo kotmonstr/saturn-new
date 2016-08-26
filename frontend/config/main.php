@@ -16,7 +16,10 @@ return [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => null,
-                    'js' => ['http://code.jquery.com/jquery-3.1.0.js'] // тут путь до Вашего экземпляра jquery
+                    'js' => [
+                        'http://code.jquery.com/jquery-3.1.0.js',
+                        'http://code.jquery.com/ui/1.12.0/jquery-ui.js'
+                    ],
                 ],
             ],
         ],

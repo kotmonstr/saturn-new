@@ -42,8 +42,8 @@ class ArticleCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
+            'name' => 'Наименование',
+            'description' => 'Описание',
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\article_category\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\ArticleCategory;
@@ -8,16 +8,23 @@ use common\models\ArticleCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Article;
+use common\models\Goods;
+use common\models\GoodsCategory;
 
 /**
  * DefaultController implements the CRUD actions for ArticleCategory model.
  */
-class DefaultController extends Controller
+class ArticleCategoryController extends Controller
 {
-    public $layout = '/adminka';
-    /**
-     * @inheritdoc
-     */
+    public $layout = 'admin';
+
+    public $countallArticles = 0;
+    public $countallGoods = 0;
+    public $countallGoodsCaterory = 0;
+    public $countallArticleCaterory = 0;
+
+
     public function behaviors()
     {
         return [
@@ -36,6 +43,11 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        $this->countallArticles = Article::find()->count();
+        $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+        $this->countallArticleCaterory = ArticleCategory::find()->count();
+
         $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +64,11 @@ class DefaultController extends Controller
      */
     public function actionView($id)
     {
+        $this->countallArticles = Article::find()->count();
+        $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+        $this->countallArticleCaterory = ArticleCategory::find()->count();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,6 +81,11 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
+        $this->countallArticles = Article::find()->count();
+        $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+        $this->countallArticleCaterory = ArticleCategory::find()->count();
+
         $model = new ArticleCategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -83,6 +105,11 @@ class DefaultController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->countallArticles = Article::find()->count();
+        $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+        $this->countallArticleCaterory = ArticleCategory::find()->count();
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

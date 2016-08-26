@@ -1,8 +1,8 @@
 /*
  * Documentation JS script
  */
-$(function () {
-  var slideToTop = $("<div />");
+jQuery(function () {
+  var slideToTop = jQuery("<div />");
   slideToTop.html('<i class="fa fa-chevron-up"></i>');
   slideToTop.css({
     position: 'fixed',
@@ -22,42 +22,42 @@ $(function () {
     'display': 'none'
   });
   slideToTop.on('mouseenter', function () {
-    $(this).css('opacity', '1');
+    jQuery(this).css('opacity', '1');
   });
   slideToTop.on('mouseout', function () {
-    $(this).css('opacity', '.7');
+    jQuery(this).css('opacity', '.7');
   });
-  $('.wrapper').append(slideToTop);
-  $(window).scroll(function () {
-    if ($(window).scrollTop() >= 150) {
-      if (!$(slideToTop).is(':visible')) {
-        $(slideToTop).fadeIn(500);
+  jQuery('.wrapper').append(slideToTop);
+  jQuery(window).scroll(function () {
+    if (jQuery(window).scrollTop() >= 150) {
+      if (!jQuery(slideToTop).is(':visible')) {
+        jQuery(slideToTop).fadeIn(500);
       }
     } else {
-      $(slideToTop).fadeOut(500);
+      jQuery(slideToTop).fadeOut(500);
     }
   });
-  $(slideToTop).click(function () {
-    $("body").animate({
+  jQuery(slideToTop).click(function () {
+    jQuery("body").animate({
       scrollTop: 0
     }, 500);
   });
-  $(".sidebar-menu li:not(.treeview) a").click(function () {
-    var $this = $(this);
-    var target = $this.attr("href");
+  jQuery(".sidebar-menu li:not(.treeview) a").click(function () {
+    var jQuerythis = jQuery(this);
+    var target = jQuerythis.attr("href");
     if (typeof target === 'string') {
-      $("body").animate({
-        scrollTop: ($(target).offset().top) + "px"
+      jQuery("body").animate({
+        scrollTop: (jQuery(target).offset().top) + "px"
       }, 500);
     }
   });
   //Skin switcher
   var current_skin = "skin-blue";
-  $('#layout-skins-list [data-skin]').click(function(e) {
+  jQuery('#layout-skins-list [data-skin]').click(function(e) {
     e.preventDefault();
-    var skinName = $(this).data('skin');
-    $('body').removeClass(current_skin);
-    $('body').addClass(skinName);
+    var skinName = jQuery(this).data('skin');
+    jQuery('body').removeClass(current_skin);
+    jQuery('body').addClass(skinName);
     current_skin = skinName;
   });
 });

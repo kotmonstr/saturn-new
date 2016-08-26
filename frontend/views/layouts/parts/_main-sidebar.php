@@ -38,19 +38,6 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-home"></i> <span>Главная</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-book"></i>
-                    <span>Статьи</span>
-                    <span class="label label-primary pull-right from20-px-mr bg-red"><?= $this->context->countallArticles ?></span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/article/show') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/article/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
-                 </ul>
-            </li>
-
 
             <li class="treeview">
                 <a href="#">
@@ -64,23 +51,9 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <li><a href="<?= Url::to('/goods/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                 </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>Категории статей</span>
-                    <span class="label label-primary pull-right from20-px-mr">4</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Добавить</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Редактировать</a></li>
-
-                </ul>
-            </li>            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-list"></i>
+                    <i class="fa fa-diamond"></i>
                     <span>Категории товаров</span>
                     <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallGoodsCaterory ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -88,8 +61,36 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                 <ul class="treeview-menu">
                     <li><a href="<?= Url::to('/goods-category/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
                     <li><a href="<?= Url::to('/goods-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Статьи</span>
+                    <span class="label label-primary pull-right from20-px-mr bg-red"><?= $this->context->countallArticles ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/article/show') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li><a href="<?= Url::to('/article/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                  </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Категории статей</span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallArticleCaterory  ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/article-category/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li><a href="<?= Url::to('/article-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                  </ul>
+            </li>
+
+
 
 
 

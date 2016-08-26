@@ -9,6 +9,7 @@ use yii\web\AssetBundle;
  */
 class AdminAsset extends AssetBundle
 {
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -22,7 +23,10 @@ class AdminAsset extends AssetBundle
     ];
     public $js = [
         //'LTE/plugins/jQuery/jQuery-2.1.4.min.js',
-        'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js',
+        //'http://code.jquery.com/jquery-3.1.0.js',
+
+        //'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js',
+        //'https://code.jquery.com/ui/1.12.0/jquery-ui.js',
         'LTE/bootstrap/js/bootstrap.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',
         'LTE/plugins/morris/morris.min.js',
@@ -43,8 +47,9 @@ class AdminAsset extends AssetBundle
 
     ];
     public $depends = [
-       // 'yii\web\YiiAsset',
+
         'yii\web\JqueryAsset',
+        'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
 
     ];

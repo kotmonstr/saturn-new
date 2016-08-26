@@ -7,11 +7,10 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Goods Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div id="content">
-    <div class="outer">
-        <div class="inner bg-light lter">
-            <div id="collapse4" class="body">
-                <div class="goods-category-view">
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
 
                     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -38,5 +37,4 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-    </div>
-</div>
+</section>

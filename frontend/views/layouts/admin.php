@@ -228,5 +228,10 @@ AdminAsset::register($this);
 </html>
 <?php $this->endPage() ?>
 <script>
-    $.widget.bridge('uibutton', $.ui.button);
+    //jQuery(document).ready(function(){
+    //    jQuery.widget.bridge('uibutton', jQuery.ui.button)
+    //});
+    $(document).ready(function() {
+        $.widget.bridge('uibutton', $.ui.button);
+    })
 </script>
