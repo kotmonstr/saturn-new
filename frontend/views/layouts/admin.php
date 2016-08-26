@@ -5,6 +5,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AdminAsset;
 use common\widgets\Alert;
+use yii\web\Session;
 
 AdminAsset::register($this);
 ?>
@@ -41,8 +42,10 @@ AdminAsset::register($this);
     <div class="content-wrapper">
 
         <?= $this->render('parts/_dashboard'); ?>
-
-
+        <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
+        echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+        }
+?>
         <!-- Main content -->
         <?= $content ?>
     </div><!-- /.content-wrapper -->

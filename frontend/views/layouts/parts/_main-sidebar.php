@@ -46,7 +46,7 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/article/show') ?>"><i class="fa fa-circle-o"></i> Просмотреть все</a></li>
+                    <li><a href="<?= Url::to('/article/show') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
                     <li><a href="<?= Url::to('/article/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                  </ul>
             </li>
@@ -54,13 +54,13 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-diamond"></i>
                     <span>Товары</span>
                     <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallGoods ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/goods/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть все</a></li>
+                    <li><a href="<?= Url::to('/goods/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
                     <li><a href="<?= Url::to('/goods/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                 </ul>
             </li>
@@ -73,24 +73,22 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Просмотреть все</a></li>
+                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
                     <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Добавить</a></li>
                     <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Редактировать</a></li>
 
                 </ul>
             </li>            <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-list"></i>
                     <span>Категории товаров</span>
-                    <span class="label label-primary pull-right from20-px-mr">4</span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallGoodsCaterory ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Просмотреть все</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Добавить</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Редактировать</a></li>
-
-                </ul>
+                    <li><a href="<?= Url::to('/goods-category/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li><a href="<?= Url::to('/goods-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                 </ul>
             </li>
 
 

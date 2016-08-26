@@ -23,7 +23,7 @@ $arrBrend = Brend::find()->all();
 
                 <?= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
 
-                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a('Создать категорию ', '/goods_category/default/create')) ?>
+                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a('Создать категорию ', '/goods-category/create')) ?>
 
                 <?= $form->field($model, 'quantity')->textInput() ?>
 

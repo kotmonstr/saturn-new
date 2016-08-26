@@ -13,6 +13,7 @@ use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
 use yii\imagine\Image;
 use common\models\Article;
+use common\models\GoodsCategory;
 
 
 class GoodsController extends Controller
@@ -20,6 +21,7 @@ class GoodsController extends Controller
     public $layout = 'admin';
     public $countallArticles = 0;
     public $countallGoods = 0;
+    public $countallGoodsCaterory = 0;
 
     public function behaviors()
     {
@@ -31,8 +33,10 @@ class GoodsController extends Controller
     {
         $searchModel = new GoodsSearch();
         $dataProvider = $searchModel->search(['user_id' => Yii::$app->user->id]);
+
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
 
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
@@ -41,6 +45,8 @@ class GoodsController extends Controller
     {
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
 
@@ -48,6 +54,7 @@ class GoodsController extends Controller
     {
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
 
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
@@ -63,6 +70,7 @@ class GoodsController extends Controller
     {
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {

@@ -19,6 +19,7 @@ use common\models\ArticleSearch;
 use vova07\imperavi\actions\GetAction;
 use yii\web\Response;
 use common\models\Goods;
+use common\models\GoodsCategory;
 
 
 class ArticleController extends Controller
@@ -55,6 +56,8 @@ class ArticleController extends Controller
     public $meta = [];
     public $countallArticles = 0;
     public $countallGoods = 0;
+    public $countallGoodsCaterory = 0;
+
     public $uploudPath = '/web/upload/article';
 
     public function actions()
@@ -76,6 +79,10 @@ class ArticleController extends Controller
 
     public function actionIndex()
     {
+        $this->countallArticles = Article::find()->count();
+        $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+
         $catID = Yii::$app->request->get('category');
         $pageSize = 9;
         $query = Article::find();
@@ -126,8 +133,11 @@ class ArticleController extends Controller
     {
         $id = Yii::$app->request->get('id');
         $Article = $this->findModel($id);
+
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+
         return $this->render('view', ['model' => $Article]);
     }
 
@@ -136,8 +146,11 @@ class ArticleController extends Controller
 
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
+        $this->countallGoodsCaterory = GoodsCategory::find()->count();
+        
         return $this->render('show', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
