@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use common\models\Article;
 use common\models\Goods;
 use common\models\GoodsCategory;
+use common\models\ImageSlider;
 
 /**
  * DefaultController implements the CRUD actions for ArticleCategory model.
@@ -23,6 +24,7 @@ class ArticleCategoryController extends Controller
     public $countallGoods = 0;
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
+    public $countAllSliderFotos = 0;
 
 
     public function behaviors()
@@ -47,6 +49,7 @@ class ArticleCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -68,6 +71,7 @@ class ArticleCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -85,6 +89,7 @@ class ArticleCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         $model = new ArticleCategory();
 
@@ -109,6 +114,7 @@ class ArticleCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         $model = $this->findModel($id);
 

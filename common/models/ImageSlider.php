@@ -52,4 +52,21 @@ class ImageSlider extends \yii\db\ActiveRecord
         
         return $model = self::find()->all();
     }
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+
+            $fullPath = Yii::getAlias('@frontend')  .'/web/upload/multy-big/'.$this->name;
+            if(file_exists($fullPath)) {
+                unlink($fullPath);
+}
+            $fullPath2 = Yii::getAlias('@frontend')  .'/web/upload/multy-thumbs/'.$this->name;
+            if(file_exists($fullPath2)) {
+                unlink($fullPath2);
+}
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

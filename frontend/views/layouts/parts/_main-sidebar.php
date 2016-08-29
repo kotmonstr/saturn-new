@@ -12,7 +12,7 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="/LTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/images/logo-saturn-sque.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?= $userName?></p>
@@ -88,6 +88,19 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <li><a href="<?= Url::to('/article-category/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
                     <li><a href="<?= Url::to('/article-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                   </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-photo"></i>
+                    <span>Cлайдер</span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllSliderFotos  ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li><a href="<?= Url::to('/slider-photo/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                </ul>
             </li>
 
 

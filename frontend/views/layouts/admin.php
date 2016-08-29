@@ -221,17 +221,26 @@ AdminAsset::register($this);
 </div><!-- ./wrapper -->
 
 
-
-
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+
 <script>
     //jQuery(document).ready(function(){
     //    jQuery.widget.bridge('uibutton', jQuery.ui.button)
     //});
     $(document).ready(function() {
         $.widget.bridge('uibutton', $.ui.button);
+
+            if ($(".alert").length > 0) {
+                setTimeout(function () {
+                    $('.alert').slideDown('slow');
+                }, 0);
+
+                setTimeout(function () {
+                    $('.alert').slideUp('slow')
+                }, 5000);
+            }
     })
 </script>

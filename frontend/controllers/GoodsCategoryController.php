@@ -12,6 +12,7 @@ use common\models\Article;
 use common\models\Goods;
 use yii\web\ServerErrorHttpException;
 use common\models\ArticleCategory;
+use common\models\ImageSlider;
 
 /**
  * DefaultController implements the CRUD actions for GoodsCategory model.
@@ -24,6 +25,7 @@ class GoodsCategoryController extends Controller
     public $countallGoods = 0;
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
+    public $countAllSliderFotos = 0;
 
     public function behaviors()
     {
@@ -46,6 +48,7 @@ class GoodsCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         $searchModel = new GoodsCategorySearch();
@@ -66,6 +69,7 @@ class GoodsCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         
         return $this->render('view', [
@@ -83,10 +87,13 @@ class GoodsCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         
         $model = new GoodsCategory();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            Yii::$app->session->setFlash('success', 'Категория товара " '.$model->name.' " успешно создана.');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -106,6 +113,7 @@ class GoodsCategoryController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         
         $model = $this->findModel($id);
@@ -132,7 +140,7 @@ class GoodsCategoryController extends Controller
             $this->findModel($id)->delete();
         }else{
 
-            Yii::$app->session->setFlash('success', 'Категория не пуста - нельзя удалять.');
+            Yii::$app->session->setFlash('danger', 'Категория не пуста - нельзя удалять.');
 
             //throw new ServerErrorHttpException('Категория не пуста - нельзя удалять.');
         }

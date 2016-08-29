@@ -15,6 +15,7 @@ use yii\imagine\Image;
 use common\models\Article;
 use common\models\GoodsCategory;
 use common\models\ArticleCategory;
+use common\models\ImageSlider;
 
 
 class GoodsController extends Controller
@@ -25,6 +26,7 @@ class GoodsController extends Controller
     public $countallGoods = 0;
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
+    public $countAllSliderFotos = 0;
 
     public function behaviors()
     {
@@ -41,6 +43,7 @@ class GoodsController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
@@ -51,6 +54,8 @@ class GoodsController extends Controller
         $this->countallArticles = Article::find()->count();
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
+        $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
@@ -61,12 +66,16 @@ class GoodsController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
             $model->image = Yii::$app->request->post('Goods')['new_image'];
             $model->save();
+
+
+            Yii::$app->session->setFlash('success', 'Товара " '.$model->name.' " успешно создан.');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', ['model' => $model,]);
@@ -79,6 +88,7 @@ class GoodsController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         $model = $this->findModel($id);
@@ -98,6 +108,8 @@ class GoodsController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('success', 'Товар успешно удален.');
+
         return $this->redirect(['index']);
     }
 

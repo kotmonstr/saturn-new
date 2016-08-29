@@ -20,6 +20,7 @@ use vova07\imperavi\actions\GetAction;
 use yii\web\Response;
 use common\models\Goods;
 use common\models\GoodsCategory;
+use common\models\ImageSlider;
 
 
 class ArticleController extends Controller
@@ -59,6 +60,7 @@ class ArticleController extends Controller
     public $countallGoods = 0;
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
+    public $countAllSliderFotos = 0;
 
     public $uploudPath = '/web/upload/article';
 
@@ -85,6 +87,7 @@ class ArticleController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         $catID = Yii::$app->request->get('category');
@@ -142,6 +145,7 @@ class ArticleController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         return $this->render('view', ['model' => $Article]);
@@ -157,6 +161,7 @@ class ArticleController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         return $this->render('show', [
@@ -174,6 +179,7 @@ class ArticleController extends Controller
         $this->countallGoods = Goods::find()->count();
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
