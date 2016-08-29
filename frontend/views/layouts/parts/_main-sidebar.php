@@ -99,7 +99,6 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/slider-photo/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                 </ul>
             </li>
 
