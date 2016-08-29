@@ -64,6 +64,30 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-diamond"></i>
+                    <span>Группы категорий</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-diamond"></i>
+                    <span>Бренды</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                </ul>
+            </li>
+            <li class="header">СТАТЬИ</li>
 
             <li class="treeview">
                 <a href="#">
@@ -89,7 +113,8 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <li><a href="<?= Url::to('/article-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                   </ul>
             </li>
-
+            </li>
+            <li class="header">МЕДИА</li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-photo"></i>
@@ -100,7 +125,34 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                 <ul class="treeview-menu">
                     <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
                 </ul>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-photo"></i>
+                    <span>Галерея</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-photo"></i>
+                    <span>Видео галерея</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                </ul>
+            </li>
+
+
+            <li class="header">НЕ ГОТОВО</li>
+
+
 
 
 

@@ -15,7 +15,7 @@ AdminAsset::register($this);
 <head>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>AdminZone</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
@@ -31,9 +31,9 @@ AdminAsset::register($this);
 
 <div class="wrapper">
 
-    <?= $this->render('parts/_header'); ?>
+    <?= $this->render('parts-admin/_header'); ?>
   
-    <?= $this->render('parts/_main-sidebar'); ?>
+    <?= $this->render('parts-admin/_main-sidebar'); ?>
     
 
 
@@ -41,7 +41,7 @@ AdminAsset::register($this);
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        <?= $this->render('parts/_dashboard'); ?>
+        <?= $this->render('parts-admin/_dashboard'); ?>
         <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
         echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
         }
@@ -50,7 +50,7 @@ AdminAsset::register($this);
         <?= $content ?>
     </div><!-- /.content-wrapper -->
 
-    <?= $this->render('parts/_footer'); ?>
+    <?= $this->render('parts-admin/_footer'); ?>
 
 
     <!-- Control Sidebar -->
