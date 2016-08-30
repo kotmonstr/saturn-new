@@ -16,6 +16,7 @@ use common\models\ArticleCategory;
 use common\models\Article;
 use common\models\Goods;
 use common\models\GoodsCategory;
+use common\models\Groop;
 
 class SliderPhotoController extends Controller {
 
@@ -24,6 +25,7 @@ class SliderPhotoController extends Controller {
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
     public $countAllSliderFotos = 0;
+    public $countAllGroop = 0;
 
     public function behaviors() {
         return [
@@ -59,6 +61,7 @@ class SliderPhotoController extends Controller {
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGroop = Groop::find()->count();
 
         $searchModel = new ImageSliderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

@@ -1,5 +1,6 @@
 <?
 use yii\helpers\StringHelper;
+use yii\widgets\LinkPager;
 ?>
 
 <!-- Page Title -->
@@ -78,14 +79,14 @@ use yii\helpers\StringHelper;
                                 <!-- End Post Image -->
                                 <!-- Post Title & Summary -->
                                 <div class="post-title">
-                                    <h3><a href="page-blog-post-right-sidebar.html"><?= $goods->item ?></a></h3>
+                                    <h3><a href="#" title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item,17); ?></a></h3>
                                 </div>
                                 <div class="post-summary">
-                                    <p><?= StringHelper::truncate($goods->descr,50); ?></p>
+                                    <p><?= StringHelper::truncate($goods->descr,48); ?></p>
                                 </div>
                                 <!-- End Post Title & Summary -->
                                 <div class="post-more">
-                                    <a href="page-blog-post-right-sidebar.html" class="btn btn-small">Открыть</a>
+                                    <a href="#" class="btn btn-small">Открыть</a>
                                 </div>
                             </div>
                         </div>
@@ -96,6 +97,33 @@ use yii\helpers\StringHelper;
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-sm-9" style="text-align: center">
+                <?=
+                LinkPager::widget([
+                    'pagination' => $pages,
+                    'maxButtonCount' => 5,
+                    'hideOnSinglePage' => true
+                ]);
+                ?>
+                <ul class="pagination">
+                    <li class="last"><a
+                            href="/site/goods?page=<?= ceil($pages->totalCount / $pageSize) ?>"
+                            data-page="<?= ceil($pages->totalCount / $pageSize) ?>"><?= '...' . ceil($pages->totalCount / $pageSize); ?></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 <!-- End Posts List -->
+<style>
+    .blog-post{
+        height: 355px!important;
+    }
+    .post-image{
+        height: 200px!important;
+    }
+</style>

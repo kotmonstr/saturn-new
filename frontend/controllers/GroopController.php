@@ -1,26 +1,25 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
-use common\models\GoodsCategory;
-use common\models\GoodsCategorySearch;
-use yii\base\ErrorException;
+use common\models\Groop;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\Article;
-use common\models\Goods;
-use yii\web\ServerErrorHttpException;
 use common\models\ArticleCategory;
+use common\models\Goods;
+use common\models\GoodsCategory;
 use common\models\ImageSlider;
-use common\models\Groop;
 
 /**
- * DefaultController implements the CRUD actions for GoodsCategory model.
+ * GroopController implements the CRUD actions for Groop model.
  */
-class GoodsCategoryController extends Controller
+class GroopController extends Controller
 {
-    public $layout="admin";
+    public $layout = 'admin';
 
     public $countallArticles = 0;
     public $countallGoods = 0;
@@ -29,19 +28,23 @@ class GoodsCategoryController extends Controller
     public $countAllSliderFotos = 0;
     public $countAllGroop = 0;
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
+
     /**
-     * Lists all GoodsCategory models.
+     * Lists all Groop models.
      * @return mixed
      */
     public function actionIndex()
@@ -53,16 +56,17 @@ class GoodsCategoryController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => Groop::find(),
+        ]);
 
-        $searchModel = new GoodsCategorySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     /**
-     * Displays a single GoodsCategory model.
+     * Displays a single Groop model.
      * @param integer $id
      * @return mixed
      */
@@ -75,13 +79,13 @@ class GoodsCategoryController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
 
-        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
+
     /**
-     * Creates a new GoodsCategory model.
+     * Creates a new Groop model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -94,11 +98,9 @@ class GoodsCategoryController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
 
-        
-        $model = new GoodsCategory();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model = new Groop();
 
-            Yii::$app->session->setFlash('success', 'Категория товара " '.$model->name.' " успешно создана.');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -106,8 +108,9 @@ class GoodsCategoryController extends Controller
             ]);
         }
     }
+
     /**
-     * Updates an existing GoodsCategory model.
+     * Updates an existing Groop model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -121,8 +124,8 @@ class GoodsCategoryController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
 
-        
         $model = $this->findModel($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -131,50 +134,33 @@ class GoodsCategoryController extends Controller
             ]);
         }
     }
+
     /**
-     * Deletes an existing GoodsCategory model.
+     * Deletes an existing Groop model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        //TODO проверить пуста ли категория
-        $chekResult = $this->chekCategory($id);
+        $this->findModel($id)->delete();
 
-        if($chekResult) {
-            $this->findModel($id)->delete();
-        }else{
-
-            Yii::$app->session->setFlash('danger', 'Категория не пуста - нельзя удалять.');
-
-            //throw new ServerErrorHttpException('Категория не пуста - нельзя удалять.');
-        }
         return $this->redirect(['index']);
     }
+
     /**
-     * Finds the GoodsCategory model based on its primary key value.
+     * Finds the Groop model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return GoodsCategory the loaded model
+     * @return Groop the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = GoodsCategory::findOne($id)) !== null) {
+        if (($model = Groop::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-    private function chekCategory($id){
-        $count = Goods::find()->where(['category_id'=> $id])->count();
-        //vd($count);
-        if($count){
-            return false;
-        }else{
-            return true;
         }
     }
 }

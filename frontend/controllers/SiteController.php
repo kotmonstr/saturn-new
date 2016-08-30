@@ -13,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\data\Pagination;
 
 /**
  * Site controller
@@ -212,12 +213,28 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionGoods(){
+    public function actionGoods()
+    {
         $this->layout = 'goods';
-        $model = Goods::find()->all();
+
+
+        // Вывести список статей
+        $pageSize = 12;
+        $query = Goods::find();
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);
+
+
+        $model = $query->offset($pages->offset)
+            ->orderBy('created_at DESC')
+            ->limit($pages->limit)
+            ->all();
+
 
         return $this->render('goods', [
             'model' => $model,
+            'pages' => $pages,
+            'pageSize' => $pageSize,
         ]);
     }
 }

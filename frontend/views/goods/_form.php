@@ -5,10 +5,12 @@ use yii\helpers\ArrayHelper;
 use common\models\GoodsCategory;
 use backend\assets\AppAsset;
 use common\models\Brend;
+use common\models\Groop;
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AppAsset::className()]);
 $arrGoodsCategory = GoodsCategory::find()->all();
 $arrBrend = Brend::find()->all();
+$arrGroop = Groop::find()->all();
 ?>
 
 <section class="content">
@@ -21,15 +23,17 @@ $arrBrend = Brend::find()->all();
 
                 <?= $form->field($model, 'price')->textInput() ?>
 
-                <?= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
+                <?//= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
 
-                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a('Создать категорию ', '/goods-category/create')) ?>
+                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create',['class'=>'btn btn-primary'])) ?>
 
-                <?= $form->field($model, 'quantity')->textInput() ?>
+                <?//= $form->field($model, 'quantity')->textInput() ?>
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'brend_id')->dropDownList(ArrayHelper::map($arrBrend, 'id', 'name')) ?>
+                <?= $form->field($model, 'brend_id')->dropDownList(ArrayHelper::map($arrBrend, 'id', 'name'))->label('Бренд ' . Html::a(' Создать бренд ', '/brend/create',['class'=>'btn btn-primary'])) ?>
+
+                <?= $form->field($model, 'groop_id')->dropDownList(ArrayHelper::map($arrGroop, 'id', 'name'))->label('Группа ' . Html::a(' Создать группу ', '/groop/create',['class'=>'btn btn-primary'])) ?>
 
 
                 <?php if ($model->status == 1) {
@@ -38,11 +42,13 @@ $arrBrend = Brend::find()->all();
                     echo $form->field($model, 'status')->checkbox(['class' => 'non-act'])->label('');
                 } ?>
 
-                <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('') ?>
+                <?= $form->field($model, 'pdf_file')->fileInput()->label('Pdf file') ?>
+
+                <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('Картинка') ?>
                 <?= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>
 
 
-                <?= $model->image != '' ? Html::img('/upload/goods/' . $model->image, ['width' => '200px', 'height' => '200px', 'class' => 'target_image']) : Html::img('/img-custom/no_photo.jpg', ['width' => '200px', 'height' => '200px', 'class' => 'target_image']); ?>
+                <?= $model->image != '' ? Html::img('/upload/goods/' . $model->image, ['width' => '200px', 'height' => '200px', 'class' => 'target_image']) : Html::img('/images/no_photo.png', ['width' => '200px', 'height' => '200px', 'class' => 'target_image']); ?>
 
                 <?php if (!$model->isNewRecord) { ?>
                     <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>

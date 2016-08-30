@@ -16,6 +16,7 @@ use common\models\Article;
 use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
+use common\models\Groop;
 
 
 class GoodsController extends Controller
@@ -27,6 +28,7 @@ class GoodsController extends Controller
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
     public $countAllSliderFotos = 0;
+    public $countAllGroop = 0;
 
     public function behaviors()
     {
@@ -44,6 +46,7 @@ class GoodsController extends Controller
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGroop = Groop::find()->count();
 
 
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
@@ -56,6 +59,7 @@ class GoodsController extends Controller
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGroop = Groop::find()->count();
 
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
@@ -67,6 +71,7 @@ class GoodsController extends Controller
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGroop = Groop::find()->count();
 
 
         $model = new Goods();
@@ -89,6 +94,7 @@ class GoodsController extends Controller
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGroop = Groop::find()->count();
 
 
         $model = $this->findModel($id);

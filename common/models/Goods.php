@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use common\models\GoodsCategory;
+use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "goods".
@@ -26,7 +28,20 @@ class Goods extends \yii\db\ActiveRecord
     public $image_file;
     public $image_file_extra;
     public $new_image;
+    public $pdf_file;
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\behaviors\TimestampBehavior',
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'item',
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -47,6 +62,7 @@ class Goods extends \yii\db\ActiveRecord
             [['descr', 'image'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
+            [['pdf_file'], 'file', 'extensions' => 'pdf'],
         ];
     }
 

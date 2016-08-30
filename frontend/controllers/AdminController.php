@@ -18,6 +18,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
+use common\models\Groop;
 
 /**
  * Default controller for the `home` module
@@ -31,6 +32,7 @@ class AdminController extends Controller
     public $countallGoodsCaterory = 0;
     public $countallArticleCaterory = 0;
     public $countAllSliderFotos = 0;
+    public $countAllGroop = 0;
 
 
     public function actionIndex()
@@ -40,6 +42,7 @@ class AdminController extends Controller
         $this->countallGoodsCaterory = GoodsCategory::find()->count();
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGroop = Groop::find()->count();
 
         return $this->render('index');
     }

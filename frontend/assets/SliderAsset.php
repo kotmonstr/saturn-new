@@ -17,6 +17,7 @@ class SliderAsset extends AssetBundle
         'http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800',
         'PURPOSE/css/leaflet.css',
         'PURPOSE/css/main.css',
+        'PURPOSE/css/icomoon-social.css',
         //'PURPOSE/css/main-green.css',
         //'PURPOSE/css/main-red.css',
         //'PURPOSE/css/main-grey.css',

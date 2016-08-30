@@ -20,7 +20,8 @@ class AdminAsset extends AssetBundle
         'LTE/dist/css/skins/_all-skins.min.css',
         'LTE/style.css',
         'LTE/custom.css',
-        'switch/bootstrap-switch.min.css'
+        'switch/bootstrap-switch.min.css',
+       
     ];
     public $js = [
         //'LTE/plugins/jQuery/jQuery-2.1.4.min.js',
