@@ -1,5 +1,10 @@
 <?php
 use yii\helpers\Url;
+
+$controller = Yii::$app->controller->id;
+$action = Yii::$app->controller->action->id;
+$url = $controller.'/'.$action;
+//vd($url);
 ?>
 <!-- Navigation & Logo-->
 <div class="mainmenu-wrapper">
@@ -8,11 +13,11 @@ use yii\helpers\Url;
         <nav id="mainmenu" class="mainmenu">
             <ul>
                 <li class="logo-wrapper"><a href="/"><img src="/PURPOSE/img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
-                <li class="active">
+                <li class="<?= $url == 'site/index' ? 'active' : null ?>">
                     <a href="<?= Url::to('/'); ?>">Главная</a>
                 </li>
 
-                <li class="">
+                <li class="<?= $url == 'site/goods' ? 'active' : null ?>">
                     <a href="<?= Url::to('/site/goods'); ?>">Товары</a>
                 </li>
 

@@ -213,6 +213,7 @@ class SiteController extends Controller
     }
 
     public function actionGoods(){
+        $this->layout = 'goods';
         $model = Goods::find()->all();
 
         return $this->render('goods', [

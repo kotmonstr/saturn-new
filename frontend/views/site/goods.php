@@ -1,3 +1,7 @@
+<?
+use yii\helpers\StringHelper;
+?>
+
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
     <div class="container">
@@ -51,37 +55,37 @@
             <div class="col-md-9">
 
                 <? if (isset($model)): ?>
-                    <? foreach ($model as $good): ?>
+                    <? foreach ($model as $goods): ?>
 
                         <div class="col-md-4 col-sm-6">
-                            <div class="blog-post">
+                            <div class="blog-post ">
+                                <div class="ribbon-wrapper">
+                                    <div class="price-ribbon ribbon-green">New</div>
+                                </div>
                                 <!-- Post Info -->
                                 <div class="post-info">
                                     <div class="post-date">
-                                        <div class="date">30 JAN, 2013</div>
+                                        <div class="date"><?= $goods->price.' руб' ?></div>
                                     </div>
-                                    <div class="post-comments-count">
-                                        <a href="page-blog-post-right-sidebar.html" title="Show Comments"><i
-                                                class="glyphicon glyphicon-comment icon-white"></i>11</a>
-                                    </div>
+
                                 </div>
                                 <!-- End Post Info -->
                                 <!-- Post Image -->
-                                <a href="page-blog-post-right-sidebar.html"><img src="<?= '/upload/goods/'.$good->image ?>"
+
+                                <a href="page-blog-post-right-sidebar.html"><img src="<?= '/upload/goods/'.$goods->image ?>"
                                                                                  class="post-image"
                                                                                  alt="Post Title"></a>
                                 <!-- End Post Image -->
                                 <!-- Post Title & Summary -->
                                 <div class="post-title">
-                                    <h3><a href="page-blog-post-right-sidebar.html">Post Title</a></h3>
+                                    <h3><a href="page-blog-post-right-sidebar.html"><?= $goods->item ?></a></h3>
                                 </div>
                                 <div class="post-summary">
-                                    <p>Lorem ipsum sus, ac rhoncus eros diam id odio. Duis elementum
-                                        ligula eu ipsum condimentum accumsan.</p>
+                                    <p><?= StringHelper::truncate($goods->descr,50); ?></p>
                                 </div>
                                 <!-- End Post Title & Summary -->
                                 <div class="post-more">
-                                    <a href="page-blog-post-right-sidebar.html" class="btn btn-small">Read more</a>
+                                    <a href="page-blog-post-right-sidebar.html" class="btn btn-small">Открыть</a>
                                 </div>
                             </div>
                         </div>
