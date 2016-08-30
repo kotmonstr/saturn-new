@@ -16,6 +16,16 @@ class ImageSlider extends \yii\db\ActiveRecord
    
 
     public $file;
+
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['status',], 'integer'],
+            [['name','text'], 'string', 'max' => 255]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -25,14 +35,7 @@ class ImageSlider extends \yii\db\ActiveRecord
     }
 
   
-      public function rules()
-    {
-        return [
-           
-           //  ['file', 'extensions' => 'jpeg, gif, png'],
-        ];
-    }
-  
+
 
     /**
      * @inheritdoc
@@ -42,6 +45,7 @@ class ImageSlider extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Имя'),
+            'text' => Yii::t('app', 'Текст'),
         ];
     }
     /**

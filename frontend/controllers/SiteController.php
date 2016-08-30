@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Goods;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -207,6 +208,14 @@ class SiteController extends Controller
         }
 
         return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionGoods(){
+        $model = Goods::find()->all();
+
+        return $this->render('goods', [
             'model' => $model,
         ]);
     }

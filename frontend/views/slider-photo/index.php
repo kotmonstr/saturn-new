@@ -4,11 +4,12 @@ use yii\grid\GridView;
 use frontend\assets\AdminAsset;
 use backend\assets\AppAsset;
 use yii\widgets\ActiveForm;
+use common\models\ImageSlider;
 
 $this->registerJsFile('/js/switch-image.js', ['depends' => AdminAsset::className()]);
 $this->registerJsFile('/js/upload-multy.js', ['depends' => AppAsset::className()]);
 
-$model = new \common\models\ImageSlider();
+$model = new ImageSlider();
 
 $this->title = 'Слайдер - мульти загрузка.';
 $this->params['breadcrumbs'][] = $this->title;
@@ -67,7 +68,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 },
                                 'label' => 'Активо/ Не активно',
                             ],
-                           ['class' => 'yii\grid\ActionColumn','template' => '{delete}'],
+
+                            'text',
+                           ['class' => 'yii\grid\ActionColumn'],
+                           //['class' => 'yii\grid\ActionColumn','template' => '{delete}'],
                         ],
                     ]);
                     ?>

@@ -75,7 +75,7 @@ class GoodsController extends Controller
             $model->save();
 
 
-            Yii::$app->session->setFlash('success', 'Товара " '.$model->name.' " успешно создан.');
+            Yii::$app->session->setFlash('success', 'Товар успешно создан.');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', ['model' => $model,]);
