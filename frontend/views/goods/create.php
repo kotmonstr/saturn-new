@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <!--Begin Datatables-->
 
                 <div class="row">
                     <div class="col-md-12 " style="text-align: center">

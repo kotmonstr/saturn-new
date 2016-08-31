@@ -20,12 +20,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+                            //['class' => 'yii\grid\SerialColumn'],
                             [
                                 'attribute'=>'item',
                                 'format' => 'html',
                                 'value'=> function($dataProvider){
                                     return  Html::a($dataProvider->item,'/goods/view?id='.$dataProvider->id);
+                                }
+                            ],
+                            [
+                                'attribute' => 'groop_id',
+                                'format' => 'text',
+                                   'value' => function ($dataProvider) {
+                                    $a = \common\models\Groop::find()->where(['id' => $dataProvider->groop_id])->one();
+                                    $b = $a['name'];
+                                    return $b;
                                 }
                             ],
                             [
@@ -37,7 +46,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $b;
                                 }
                             ],
-                            'quantity',
+                            [
+                                'attribute' => 'brend_id',
+                                'format' => 'text',
+                                   'value' => function ($dataProvider) {
+                                    $a = \common\models\Brend::find()->where(['id' => $dataProvider->brend_id])->one();
+                                    $b = $a['name'];
+                                    return $b;
+                                }
+                            ],
+
                             'price',
                             ['attribute' => 'image', 'format' => 'html', 'value' => function ($dataProvider) {
                                 if ($dataProvider->image) {

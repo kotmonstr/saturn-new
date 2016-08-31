@@ -13,6 +13,7 @@ use common\models\ArticleCategory;
 use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ImageSlider;
+use common\models\Brend;
 
 /**
  * GroopController implements the CRUD actions for Groop model.
@@ -21,12 +22,13 @@ class GroopController extends Controller
 {
     public $layout = 'admin';
 
-    public $countallArticles = 0;
-    public $countallGoods = 0;
-    public $countallGoodsCaterory = 0;
-    public $countallArticleCaterory = 0;
-    public $countAllSliderFotos = 0;
-    public $countAllGroop = 0;
+    public $countallArticles = false;
+    public $countallGoods = false;
+    public $countallGoodsCaterory = false;
+    public $countallArticleCaterory = false;
+    public $countAllSliderFotos = false;
+    public $countAllGroop = false;
+    public $countAllBrend = false;
 
     /**
      * @inheritdoc
@@ -55,6 +57,7 @@ class GroopController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $dataProvider = new ActiveDataProvider([
             'query' => Groop::find(),
@@ -78,6 +81,7 @@ class GroopController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -97,6 +101,7 @@ class GroopController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $model = new Groop();
 
@@ -123,6 +128,7 @@ class GroopController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $model = $this->findModel($id);
 

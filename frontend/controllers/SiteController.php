@@ -237,4 +237,14 @@ class SiteController extends Controller
             'pageSize' => $pageSize,
         ]);
     }
+
+    public function actionGoodsDetail($slug){
+
+        $this->layout = 'goods';
+
+        $model = Goods::find()->where(['slug'=>$slug])->one();
+        return $this->render('goods-detail', [
+            'model' => $model,
+        ]);
+    }
 }

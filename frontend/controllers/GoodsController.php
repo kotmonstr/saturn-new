@@ -17,18 +17,20 @@ use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
 use common\models\Groop;
+use common\models\Brend;
 
 
 class GoodsController extends Controller
 {
     public $layout = 'admin';
 
-    public $countallArticles = 0;
-    public $countallGoods = 0;
-    public $countallGoodsCaterory = 0;
-    public $countallArticleCaterory = 0;
-    public $countAllSliderFotos = 0;
-    public $countAllGroop = 0;
+    public $countallArticles = false;
+    public $countallGoods = false;
+    public $countallGoodsCaterory = false;
+    public $countallArticleCaterory = false;
+    public $countAllSliderFotos = false;
+    public $countAllGroop = false;
+    public $countAllBrend = false;
 
     public function behaviors()
     {
@@ -47,6 +49,7 @@ class GoodsController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
@@ -60,6 +63,7 @@ class GoodsController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
@@ -72,13 +76,25 @@ class GoodsController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
+
+            //$model->pdf_file = UploadedFile::getInstance($model, 'pdf');
+
+            //vd($model);//pdf_file
+
             $model->image = Yii::$app->request->post('Goods')['new_image'];
             $model->save();
-
+            //$model->upload();
+            /*  $file = Yii::$app->request->get('file');
+            $path = dirname(__DIR__) . '/frontend/web/book/';
+            $file = $path . $file;
+            if (file_exists($file)) {
+                Yii::$app->response->sendFile($file);
+            }*/
 
             Yii::$app->session->setFlash('success', 'Товар успешно создан.');
             return $this->redirect(['view', 'id' => $model->id]);
@@ -95,6 +111,7 @@ class GoodsController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         $model = $this->findModel($id);

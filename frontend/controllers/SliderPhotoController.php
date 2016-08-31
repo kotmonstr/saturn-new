@@ -17,15 +17,17 @@ use common\models\Article;
 use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\Groop;
+use common\models\Brend;
 
 class SliderPhotoController extends Controller {
 
-    public $countallArticles = 0;
-    public $countallGoods = 0;
-    public $countallGoodsCaterory = 0;
-    public $countallArticleCaterory = 0;
-    public $countAllSliderFotos = 0;
-    public $countAllGroop = 0;
+    public $countallArticles = false;
+    public $countallGoods = false;
+    public $countallGoodsCaterory = false;
+    public $countallArticleCaterory = false;
+    public $countAllSliderFotos = false;
+    public $countAllGroop = false;
+    public $countAllBrend = false;
 
     public function behaviors() {
         return [
@@ -62,6 +64,7 @@ class SliderPhotoController extends Controller {
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $searchModel = new ImageSliderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

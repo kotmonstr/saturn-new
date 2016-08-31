@@ -57,12 +57,12 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item', 'price', 'category_id', 'quantity', 'descr', 'status'], 'required'],
-            [['price', 'category_id', 'quantity', 'status','best','rating'], 'integer'],
-            [['descr', 'image'], 'string'],
+            [['item', 'price', 'category_id', 'descr', 'status','brend_id','groop_id'], 'required'],
+            [['price', 'category_id','brend_id','groop_id', 'status','best','rating'], 'integer'],
+            [['descr', 'image','slug','pdf'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
-            [['pdf_file'], 'file', 'extensions' => 'pdf'],
+            //[['pdf_file'], 'file', 'skipOnEmpty' => false,'extensions' => 'pdf'],
         ];
     }
 
@@ -76,15 +76,28 @@ class Goods extends \yii\db\ActiveRecord
             'item' => 'Имя',
             'price' => 'Цена',
             'category_id' => 'Категория товара',
-            'quantity' => 'Количество',
+            'groop_id' => 'Группа товара',
+            'pdf' => 'Pdf file',
             'descr' => 'Описание',
             'status' => 'Статус',
             'image' => 'Картинка',
-            'brend_id' => 'Бренд Id',
+            'brend_id' => 'Бренд',
             'best'=>'Рекомендованный',
-            'rating'=>'Рейтинг'
+            'rating'=>'Рейтинг',
+            'slug'=>'slug'
         ];
     }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->pdf_file->saveAs('/upload/pdf/' . $this->pdf_file->baseName . '.' . $this->pdf_file->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /*
      * Вернет несколько последних товаров

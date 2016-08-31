@@ -1,6 +1,7 @@
 <?
 use yii\helpers\StringHelper;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 ?>
 
 <!-- Page Title -->
@@ -73,20 +74,20 @@ use yii\widgets\LinkPager;
                                 <!-- End Post Info -->
                                 <!-- Post Image -->
 
-                                <a href="page-blog-post-right-sidebar.html"><img src="<?= '/upload/goods/'.$goods->image ?>"
+                                <a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>"><img src="<?= '/upload/goods/'.$goods->image ?>"
                                                                                  class="post-image"
                                                                                  alt="Post Title"></a>
                                 <!-- End Post Image -->
                                 <!-- Post Title & Summary -->
                                 <div class="post-title">
-                                    <h3><a href="#" title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item,17); ?></a></h3>
+                                    <h3><a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item,17); ?></a></h3>
                                 </div>
                                 <div class="post-summary">
                                     <p><?= StringHelper::truncate($goods->descr,48); ?></p>
                                 </div>
                                 <!-- End Post Title & Summary -->
                                 <div class="post-more">
-                                    <a href="#" class="btn btn-small">Открыть</a>
+                                    <a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" class="btn btn-small">Открыть</a>
                                 </div>
                             </div>
                         </div>

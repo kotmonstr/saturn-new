@@ -42,7 +42,7 @@ $arrGroop = Groop::find()->all();
                     echo $form->field($model, 'status')->checkbox(['class' => 'non-act'])->label('');
                 } ?>
 
-                <?= $form->field($model, 'pdf_file')->fileInput()->label('Pdf file') ?>
+                <?= $form->field($model, 'pdf')->fileInput()->label('Pdf file') ?>
 
                 <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('Картинка') ?>
                 <?= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>

@@ -19,7 +19,7 @@ class GoodsSearch extends Goods
     {
         return [
             [['id', 'price', 'category_id', 'quantity', 'status'], 'integer'],
-            [['item', 'descr'], 'safe'],
+            [['item', 'descr','slug'], 'safe'],
         ];
     }
 
@@ -61,6 +61,7 @@ class GoodsSearch extends Goods
             'category_id' => $this->category_id,
             'quantity' => $this->quantity,
             'status' => $this->status,
+            'slug' => $this->slug,
         ]);
 
         $query->andFilterWhere(['like', 'item', $this->item])

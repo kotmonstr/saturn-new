@@ -13,6 +13,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ImageSlider;
 use common\models\Groop;
+use common\models\Brend;
 
 /**
  * DefaultController implements the CRUD actions for ArticleCategory model.
@@ -21,12 +22,13 @@ class ArticleCategoryController extends Controller
 {
     public $layout = 'admin';
 
-    public $countallArticles = 0;
-    public $countallGoods = 0;
-    public $countallGoodsCaterory = 0;
-    public $countallArticleCaterory = 0;
-    public $countAllSliderFotos = 0;
-    public $countAllGroop = 0;
+    public $countallArticles = false;
+    public $countallGoods = false;
+    public $countallGoodsCaterory = false;
+    public $countallArticleCaterory = false;
+    public $countAllSliderFotos = false;
+    public $countAllGroop = false;
+    public $countAllBrend = false;
 
 
     public function behaviors()
@@ -53,6 +55,7 @@ class ArticleCategoryController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -76,6 +79,7 @@ class ArticleCategoryController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -95,6 +99,7 @@ class ArticleCategoryController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $model = new ArticleCategory();
 
@@ -121,6 +126,7 @@ class ArticleCategoryController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
         $model = $this->findModel($id);
 

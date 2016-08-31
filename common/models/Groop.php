@@ -56,4 +56,9 @@ class Groop extends \yii\db\ActiveRecord
             'description' => 'Описание',
         ];
     }
+
+    public function getName()
+    {
+        return $this->name;
+    }
 }

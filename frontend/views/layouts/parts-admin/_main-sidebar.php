@@ -68,12 +68,12 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Группы категорий</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGroop ?> </span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGroop ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="<?= Url::to('/groop/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    li><a href="<?= Url::to('/groop/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li><a href="<?= Url::to('/groop/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                 </ul>
             </li>
 
@@ -81,11 +81,12 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Бренды</span>
-                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllBrend ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li><a href="<?= Url::to('/brend/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li><a href="<?= Url::to('/brend/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
                 </ul>
             </li>
             <li class="header">СТАТЬИ</li>

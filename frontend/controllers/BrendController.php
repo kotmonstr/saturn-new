@@ -1,27 +1,26 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
-use common\models\GoodsCategory;
-use common\models\GoodsCategorySearch;
-use yii\base\ErrorException;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Brend;
 use common\models\Article;
 use common\models\Goods;
-use yii\web\ServerErrorHttpException;
+use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
 use common\models\Groop;
-use common\models\Brend;
 
 /**
- * DefaultController implements the CRUD actions for GoodsCategory model.
+ * BrendController implements the CRUD actions for brend model.
  */
-class GoodsCategoryController extends Controller
+class BrendController extends Controller
 {
-    public $layout="admin";
+    public $layout = 'admin';
 
     public $countallArticles = false;
     public $countallGoods = false;
@@ -31,19 +30,23 @@ class GoodsCategoryController extends Controller
     public $countAllGroop = false;
     public $countAllBrend = false;
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
+
     /**
-     * Lists all GoodsCategory models.
+     * Lists all brend models.
      * @return mixed
      */
     public function actionIndex()
@@ -56,16 +59,17 @@ class GoodsCategoryController extends Controller
         $this->countAllGroop = Groop::find()->count();
         $this->countAllBrend = Brend::find()->count();
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => brend::find(),
+        ]);
 
-        $searchModel = new GoodsCategorySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
     /**
-     * Displays a single GoodsCategory model.
+     * Displays a single brend model.
      * @param integer $id
      * @return mixed
      */
@@ -79,13 +83,13 @@ class GoodsCategoryController extends Controller
         $this->countAllGroop = Groop::find()->count();
         $this->countAllBrend = Brend::find()->count();
 
-        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
+
     /**
-     * Creates a new GoodsCategory model.
+     * Creates a new brend model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -99,11 +103,9 @@ class GoodsCategoryController extends Controller
         $this->countAllGroop = Groop::find()->count();
         $this->countAllBrend = Brend::find()->count();
 
-        
-        $model = new GoodsCategory();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model = new brend();
 
-            Yii::$app->session->setFlash('success', 'Категория товара " '.$model->name.' " успешно создана.');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -111,8 +113,9 @@ class GoodsCategoryController extends Controller
             ]);
         }
     }
+
     /**
-     * Updates an existing GoodsCategory model.
+     * Updates an existing brend model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -127,8 +130,8 @@ class GoodsCategoryController extends Controller
         $this->countAllGroop = Groop::find()->count();
         $this->countAllBrend = Brend::find()->count();
 
-        
         $model = $this->findModel($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -137,50 +140,33 @@ class GoodsCategoryController extends Controller
             ]);
         }
     }
+
     /**
-     * Deletes an existing GoodsCategory model.
+     * Deletes an existing brend model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        //TODO проверить пуста ли категория
-        $chekResult = $this->chekCategory($id);
+        $this->findModel($id)->delete();
 
-        if($chekResult) {
-            $this->findModel($id)->delete();
-        }else{
-
-            Yii::$app->session->setFlash('danger', 'Категория не пуста - нельзя удалять.');
-
-            //throw new ServerErrorHttpException('Категория не пуста - нельзя удалять.');
-        }
         return $this->redirect(['index']);
     }
+
     /**
-     * Finds the GoodsCategory model based on its primary key value.
+     * Finds the brend model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return GoodsCategory the loaded model
+     * @return brend the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = GoodsCategory::findOne($id)) !== null) {
+        if (($model = brend::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-    private function chekCategory($id){
-        $count = Goods::find()->where(['category_id'=> $id])->count();
-        //vd($count);
-        if($count){
-            return false;
-        }else{
-            return true;
         }
     }
 }

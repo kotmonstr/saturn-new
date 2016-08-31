@@ -5,11 +5,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\SliderAsset;
+use frontend\assets\GoodsAsset;
 use common\widgets\Alert;
 use app\components\SliderWidget;
 
-SliderAsset::register($this);
+GoodsAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>

@@ -22,6 +22,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ImageSlider;
 use common\models\Groop;
+use common\models\Brend;
 
 
 class ArticleController extends Controller
@@ -57,12 +58,13 @@ class ArticleController extends Controller
     public $layout = 'admin';
     public $meta = [];
 
-    public $countallArticles = 0;
-    public $countallGoods = 0;
-    public $countallGoodsCaterory = 0;
-    public $countallArticleCaterory = 0;
-    public $countAllSliderFotos = 0;
-    public $countAllGroop = 0;
+    public $countallArticles = false;
+    public $countallGoods = false;
+    public $countallGoodsCaterory = false;
+    public $countallArticleCaterory = false;
+    public $countAllSliderFotos = false;
+    public $countAllGroop = false;
+    public $countAllBrend = false;
 
     public $uploudPath = '/web/upload/article';
 
@@ -91,6 +93,7 @@ class ArticleController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         $catID = Yii::$app->request->get('category');
@@ -150,6 +153,7 @@ class ArticleController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         return $this->render('view', ['model' => $Article]);
@@ -167,6 +171,7 @@ class ArticleController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         return $this->render('show', [
@@ -186,6 +191,7 @@ class ArticleController extends Controller
         $this->countallArticleCaterory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGroop = Groop::find()->count();
+        $this->countAllBrend = Brend::find()->count();
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

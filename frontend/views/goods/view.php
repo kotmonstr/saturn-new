@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\GoodsCategory;
+use common\models\Groop;
+use common\models\Brend;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Shop */
@@ -33,13 +35,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         // 'id',
                         'item',
                         'price',
-                        'rating',
+                        //'rating',
+                        [
+                            'attribute' => 'groop_id',
+                            'format' => 'raw',
+                            'value' => Html::a(Groop::find()->where(['id' => $model->groop_id])->one()->getName(), '/groop/view?id=' . $model->groop_id)
+                        ],
                         [
                             'attribute' => 'category_id',
                             'format' => 'raw',
-                            'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods_category/default/view?id=' . $model->category_id)
+                            'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods_category/view?id=' . $model->category_id)
                         ],
-                        'quantity',
+                        [
+                            'attribute' => 'brend_id',
+                            'format' => 'raw',
+                            'value' => Html::a(Brend::find()->where(['id' => $model->brend_id])->one()->getName(), '/brend/view?id=' . $model->brend_id)
+                        ],
+                        //'quantity',
                         'descr:ntext',
                         'status',
                         [

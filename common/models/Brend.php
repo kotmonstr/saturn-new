@@ -9,9 +9,8 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- *
- * @property Goods[] $goods
- * @property Wishlist[] $wishlists
+ * @property string $description
+ * @property string $slug
  */
 class Brend extends \yii\db\ActiveRecord
 {
@@ -30,7 +29,7 @@ class Brend extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'max' => 255]
+            [['name', 'description', 'slug'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,23 +40,13 @@ class Brend extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Имя',
+            'description' => 'Описание',
+            'slug' => 'Slug',
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGoods()
+    public function getName()
     {
-        return $this->hasMany(Goods::className(), ['brend_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getWishlists()
-    {
-        return $this->hasMany(Wishlist::className(), ['brend_id' => 'id']);
+        return $this->name;
     }
 }
