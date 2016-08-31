@@ -1,9 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\GoodsCategorySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use yii\helpers\StringHelper;
+
 $this->title = 'Категории товаров';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -26,7 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\SerialColumn'],
                             //'id',
                             'name',
-                            'descr:ntext',
+                            //'descr:ntext',
+                            [
+                                'label'=>'Описание',
+                                'format'=>'text',
+                                'value'=> function($data){
+                                    $result = StringHelper::truncate($data->descr,120);
+                                    return $result;
+                                }
+
+                            ],
                             ['class' => 'yii\grid\ActionColumn'],
                         ],
                     ]); ?>

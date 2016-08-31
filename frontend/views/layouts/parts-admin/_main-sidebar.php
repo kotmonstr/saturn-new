@@ -2,8 +2,13 @@
 use yii\helpers\Url;
 
 $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->identity->username : 'admin';
-?>
 
+
+$controller = Yii::$app->controller->id;
+$action = Yii::$app->controller->action->id;
+$url = $controller.'/'.$action;
+vd($url,false);
+?>
 
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
@@ -28,18 +33,17 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
               </span>
             </div>
         </form>
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
+
         <ul class="sidebar-menu">
             <li class="header">Главное меню управления</li>
 
-            <li>
+            <li class="<?= $url == 'admin/index' ? 'active' : null ?>" >
                 <a href="<?= Url::to('/admin/index'); ?>">
                     <i class="fa fa-home"></i> <span>Главная</span>
                 </a>
             </li>
             <li class="header">ТОВАРЫ</li>
-            <li class="treeview">
+            <li class="treeview <?= $url == 'goods/index' ||  $url == 'goods/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Товары</span>
@@ -47,11 +51,11 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/goods/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/goods/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li class="<?= $url == 'goods/index' ? 'active' : null ?>"><a href="<?= Url::to('/goods/index') ?>"><i class="fa <?= $url == 'goods/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'goods/create' ? 'active' : null ?>"><a href="<?= Url::to('/goods/create') ?>"><i class="fa <?= $url == 'goods/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview <?= $url == 'goods-category/index' ||  $url == 'goods-category/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Категории товаров</span>
@@ -59,12 +63,12 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/goods-category/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/goods-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li class="<?= $url == 'goods-category/index' ? 'active' : null ?>"><a href="<?= Url::to('/goods-category/index') ?>"><i class="fa <?= $url == 'goods-category/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'goods-category/create' ? 'active' : null ?>"><a href="<?= Url::to('/goods-category/create') ?>"><i class="fa <?= $url == 'goods-category/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview <?= $url == 'groop/index' ||  $url == 'groop/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Группы категорий</span>
@@ -72,12 +76,12 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/groop/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/groop/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li class="<?= $url == 'groop/index'  ? 'active' : null ?>"><a href="<?= Url::to('/groop/index') ?>"><i class="fa <?= $url == 'groop/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'groop/create' ? 'active' : null ?>"><a href="<?= Url::to('/groop/create') ?>"><i class="fa <?= $url == 'groop/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview <?= $url == 'brend/index' ||  $url == 'brend/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Бренды</span>
@@ -85,13 +89,13 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/brend/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/brend/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li class="<?= $url == 'brend/index'  ? 'active' : null ?>"><a href="<?= Url::to('/brend/index') ?>"><i class="fa <?= $url == 'brend/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'brend/create'  ? 'active' : null ?>"><a href="<?= Url::to('/brend/create') ?>"><i class="fa <?= $url == 'brend/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
             <li class="header">СТАТЬИ</li>
 
-            <li class="treeview">
+            <li class="treeview <?= $url == 'article/show' ||  $url == 'article/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Статьи</span>
@@ -99,11 +103,11 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/article/show') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/article/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li class="<?= $url == 'article/show'  ? 'active' : null ?>"><a href="<?= Url::to('/article/show') ?>"><i class="fa <?= $url == 'article/show' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'article/index'  ? 'active' : null ?>"><a href="<?= Url::to('/article/create') ?>"><i class="fa <?= $url == 'article/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                  </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview <?= $url == 'article-category/index' ||  $url == 'article-category/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Категории статей</span>
@@ -111,13 +115,13 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/article-category/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
-                    <li><a href="<?= Url::to('/article-category/create') ?>"><i class="fa fa-circle-o"></i> Добавить</a></li>
+                    <li class="<?= $url == 'article-category/index' ? 'active' : null ?>"><a href="<?= Url::to('/article-category/index') ?>"><i class="fa <?= $url == 'article-category/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'article-category/create' ? 'active' : null ?>"><a href="<?= Url::to('/article-category/create') ?>"><i class="fa <?= $url == 'article-category/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                   </ul>
             </li>
             </li>
-            <li class="header">МЕДИА</li>
-            <li class="treeview">
+            <li class="header">МЕДИЯ</li>
+            <li class="treeview <?= $url == 'slider-photo/index' ||  $url == 'slider-photo/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-photo"></i>
                     <span>Cлайдер</span>
@@ -125,7 +129,7 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'slider-photo/index' ? 'active' : null ?>"><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa <?= $url == 'slider-photo/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
 
             <li class="treeview">

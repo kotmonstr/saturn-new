@@ -18,7 +18,7 @@ class GoodsSearch extends Goods
     public function rules()
     {
         return [
-            [['id', 'price', 'category_id', 'quantity', 'status'], 'integer'],
+            [['id', 'price', 'category_id', 'status'], 'integer'],
             [['item', 'descr','slug'], 'safe'],
         ];
     }
@@ -59,7 +59,6 @@ class GoodsSearch extends Goods
             'id' => $this->id,
             'price' => $this->price,
             'category_id' => $this->category_id,
-            'quantity' => $this->quantity,
             'status' => $this->status,
             'slug' => $this->slug,
         ]);
