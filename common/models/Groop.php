@@ -38,7 +38,7 @@ class Groop extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            //[['id'], 'required'],
+            [['id'], 'required'],
             [['id'], 'integer'],
             [['name', 'slug', 'description'], 'string', 'max' => 255],
         ];
@@ -56,9 +56,8 @@ class Groop extends \yii\db\ActiveRecord
             'description' => 'Описание',
         ];
     }
-
-    public function getName()
-    {
+    public function getName(){
         return $this->name;
     }
+
 }

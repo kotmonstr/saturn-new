@@ -6,6 +6,8 @@ use Yii;
 use common\models\GoodsCategory;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use common\models\Groop;
+use common\models\Brend;
 
 /**
  * This is the model class for table "goods".
@@ -28,7 +30,9 @@ class Goods extends \yii\db\ActiveRecord
     public $image_file;
     public $image_file_extra;
     public $new_image;
-    public $pdf_file;
+    //public $pdf_file;
+    public $file;
+    //public $groop_id;
 
     public function behaviors()
     {
@@ -63,6 +67,7 @@ class Goods extends \yii\db\ActiveRecord
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
             //[['pdf_file'], 'file', 'skipOnEmpty' => false,'extensions' => 'pdf'],
+            //[['file'], 'file','extensions' => 'pdf'],
         ];
     }
 
@@ -257,6 +262,13 @@ class Goods extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(GoodsCategory::className(), ['id' => 'category_id']);
+    }
+    public function getGroop()
+    {
+        return $this->hasOne(Groop::className(), ['id' => 'groop_id']);
+    }
+    public function getName(){
+        return $this->name;
     }
 
 

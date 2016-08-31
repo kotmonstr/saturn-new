@@ -23,17 +23,17 @@ $arrGroop = Groop::find()->all();
 
                 <?= $form->field($model, 'price')->textInput() ?>
 
-                <?//= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
+                <? //= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
 
-                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create',['class'=>'btn btn-primary'])) ?>
+                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
 
-                <?//= $form->field($model, 'quantity')->textInput() ?>
+                <? //= $form->field($model, 'quantity')->textInput() ?>
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'brend_id')->dropDownList(ArrayHelper::map($arrBrend, 'id', 'name'))->label('Бренд ' . Html::a(' Создать бренд ', '/brend/create',['class'=>'btn btn-primary'])) ?>
+                <?= $form->field($model, 'brend_id')->dropDownList(ArrayHelper::map($arrBrend, 'id', 'name'))->label('Бренд ' . Html::a(' Создать бренд ', '/brend/create', ['class' => 'btn btn-primary'])) ?>
 
-                <?= $form->field($model, 'groop_id')->dropDownList(ArrayHelper::map($arrGroop, 'id', 'name'))->label('Группа ' . Html::a(' Создать группу ', '/groop/create',['class'=>'btn btn-primary'])) ?>
+                <?= $form->field($model, 'groop_id')->dropDownList(ArrayHelper::map($arrGroop, 'id', 'name'))->label('Группа ' . Html::a(' Создать группу ', '/groop/create', ['class' => 'btn btn-primary'])) ?>
 
 
                 <?php if ($model->status == 1) {
@@ -42,20 +42,27 @@ $arrGroop = Groop::find()->all();
                     echo $form->field($model, 'status')->checkbox(['class' => 'non-act'])->label('');
                 } ?>
 
-                <?= $form->field($model, 'pdf')->fileInput()->label('Pdf file') ?>
+                <div class="row">
+                    <div class="col-md-6">
+                        <?= $model->pdf ? $model->pdf : 'Выберите файл в формате Pdf'; ?>
+                        <?= $form->field($model, 'file')->fileInput()->label('Pdf file') ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= $model->image != '' ? Html::img('/upload/goods/' . $model->image, ['width' => '200px', 'height' => '200px', 'class' => 'target_image']) : Html::img('/images/no_photo.png', ['width' => '200px', 'height' => '200px', 'class' => 'target_image']); ?>
 
-                <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('Картинка') ?>
-                <?= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>
+                        <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('Картинка') ?>
+                        <?= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>
 
-
-                <?= $model->image != '' ? Html::img('/upload/goods/' . $model->image, ['width' => '200px', 'height' => '200px', 'class' => 'target_image']) : Html::img('/images/no_photo.png', ['width' => '200px', 'height' => '200px', 'class' => 'target_image']); ?>
-
-                <?php if (!$model->isNewRecord) { ?>
-                    <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>
-                <?php } ?>
-                <div style="width:700px;">
-                    <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image'])->label('') ?>
+                        <?php if (!$model->isNewRecord) { ?>
+                            <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>
+                        <?php } ?>
+                        <div style="width:700px;">
+                            <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image'])->label('') ?>
+                        </div>
+                    </div>
                 </div>
+
+
                 <div class="form-group" style="margin-top: 10px">
                     <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Редактировать', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 

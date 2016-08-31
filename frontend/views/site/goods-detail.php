@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Html;
+?>
+
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
     <div class="container">
@@ -39,7 +43,7 @@
                         <td><b>Группа товара:</b></td>
                         <td>
                             <p>
-                                <?= $model->groop_id ?>
+                                <?= $model->groop->name  ?>
                             </p>
                         </td>
                     </tr>
@@ -48,7 +52,15 @@
                         <td><b>Категория товара:</b></td>
                         <td>
                             <p>
-                                <?= $model->category_id ?>
+                                <?= $model->category->name ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Бренд:</b></td>
+                        <td>
+                            <p>
+                                <?= $model->brend->name ?>
                             </p>
                         </td>
                     </tr>
@@ -63,7 +75,7 @@
                     <!-- Tabs -->
                     <ul class="nav nav-tabs product-details-nav">
                         <li class="active"><a href="#tab1" data-toggle="tab">Описание</a></li>
-                        <li><a href="#tab2" data-toggle="tab">Specification</a></li>
+                        <li><a href="#tab2" data-toggle="tab">Подробное описание</a></li>
                     </ul>
                     <!-- Tab Content (Full Description) -->
                     <div class="tab-content product-detail-info">
@@ -76,40 +88,7 @@
                         </div>
                         <!-- Tab Content (Specification) -->
                         <div class="tab-pane" id="tab2">
-                            <table>
-                                <tr>
-                                    <td>Total sensor Pixels (megapixels)</td>
-                                    <td>Approx. 16.7</td>
-                                </tr>
-                                <tr>
-                                    <td>Effective Pixels (megapixels)</td>
-                                    <td>Approx. 16.1</td>
-                                </tr>
-                                <tr>
-                                    <td>Automatic White Balance</td>
-                                    <td>YES</td>
-                                </tr>
-                                <tr>
-                                    <td>White balance: preset selection</td>
-                                    <td>Daylight, Shade, Cloudy, Incandescent, Fluorescent, Flash</td>
-                                </tr>
-                                <tr>
-                                    <td>White balance: custom setting</td>
-                                    <td>YES</td>
-                                </tr>
-                                <tr>
-                                    <td>White balance: types of color temperature</td>
-                                    <td>YES (G7 to M7,15-step) (A7 to B7,15-step)</td>
-                                </tr>
-                                <tr>
-                                    <td>White balance bracketing</td>
-                                    <td>NO</td>
-                                </tr>
-                                <tr>
-                                    <td>ISO Sensitivity Setting</td>
-                                    <td>ISO100 - 25600 equivalent</td>
-                                </tr>
-                            </table>
+                       <?= Html::a($model->pdf,'/upload/pdf/'.$model->pdf) ?>
                         </div>
                     </div>
                 </div>

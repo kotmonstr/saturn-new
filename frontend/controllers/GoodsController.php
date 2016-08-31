@@ -82,19 +82,14 @@ class GoodsController extends Controller
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
 
-            //$model->pdf_file = UploadedFile::getInstance($model, 'pdf');
-
-            //vd($model);//pdf_file
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
+                $model->file->saveAs('upload/pdf/' . $model->file->name );
+                $model->pdf = $model->file->name;
+            }
 
             $model->image = Yii::$app->request->post('Goods')['new_image'];
             $model->save();
-            //$model->upload();
-            /*  $file = Yii::$app->request->get('file');
-            $path = dirname(__DIR__) . '/frontend/web/book/';
-            $file = $path . $file;
-            if (file_exists($file)) {
-                Yii::$app->response->sendFile($file);
-            }*/
 
             Yii::$app->session->setFlash('success', 'Товар успешно создан.');
             return $this->redirect(['view', 'id' => $model->id]);
@@ -116,12 +111,23 @@ class GoodsController extends Controller
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
+
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
+                $model->file->saveAs('upload/pdf/' . $model->file->name );
+                $model->pdf = $model->file->name;
+            }
+
             if (UploadedFile::getInstance($model, 'image_file')) {
                 $image = UploadedFile::getInstance($model, 'image_file');
                 $model->image = $image->name;
-                $model->save();
+                //$model->save();
             }
+            //vd(2);
+            //$model->validate();
+            //vd($model->getErrors());
             $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', ['model' => $model,]);

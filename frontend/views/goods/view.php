@@ -55,6 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'descr:ntext',
                         'status',
                         [
+                            'attribute' => 'pdf',
+                            'format' => 'raw',
+                            'value' => Html::a($model->pdf,'/upload/pdf/'.$model->pdf)
+                        ],
+                        [
                             'attribute' => 'image',
                             'value' => isset($model->image) && $model->image != '' ? '/upload/goods/' . $model->image : '/img-custom/no_photo.jpg',
                             'format' => ['image', ['width' => '300', 'height' => '300']],
