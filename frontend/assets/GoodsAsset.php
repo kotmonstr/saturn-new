@@ -18,6 +18,7 @@ class GoodsAsset extends AssetBundle
         'PURPOSE/css/leaflet.css',
         'PURPOSE/css/main.css',
         'PURPOSE/css/icomoon-social.css',
+        'css/custom.css',
         //'PURPOSE/css/main-green.css',
         //'PURPOSE/css/main-red.css',
         //'PURPOSE/css/main-grey.css',
