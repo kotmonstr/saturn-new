@@ -7,7 +7,7 @@ $userName = isset(yii::$app->user->identity->username)  ? yii::$app->user->ident
 $controller = Yii::$app->controller->id;
 $action = Yii::$app->controller->action->id;
 $url = $controller.'/'.$action;
-vd($url,false);
+
 ?>
 
 <!-- Left side column. contains the logo and sidebar -->

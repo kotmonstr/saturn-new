@@ -18,7 +18,7 @@ AdminAsset::register($this);
     <title>AdminZone</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -32,10 +32,8 @@ AdminAsset::register($this);
 <div class="wrapper">
 
     <?= $this->render('parts-admin/_header'); ?>
-  
-    <?= $this->render('parts-admin/_main-sidebar'); ?>
-    
 
+    <?= $this->render('parts-admin/_main-sidebar'); ?>
 
 
     <!-- Content Wrapper. Contains page content -->
@@ -43,9 +41,9 @@ AdminAsset::register($this);
 
         <?= $this->render('parts-admin/_dashboard'); ?>
         <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
-        echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+            echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
         }
-?>
+        ?>
         <!-- Main content -->
         <?= $content ?>
     </div><!-- /.content-wrapper -->
@@ -227,20 +225,30 @@ AdminAsset::register($this);
 <?php $this->endPage() ?>
 
 <script>
-    //jQuery(document).ready(function(){
-    //    jQuery.widget.bridge('uibutton', jQuery.ui.button)
-    //});
-    $(document).ready(function() {
-        $.widget.bridge('uibutton', $.ui.button);
-
-            if ($(".alert").length > 0) {
-                setTimeout(function () {
-                    $('.alert').slideDown('slow');
-                }, 0);
-
-                setTimeout(function () {
-                    $('.alert').slideUp('slow')
-                }, 5000);
+    jQuery(document).ready(function () {
+        jQuery('.sidebar-toggle').click(function () {
+            if (jQuery('body').hasClass('sidebar-collapse')) {
+                jQuery('body').removeClass('sidebar-collapse');
+            } else {
+                jQuery('body').addClass('sidebar-collapse');
             }
+
+        });
+
+
+        if (jQuery(".alert").length > 0) {
+            setTimeout(function () {
+                jQuery('.alert').slideDown('slow');
+            }, 0);
+
+            setTimeout(function () {
+                jQuery('.alert').slideUp('slow')
+            }, 5000);
+        }
     })
+
+    jQuery('.treeview').click(function () {
+        jQuery('.treeview').removeClass('active');
+        jQuery(this).addClass('active');
+    });
 </script>

@@ -1,4 +1,4 @@
-$(function () {
+jQuery(function () {
 
   'use strict';
 
@@ -12,7 +12,7 @@ $(function () {
   //-----------------------
 
   // Get context with jQuery - using jQuery's .get() method.
-  var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
+  var salesChartCanvas = jQuery("#salesChart").get(0).getContext("2d");
   // This will get the first returned node in the jQuery collection.
   var salesChart = new Chart(salesChartCanvas);
 
@@ -92,7 +92,7 @@ $(function () {
   //- PIE CHART -
   //-------------
   // Get context with jQuery - using jQuery's .get() method.
-  var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+  var pieChartCanvas = jQuery("#pieChart").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
   var PieData = [
     {
@@ -169,7 +169,7 @@ $(function () {
    * ------------
    * Create a world map with markers
    */
-  $('#world-map-markers').vectorMap({
+  jQuery('#world-map-markers').vectorMap({
     map: 'world_mill_en',
     normalizeFunction: 'polynomial',
     hoverOpacity: 0.7,
@@ -237,39 +237,39 @@ $(function () {
   //-----------------
   //- SPARKLINE BAR -
   //-----------------
-  $('.sparkbar').each(function () {
-    var $this = $(this);
-    $this.sparkline('html', {
+  jQuery('.sparkbar').each(function () {
+    var jQuerythis = jQuery(this);
+    jQuerythis.sparkline('html', {
       type: 'bar',
-      height: $this.data('height') ? $this.data('height') : '30',
-      barColor: $this.data('color')
+      height: jQuerythis.data('height') ? jQuerythis.data('height') : '30',
+      barColor: jQuerythis.data('color')
     });
   });
 
   //-----------------
   //- SPARKLINE PIE -
   //-----------------
-  $('.sparkpie').each(function () {
-    var $this = $(this);
-    $this.sparkline('html', {
+  jQuery('.sparkpie').each(function () {
+    var jQuerythis = jQuery(this);
+    jQuerythis.sparkline('html', {
       type: 'pie',
-      height: $this.data('height') ? $this.data('height') : '90',
-      sliceColors: $this.data('color')
+      height: jQuerythis.data('height') ? jQuerythis.data('height') : '90',
+      sliceColors: jQuerythis.data('color')
     });
   });
 
   //------------------
   //- SPARKLINE LINE -
   //------------------
-  $('.sparkline').each(function () {
-    var $this = $(this);
-    $this.sparkline('html', {
+  jQuery('.sparkline').each(function () {
+    var jQuerythis = jQuery(this);
+    jQuerythis.sparkline('html', {
       type: 'line',
-      height: $this.data('height') ? $this.data('height') : '90',
+      height: jQuerythis.data('height') ? jQuerythis.data('height') : '90',
       width: '100%',
-      lineColor: $this.data('linecolor'),
-      fillColor: $this.data('fillcolor'),
-      spotColor: $this.data('spotcolor')
+      lineColor: jQuerythis.data('linecolor'),
+      fillColor: jQuerythis.data('fillcolor'),
+      spotColor: jQuerythis.data('spotcolor')
     });
   });
 });

@@ -12,17 +12,17 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,
-                    'js' => [
-                        'http://code.jquery.com/jquery-3.1.0.js',
-                        'http://code.jquery.com/ui/1.12.0/jquery-ui.js'
-                    ],
-                ],
-            ],
-        ],
+//        'assetManager' => [
+//            'bundles' => [
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,
+//                    'js' => [
+//                        'http://code.jquery.com/jquery-3.1.0.js',
+//                        'http://code.jquery.com/ui/1.12.0/jquery-ui.js'
+//                    ],
+//                ],
+//            ],
+//        ],
         'request' => [
             'baseUrl' => '',
             'csrfParam' => '_csrf-frontend',

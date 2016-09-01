@@ -5,22 +5,22 @@
  *      This is a demo file used only for the main dashboard (index.html)
  **/
 
-$(function () {
+jQuery(function () {
 
   "use strict";
 
   //Make the dashboard widgets sortable Using jquery UI
-  $(".connectedSortable").sortable({
+  jQuery(".connectedSortable").sortable({
     placeholder: "sort-highlight",
     connectWith: ".connectedSortable",
     handle: ".box-header, .nav-tabs",
     forcePlaceholderSize: true,
     zIndex: 999999
   });
-  $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
+  jQuery(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
   //jQuery UI sortable for the todo list
-  $(".todo-list").sortable({
+  jQuery(".todo-list").sortable({
     placeholder: "sort-highlight",
     handle: ".handle",
     forcePlaceholderSize: true,
@@ -28,9 +28,9 @@ $(function () {
   });
 
   //bootstrap WYSIHTML5 - text editor
-  $(".textarea").wysihtml5();
+  //jQuery(".textarea").wysihtml5();
 
-  $('.daterange').daterangepicker({
+  jQuery('.daterange').daterangepicker({
     ranges: {
       'Today': [moment(), moment()],
       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -46,7 +46,7 @@ $(function () {
   });
 
   /* jQueryKnob */
-  $(".knob").knob();
+  jQuery(".knob").knob();
 
   //jvectormap data
   var visitorsData = {
@@ -63,7 +63,7 @@ $(function () {
     "RU": 3000 //Russia
   };
   //World map by jvectormap
-  $('#world-map').vectorMap({
+  jQuery('#world-map').vectorMap({
     map: 'world_mill_en',
     backgroundColor: "transparent",
     regionStyle: {
@@ -90,7 +90,7 @@ $(function () {
 
   //Sparkline charts
   var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
-  $('#sparkline-1').sparkline(myvalues, {
+  jQuery('#sparkline-1').sparkline(myvalues, {
     type: 'line',
     lineColor: '#92c1dc',
     fillColor: "#ebf4f9",
@@ -98,7 +98,7 @@ $(function () {
     width: '80'
   });
   myvalues = [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921];
-  $('#sparkline-2').sparkline(myvalues, {
+  jQuery('#sparkline-2').sparkline(myvalues, {
     type: 'line',
     lineColor: '#92c1dc',
     fillColor: "#ebf4f9",
@@ -106,7 +106,7 @@ $(function () {
     width: '80'
   });
   myvalues = [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21];
-  $('#sparkline-3').sparkline(myvalues, {
+  jQuery('#sparkline-3').sparkline(myvalues, {
     type: 'line',
     lineColor: '#92c1dc',
     fillColor: "#ebf4f9",
@@ -115,10 +115,10 @@ $(function () {
   });
 
   //The Calender
-  $("#calendar").datepicker();
+  jQuery("#calendar").datepicker();
 
   //SLIMSCROLL FOR CHAT WIDGET
-  $('#chat-box').slimScroll({
+  jQuery('#chat-box').slimScroll({
     height: '250px'
   });
 
@@ -189,14 +189,14 @@ $(function () {
   });
 
   //Fix for charts under tabs
-  $('.box ul.nav a').on('shown.bs.tab', function () {
+  jQuery('.box ul.nav a').on('shown.bs.tab', function () {
     area.redraw();
     donut.redraw();
     line.redraw();
   });
 
   /* The todo list plugin */
-  $(".todo-list").todolist({
+  jQuery(".todo-list").todolist({
     onCheck: function (ele) {
       window.console.log("The element has been checked");
       return ele;

@@ -4,7 +4,7 @@
  * You should not use this file in production.
  * This file is for demo purposes only.
  */
-(function ($, AdminLTE) {
+(function (jQuery, AdminLTE) {
 
   "use strict";
 
@@ -29,24 +29,24 @@
   ];
 
   //Create the new tab
-  var tab_pane = $("<div />", {
+  var tab_pane = jQuery("<div />", {
     "id": "control-sidebar-theme-demo-options-tab",
     "class": "tab-pane active"
   });
 
   //Create the tab button
-  var tab_button = $("<li />", {"class": "active"})
+  var tab_button = jQuery("<li />", {"class": "active"})
           .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'>"
                   + "<i class='fa fa-wrench'></i>"
                   + "</a>");
 
   //Add the tab button to the right sidebar tabs
-  $("[href='#control-sidebar-home-tab']")
+  jQuery("[href='#control-sidebar-home-tab']")
           .parent()
           .before(tab_button);
 
   //Create the menu
-  var demo_settings = $("<div />");
+  var demo_settings = jQuery("<div />");
 
   //Layout options
   demo_settings.append(
@@ -102,11 +102,11 @@
           + "<p>Toggle between dark and light skins for the right sidebar</p>"
           + "</div>"
           );
-  var skins_list = $("<ul />", {"class": 'list-unstyled clearfix'});
+  var skins_list = jQuery("<ul />", {"class": 'list-unstyled clearfix'});
 
   //Dark sidebar skins
   var skin_blue =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-blue' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -114,7 +114,7 @@
                   + "<p class='text-center no-margin'>Blue</p>");
   skins_list.append(skin_blue);
   var skin_black =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-black' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div style='box-shadow: 0 0 2px rgba(0,0,0,0.1)' class='clearfix'><span style='display:block; width: 20%; float: left; height: 7px; background: #fefefe;'></span><span style='display:block; width: 80%; float: left; height: 7px; background: #fefefe;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -122,7 +122,7 @@
                   + "<p class='text-center no-margin'>Black</p>");
   skins_list.append(skin_black);
   var skin_purple =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-purple' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -130,7 +130,7 @@
                   + "<p class='text-center no-margin'>Purple</p>");
   skins_list.append(skin_purple);
   var skin_green =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-green' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -138,7 +138,7 @@
                   + "<p class='text-center no-margin'>Green</p>");
   skins_list.append(skin_green);
   var skin_red =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-red' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -146,7 +146,7 @@
                   + "<p class='text-center no-margin'>Red</p>");
   skins_list.append(skin_red);
   var skin_yellow =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-yellow' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -156,7 +156,7 @@
 
   //Light sidebar skins
   var skin_blue_light =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-blue-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #367fa9;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -164,7 +164,7 @@
                   + "<p class='text-center no-margin' style='font-size: 12px'>Blue Light</p>");
   skins_list.append(skin_blue_light);
   var skin_black_light =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-black-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div style='box-shadow: 0 0 2px rgba(0,0,0,0.1)' class='clearfix'><span style='display:block; width: 20%; float: left; height: 7px; background: #fefefe;'></span><span style='display:block; width: 80%; float: left; height: 7px; background: #fefefe;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -172,7 +172,7 @@
                   + "<p class='text-center no-margin' style='font-size: 12px'>Black Light</p>");
   skins_list.append(skin_black_light);
   var skin_purple_light =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-purple-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -180,7 +180,7 @@
                   + "<p class='text-center no-margin' style='font-size: 12px'>Purple Light</p>");
   skins_list.append(skin_purple_light);
   var skin_green_light =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-green-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -188,7 +188,7 @@
                   + "<p class='text-center no-margin' style='font-size: 12px'>Green Light</p>");
   skins_list.append(skin_green_light);
   var skin_red_light =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-red-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -196,7 +196,7 @@
                   + "<p class='text-center no-margin' style='font-size: 12px'>Red Light</p>");
   skins_list.append(skin_red_light);
   var skin_yellow_light =
-          $("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
+          jQuery("<li />", {style: "float:left; width: 33.33333%; padding: 5px;"})
           .append("<a href='javascript:void(0);' data-skin='skin-yellow-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
                   + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
@@ -208,7 +208,7 @@
   demo_settings.append(skins_list);
 
   tab_pane.append(demo_settings);
-  $("#control-sidebar-home-tab").after(tab_pane);
+  jQuery("#control-sidebar-home-tab").after(tab_pane);
 
   setup();
 
@@ -219,17 +219,17 @@
    * @returns void
    */
   function change_layout(cls) {
-    $("body").toggleClass(cls);
+    jQuery("body").toggleClass(cls);
     AdminLTE.layout.fixSidebar();
     //Fix the problem with right sidebar and layout boxed
     if (cls == "layout-boxed")
-      AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
-    if ($('body').hasClass('fixed') && cls == 'fixed') {
+      AdminLTE.controlSidebar._fix(jQuery(".control-sidebar-bg"));
+    if (jQuery('body').hasClass('fixed') && cls == 'fixed') {
       AdminLTE.pushMenu.expandOnHover();
       AdminLTE.layout.activate();
     }
-    AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
-    AdminLTE.controlSidebar._fix($(".control-sidebar"));
+    AdminLTE.controlSidebar._fix(jQuery(".control-sidebar-bg"));
+    AdminLTE.controlSidebar._fix(jQuery(".control-sidebar"));
   }
 
   /**
@@ -238,11 +238,11 @@
    * @returns Boolean false to prevent link's default action
    */
   function change_skin(cls) {
-    $.each(my_skins, function (i) {
-      $("body").removeClass(my_skins[i]);
+    jQuery.each(my_skins, function (i) {
+      jQuery("body").removeClass(my_skins[i]);
     });
 
-    $("body").addClass(cls);
+    jQuery("body").addClass(cls);
     store('skin', cls);
     return false;
   }
@@ -283,30 +283,30 @@
    */
   function setup() {
     var tmp = get('skin');
-    if (tmp && $.inArray(tmp, my_skins))
+    if (tmp && jQuery.inArray(tmp, my_skins))
       change_skin(tmp);
 
     //Add the change skin listener
-    $("[data-skin]").on('click', function (e) {
+    jQuery("[data-skin]").on('click', function (e) {
       e.preventDefault();
-      change_skin($(this).data('skin'));
+      change_skin(jQuery(this).data('skin'));
     });
 
     //Add the layout manager
-    $("[data-layout]").on('click', function () {
-      change_layout($(this).data('layout'));
+    jQuery("[data-layout]").on('click', function () {
+      change_layout(jQuery(this).data('layout'));
     });
 
-    $("[data-controlsidebar]").on('click', function () {
-      change_layout($(this).data('controlsidebar'));
+    jQuery("[data-controlsidebar]").on('click', function () {
+      change_layout(jQuery(this).data('controlsidebar'));
       var slide = !AdminLTE.options.controlSidebarOptions.slide;
       AdminLTE.options.controlSidebarOptions.slide = slide;
       if (!slide)
-        $('.control-sidebar').removeClass('control-sidebar-open');
+        jQuery('.control-sidebar').removeClass('control-sidebar-open');
     });
 
-    $("[data-sidebarskin='toggle']").on('click', function () {
-      var sidebar = $(".control-sidebar");
+    jQuery("[data-sidebarskin='toggle']").on('click', function () {
+      var sidebar = jQuery(".control-sidebar");
       if (sidebar.hasClass("control-sidebar-dark")) {
         sidebar.removeClass("control-sidebar-dark")
         sidebar.addClass("control-sidebar-light")
@@ -316,23 +316,23 @@
       }
     });
 
-    $("[data-enable='expandOnHover']").on('click', function () {
-      $(this).attr('disabled', true);
+    jQuery("[data-enable='expandOnHover']").on('click', function () {
+      jQuery(this).attr('disabled', true);
       AdminLTE.pushMenu.expandOnHover();
-      if (!$('body').hasClass('sidebar-collapse'))
-        $("[data-layout='sidebar-collapse']").click();
+      if (!jQuery('body').hasClass('sidebar-collapse'))
+        jQuery("[data-layout='sidebar-collapse']").click();
     });
 
     // Reset options
-    if ($('body').hasClass('fixed')) {
-      $("[data-layout='fixed']").attr('checked', 'checked');
+    if (jQuery('body').hasClass('fixed')) {
+      jQuery("[data-layout='fixed']").attr('checked', 'checked');
     }
-    if ($('body').hasClass('layout-boxed')) {
-      $("[data-layout='layout-boxed']").attr('checked', 'checked');
+    if (jQuery('body').hasClass('layout-boxed')) {
+      jQuery("[data-layout='layout-boxed']").attr('checked', 'checked');
     }
-    if ($('body').hasClass('sidebar-collapse')) {
-      $("[data-layout='sidebar-collapse']").attr('checked', 'checked');
+    if (jQuery('body').hasClass('sidebar-collapse')) {
+      jQuery("[data-layout='sidebar-collapse']").attr('checked', 'checked');
     }
 
   }
-})(jQuery, $.AdminLTE);
+})(jQuery, jQuery.AdminLTE);
