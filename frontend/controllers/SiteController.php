@@ -224,7 +224,6 @@ class SiteController extends Controller
         $brend_id = Yii::$app->request->get('brend_id');
 
         $item = Yii::$app->request->get('item');
-vd($item,false);
         $modelGoodsCategory = GoodsCategory::find()->all();
         $modelGoodsGroop = Groop::find()->all();
         $modelBrend = Brend::find()->all();
