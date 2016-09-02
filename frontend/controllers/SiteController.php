@@ -223,6 +223,8 @@ class SiteController extends Controller
         $groop_id = Yii::$app->request->get('groop_id');
         $brend_id = Yii::$app->request->get('brend_id');
 
+        $item = Yii::$app->request->get('item');
+vd($item,false);
         $modelGoodsCategory = GoodsCategory::find()->all();
         $modelGoodsGroop = Groop::find()->all();
         $modelBrend = Brend::find()->all();
@@ -236,6 +238,8 @@ class SiteController extends Controller
             'groop_id' => $groop_id,
             'brend_id' => $brend_id,
           ]);
+
+        $query->andFilterWhere(['like', 'item', $item]);
 
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);

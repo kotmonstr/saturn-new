@@ -22,11 +22,11 @@ use yii\helpers\Url;
             <div class="col-sm-3 blog-sidebar">
                 <h4>Искать товар</h4>
 
-                <form>
+                <form action="<?= Url::to('/site/goods') ?>" method="GET">
                     <div class="input-group">
-                        <input class="form-control input-md" id="appendedInputButtons" type="text">
+                        <input class="form-control input-md" name="item" id="appendedInputButtons" type="text">
 								<span class="input-group-btn">
-									<button class="btn btn-md" type="button">Искать</button>
+									<button class="btn btn-md" type="submit">Искать</button>
 								</span>
                     </div>
                 </form>
