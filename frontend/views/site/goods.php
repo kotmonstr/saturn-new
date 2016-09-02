@@ -32,25 +32,34 @@ use yii\helpers\Url;
                 </form>
                 <h4>Категории товаров</h4>
                 <ul class="recent-posts">
-                    <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="#">Sed sit amet metus sit</a></li>
-                    <li><a href="#">Nunc et diam volutpat tellus ultrices</a></li>
-                    <li><a href="#">Quisque sollicitudin cursus felis</a></li>
+                    <? if($modelGoodsCategory): ?>
+                        <? foreach ($modelGoodsCategory as $item): ?>
+
+                            <li><a href="<?= Url::to(['/site/goods','category_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
+
+                        <? endforeach; ?>
+                    <? endif; ?>
+
                 </ul>
                 <h4>Группы товаров</h4>
                 <ul class="blog-categories">
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Sed sit amet metus</a></li>
-                    <li><a href="#">Nunc et diam </a></li>
-                    <li><a href="#">Quisque</a></li>
+                    <? if($modelGoodsGroop): ?>
+                        <? foreach ($modelGoodsGroop as $item): ?>
+
+                            <li><a href="<?= Url::to(['/site/goods','groop_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
+
+                        <? endforeach; ?>
+                    <? endif; ?>
                 </ul>
                 <h4>Бренды</h4>
-                <ul>
-                    <li><a href="#">January 2013</a></li>
-                    <li><a href="#">February 2013</a></li>
-                    <li><a href="#">March 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
+                <ul class="blog-categories">
+                    <? if($modelBrend): ?>
+                        <? foreach ($modelBrend as $item): ?>
+
+                            <li><a href="<?= Url::to(['/site/goods','brend_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
+
+                        <? endforeach; ?>
+                    <? endif; ?>
                 </ul>
             </div>
 

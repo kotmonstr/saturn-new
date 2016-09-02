@@ -1,7 +1,10 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Brend;
 use common\models\Goods;
+use common\models\GoodsCategory;
+use common\models\Groop;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -216,11 +219,24 @@ class SiteController extends Controller
     public function actionGoods()
     {
         $this->layout = 'goods';
+        $category_id = Yii::$app->request->get('category_id');
+        $groop_id = Yii::$app->request->get('groop_id');
+        $brend_id = Yii::$app->request->get('brend_id');
 
+        $modelGoodsCategory = GoodsCategory::find()->all();
+        $modelGoodsGroop = Groop::find()->all();
+        $modelBrend = Brend::find()->all();
 
         // Вывести список статей
         $pageSize = 12;
         $query = Goods::find();
+
+        $query->andFilterWhere([
+            'category_id' => $category_id,
+            'groop_id' => $groop_id,
+            'brend_id' => $brend_id,
+          ]);
+
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);
 
@@ -235,6 +251,9 @@ class SiteController extends Controller
             'model' => $model,
             'pages' => $pages,
             'pageSize' => $pageSize,
+            'modelGoodsCategory' => $modelGoodsCategory,
+            'modelGoodsGroop'=> $modelGoodsGroop,
+            'modelBrend'=> $modelBrend
         ]);
     }
 

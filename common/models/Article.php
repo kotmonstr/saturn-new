@@ -39,25 +39,16 @@ class Article extends \yii\db\ActiveRecord
 
     public function behaviors()
     {
-
-
         return [
-
-
             [
                 'class' => 'yii\behaviors\TimestampBehavior',
-
             ],
             [
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'title',
                 // 'slugAttribute' => 'slug',
             ],
-
-
         ];
-
-
     }
 
     /**

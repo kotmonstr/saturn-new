@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-
+use yii\behaviors\SluggableBehavior;
 /**
  * This is the model class for table "goods_category".
  *
@@ -15,6 +15,20 @@ use Yii;
  */
 class GoodsCategory extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\behaviors\TimestampBehavior',
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -31,7 +45,7 @@ class GoodsCategory extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['descr'], 'string'],
-            [['name'], 'string', 'max' => 255]
+            [['name','slug'], 'string', 'max' => 255]
         ];
     }
 
