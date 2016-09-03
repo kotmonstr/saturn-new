@@ -15,7 +15,8 @@ $this->registerJsFile('/js/image-upload.js', ['depends' => AdminAsset::className
             <div class="box box-primary">
                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'id' => 'form-article']]); ?>
                     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model, 'article_category')->dropDownList([NULL => ''] + ArrayHelper::map(common\models\ArticleCategory::find()->all(), 'id', 'name')) ?>
+
+                    <?= $form->field($model, 'article_category')->dropDownList([NULL => ''] + ArrayHelper::map(common\models\ArticleCategory::find()->all(), 'id', 'name'))->label('Категория статьи ' . Html::a(' Создать категорию ', '/article-category/create', ['class' => 'btn btn-primary'])) ?>
                     <?= $form->field($model, 'template')->dropDownList([NULL => ''] + ArrayHelper::map(common\models\Template::find()->all(), 'id', 'name')) ?>
                     <?= $form->field($model, 'content')->widget(Widget::className(), [
                         'settings' => [

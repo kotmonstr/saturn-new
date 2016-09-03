@@ -3,11 +3,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\GoodsCategory;
-use backend\assets\AppAsset;
+use frontend\assets\AdminAsset;
 use common\models\Brend;
 use common\models\Groop;
 
-$this->registerJsFile('/js/upload_goods.js', ['depends' => AppAsset::className()]);
+$this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
+$this->registerJsFile('/js/switch-image.js', ['depends' => AdminAsset::className()]);
+
 $arrGoodsCategory = GoodsCategory::find()->all();
 $arrBrend = Brend::find()->all();
 $arrGroop = Groop::find()->all();
@@ -31,7 +33,7 @@ $arrGroop = Groop::find()->all();
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'brend_id')->dropDownList(ArrayHelper::map($arrBrend, 'id', 'name'))->label('Бренд ' . Html::a(' Создать бренд ', '/brend/create', ['class' => 'btn btn-primary'])) ?>
+
 
                 <?= $form->field($model, 'groop_id')->dropDownList(ArrayHelper::map($arrGroop, 'id', 'name'))->label('Группа ' . Html::a(' Создать группу ', '/groop/create', ['class' => 'btn btn-primary'])) ?>
 
@@ -57,7 +59,7 @@ $arrGroop = Groop::find()->all();
                             <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>
                         <?php } ?>
                         <div style="width:700px;">
-                            <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image'])->label('') ?>
+                            <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image','value'=>$model->image])->label('') ?>
                         </div>
                     </div>
                 </div>

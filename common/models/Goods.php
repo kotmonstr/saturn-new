@@ -61,8 +61,8 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item', 'price', 'category_id', 'descr', 'status','brend_id','groop_id'], 'required'],
-            [['price', 'category_id','brend_id','groop_id', 'status','best','rating'], 'integer'],
+            [['item', 'price', 'category_id', 'descr', 'status','groop_id','new_image'], 'required'],
+            [['price', 'category_id','groop_id', 'status','best','rating'], 'integer'],
             [['descr', 'image','slug','pdf'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
@@ -84,7 +84,7 @@ class Goods extends \yii\db\ActiveRecord
             'groop_id' => 'Группа товара',
             'pdf' => 'Pdf file',
             'descr' => 'Описание',
-            'status' => 'Статус',
+            'status' => 'Показывать/Спрятать',
             'image' => 'Картинка',
             'brend_id' => 'Бренд',
             'best'=>'Рекомендованный',

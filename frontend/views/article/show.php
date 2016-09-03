@@ -24,13 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::a('Создать статью', ['create'], ['class' => 'btn btn-success']) ?>
                 </p>
 
-                <p>
-                    <?= Html::a('Создать категорию для статей', ['/article_category/default/create'], ['class' => 'btn btn-success']) ?>
-                </p>
-
-                <p>
-                    <?= Html::a('Создать template', ['/template/default/create'], ['class' => 'btn btn-success']) ?>
-                </p>
 
                 <?=
                 GridView::widget([
@@ -40,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                         //'title',
+
                         [
                             'attribute' => 'title',
                             'format' => 'html',
@@ -47,8 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return Html::a(\yii\helpers\StringHelper::truncate($data->title,50),'/article/update?id='.$data->id);
                             }
                         ],
-
-                       // Html::img()
+                        [
+                            'attribute' => 'article_category',
+                            'format' => 'raw',
+                            'value' => function($data){
+                                return $data->articleCategory->name;
+                            }
+                        ],
+                        // Html::img()
                         //'content:html',
                         //'created_at',
                         [

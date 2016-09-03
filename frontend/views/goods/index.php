@@ -46,15 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $b;
                                 }
                             ],
-                            [
-                                'attribute' => 'brend_id',
-                                'format' => 'text',
-                                   'value' => function ($dataProvider) {
-                                    $a = \common\models\Brend::find()->where(['id' => $dataProvider->brend_id])->one();
-                                    $b = $a['name'];
-                                    return $b;
-                                }
-                            ],
+
 
                             'price',
                             ['attribute' => 'image', 'format' => 'html', 'value' => function ($dataProvider) {

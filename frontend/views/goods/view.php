@@ -46,18 +46,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods_category/view?id=' . $model->category_id)
                         ],
-                        [
-                            'attribute' => 'brend_id',
-                            'format' => 'raw',
-                            'value' => Html::a(Brend::find()->where(['id' => $model->brend_id])->one()->getName(), '/brend/view?id=' . $model->brend_id)
-                        ],
+
                         //'quantity',
                         'descr:ntext',
-                        'status',
+           
                         [
+                            'attribute' => 'status',
+                            'format' => 'raw',
+                            'value' => $model->status == 1 ? 'Показан' : 'Спрятан'
+                        ],    [
                             'attribute' => 'pdf',
                             'format' => 'raw',
-                            'value' => Html::a($model->pdf,'/upload/pdf/'.$model->pdf)
+                            'value' => $model->pdf ? Html::a($model->pdf,'/upload/pdf/'.$model->pdf) : 'не загружен'
                         ],
                         [
                             'attribute' => 'image',
