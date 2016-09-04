@@ -221,7 +221,7 @@ class SiteController extends Controller
         $this->layout = 'goods';
         $category_id = Yii::$app->request->get('category_id');
         $groop_id = Yii::$app->request->get('groop_id');
-        $brend_id = Yii::$app->request->get('brend_id');
+
 
         $item = Yii::$app->request->get('item');
         $modelGoodsCategory = GoodsCategory::find()->all();
@@ -235,7 +235,6 @@ class SiteController extends Controller
         $query->andFilterWhere([
             'category_id' => $category_id,
             'groop_id' => $groop_id,
-            'brend_id' => $brend_id,
           ]);
 
         $query->andFilterWhere(['like', 'item', $item]);
@@ -256,7 +255,6 @@ class SiteController extends Controller
             'pageSize' => $pageSize,
             'modelGoodsCategory' => $modelGoodsCategory,
             'modelGoodsGroop'=> $modelGoodsGroop,
-            'modelBrend'=> $modelBrend
         ]);
     }
 

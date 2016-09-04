@@ -51,16 +51,6 @@ use yii\helpers\Url;
                         <? endforeach; ?>
                     <? endif; ?>
                 </ul>
-                <h4>Бренды</h4>
-                <ul class="blog-categories">
-                    <? if($modelBrend): ?>
-                        <? foreach ($modelBrend as $item): ?>
-
-                            <li><a href="<?= Url::to(['/site/goods','brend_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
-
-                        <? endforeach; ?>
-                    <? endif; ?>
-                </ul>
             </div>
 
             <div class="col-md-9">
@@ -71,30 +61,38 @@ use yii\helpers\Url;
                         <div class="col-md-4 col-sm-6">
                             <div class="blog-post ">
                                 <div class="ribbon-wrapper">
+                                    <?
+                                    $currTime = $goods->created_at;
+                                    $today = time();
+                                    $diff = $today - $currTime;
+
+                                    $timeConstant = 1*24*60*60;
+
+                                    ?>
+
+
+                            <? if($diff <= $timeConstant): ?>
                                     <div class="price-ribbon ribbon-green">New</div>
+                            <? endif ?>
                                 </div>
-                                <!-- Post Info -->
+
                                 <div class="post-info">
                                     <div class="post-date">
                                         <div class="date"><?= $goods->price.' руб' ?></div>
                                     </div>
 
                                 </div>
-                                <!-- End Post Info -->
-                                <!-- Post Image -->
+
 
                                 <a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>"><img src="<?= '/upload/goods/'.$goods->image ?>"
                                                                                  class="post-image"
                                                                                  alt="Post Title"></a>
-                                <!-- End Post Image -->
-                                <!-- Post Title & Summary -->
                                 <div class="post-title">
-                                    <h3><a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item,17); ?></a></h3>
+                                    <h3><a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item,30); ?></a></h3>
                                 </div>
                                 <div class="post-summary">
-                                    <p><?= StringHelper::truncate($goods->descr,48); ?></p>
+                                    <a href="<?= Url::to('/upload/pdf/'.$goods->pdf ) ?>"><p title="Скачать"><?= StringHelper::truncate($goods->pdf,50); ?></p></a>
                                 </div>
-                                <!-- End Post Title & Summary -->
                                 <div class="post-more">
                                     <a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" class="btn btn-small">Открыть</a>
                                 </div>
