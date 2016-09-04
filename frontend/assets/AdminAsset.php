@@ -24,8 +24,8 @@ class AdminAsset extends AssetBundle
        
     ];
     public $js = [
-        'best/jquery-3.1.0.min.js',
-        'best/jquery-ui.js',
+        //'best/jquery-3.1.0.min.js',
+        //'best/jquery-ui.js',
         //'LTE/plugins/jQuery/jQuery-2.1.4.min.js',
         //'http://code.jquery.com/jquery-3.1.0.js',
 
@@ -54,9 +54,9 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
 
-        //'yii\web\JqueryAsset',
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\web\JqueryAsset',
+        //ii\web\YiiAsset',
+        //'yii\bootstrap\BootstrapAsset',
 
     ];
 }
