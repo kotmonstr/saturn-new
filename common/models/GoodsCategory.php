@@ -20,9 +20,6 @@ class GoodsCategory extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => 'yii\behaviors\TimestampBehavior',
-            ],
-            [
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
                 // 'slugAttribute' => 'slug',

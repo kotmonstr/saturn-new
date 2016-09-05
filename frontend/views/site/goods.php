@@ -41,12 +41,13 @@ use yii\helpers\Url;
                     <? endif; ?>
 
                 </ul>
-                <h4>Группы товаров</h4>
-                <ul class="blog-categories">
-                    <? if($modelGoodsGroop): ?>
-                        <? foreach ($modelGoodsGroop as $item): ?>
 
-                            <li><a href="<?= Url::to(['/site/goods','groop_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
+                <h4>Подкатегории товаров</h4>
+                <ul class="blog-categories">
+                    <? if($modelGoodsPodCategory): ?>
+                        <? foreach ($modelGoodsPodCategory as $item): ?>
+
+                            <li><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
 
                         <? endforeach; ?>
                     <? endif; ?>

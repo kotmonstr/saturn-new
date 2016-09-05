@@ -15,6 +15,7 @@ use common\models\ArticleCategory;
 use common\models\ImageSlider;
 use common\models\Groop;
 use common\models\Brend;
+use common\models\GoodsPodCategory;
 
 /**
  * DefaultController implements the CRUD actions for GoodsCategory model.
@@ -23,39 +24,21 @@ class GoodsCategoryController extends Controller
 {
     public $layout="admin";
 
-    public $countallArticles = false;
-    public $countallGoods = false;
-    public $countallGoodsCaterory = false;
-    public $countallArticleCaterory = false;
+    public $countAllArticles = false;
+    public $countAllGoods = false;
+    public $countAllGoodsCategory = false;
+    public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
-    public $countAllGroop = false;
-    public $countAllBrend = false;
+    public $countAllGoodsPodCategory = false;
 
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+
     /**
      * Lists all GoodsCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $this->countallArticles = Article::find()->count();
-        $this->countallGoods = Goods::find()->count();
-        $this->countallGoodsCaterory = GoodsCategory::find()->count();
-        $this->countallArticleCaterory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGroop = Groop::find()->count();
-        $this->countAllBrend = Brend::find()->count();
-
+        $this->getAllCounters();
 
         $searchModel = new GoodsCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -71,13 +54,7 @@ class GoodsCategoryController extends Controller
      */
     public function actionView($id)
     {
-        $this->countallArticles = Article::find()->count();
-        $this->countallGoods = Goods::find()->count();
-        $this->countallGoodsCaterory = GoodsCategory::find()->count();
-        $this->countallArticleCaterory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGroop = Groop::find()->count();
-        $this->countAllBrend = Brend::find()->count();
+        $this->getAllCounters();
 
         
         return $this->render('view', [
@@ -91,13 +68,8 @@ class GoodsCategoryController extends Controller
      */
     public function actionCreate()
     {
-        $this->countallArticles = Article::find()->count();
-        $this->countallGoods = Goods::find()->count();
-        $this->countallGoodsCaterory = GoodsCategory::find()->count();
-        $this->countallArticleCaterory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGroop = Groop::find()->count();
-        $this->countAllBrend = Brend::find()->count();
+        $this->getAllCounters();
+
 
         
         $model = new GoodsCategory();
@@ -119,13 +91,7 @@ class GoodsCategoryController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->countallArticles = Article::find()->count();
-        $this->countallGoods = Goods::find()->count();
-        $this->countallGoodsCaterory = GoodsCategory::find()->count();
-        $this->countallArticleCaterory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGroop = Groop::find()->count();
-        $this->countAllBrend = Brend::find()->count();
+        $this->getAllCounters();
 
         
         $model = $this->findModel($id);
@@ -150,13 +116,14 @@ class GoodsCategoryController extends Controller
 
         if($chekResult) {
             $this->findModel($id)->delete();
+            Yii::$app->session->setFlash('success', 'Категория удалена.');
         }else{
 
             Yii::$app->session->setFlash('danger', 'Категория не пуста - нельзя удалять.');
 
             //throw new ServerErrorHttpException('Категория не пуста - нельзя удалять.');
         }
-        return $this->redirect(['index']);
+        return $this->redirect('index');
     }
     /**
      * Finds the GoodsCategory model based on its primary key value.
@@ -182,5 +149,14 @@ class GoodsCategoryController extends Controller
         }else{
             return true;
         }
+    }
+
+    private function getAllCounters(){
+        $this->countAllArticles = Article::find()->count();
+        $this->countAllGoods = Goods::find()->count();
+        $this->countAllGoodsCategory = GoodsCategory::find()->count();
+        $this->countAllArticleCategory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
     }
 }

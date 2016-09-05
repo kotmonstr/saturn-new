@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Shop;
+
 
 /**
  * ShopSearch represents the model behind the search form about `common\models\Goods`.
@@ -18,7 +18,7 @@ class GoodsSearch extends Goods
     public function rules()
     {
         return [
-            [['id', 'price', 'category_id', 'status'], 'integer'],
+            [['id', 'price', 'category_id', 'status','pod_category_id'], 'integer'],
             [['item', 'descr','slug'], 'safe'],
         ];
     }
@@ -60,12 +60,16 @@ class GoodsSearch extends Goods
             'id' => $this->id,
             'price' => $this->price,
             'category_id' => $this->category_id,
+            'pod_category_id' => $this->pod_category_id,
             'status' => $this->status,
             'slug' => $this->slug,
         ]);
 
-        $query->andFilterWhere(['like', 'item', $this->item])
-            ->andFilterWhere(['like', 'descr', $this->descr]);
+        $query
+            ->andFilterWhere(['like', 'item', $this->item])
+            ->andFilterWhere(['like', 'descr', $this->descr])
+            ->andFilterWhere(['like', 'pod_category_id', $this->pod_category_id])
+        ;
 
         return $dataProvider;
     }

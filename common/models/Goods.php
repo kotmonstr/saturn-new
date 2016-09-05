@@ -61,8 +61,8 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item', 'price', 'category_id', 'descr', 'status','groop_id','new_image'], 'required'],
-            [['price', 'category_id','groop_id', 'status','best','rating'], 'integer'],
+            [['item', 'price', 'category_id', 'descr', 'status','new_image','pod_category_id'], 'required'],
+            [['price', 'category_id', 'status','best','pod_category_id'], 'integer'],
             [['descr', 'image','slug','pdf'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
@@ -81,7 +81,7 @@ class Goods extends \yii\db\ActiveRecord
             'item' => 'Имя',
             'price' => 'Цена',
             'category_id' => 'Категория товара',
-            'groop_id' => 'Группа товара',
+            'pod_category_id' => 'Подкатегория',
             'pdf' => 'Pdf file',
             'descr' => 'Описание',
             'status' => 'Показывать/Спрятать',
@@ -177,18 +177,7 @@ class Goods extends \yii\db\ActiveRecord
         }
     }
 
-    /*
-  * Вернет категорию товара
-  */
-    public static function getBrendById($id)
-    {
-        $model = self::find()->where(['id' => $id])->one();
-        if ($model) {
-            return $model->brend_id;
-        } else {
-            return false;
-        }
-    }
+
 
     /*
 * Вернет товары этой категории
@@ -209,53 +198,11 @@ class Goods extends \yii\db\ActiveRecord
             return false;
         }
     }
-        /*
-* Вернет товары этоГо Бренда
-*/
-    public static function getGoodsByBrendId($id)
-    {
-        if ($id != 0) {
-            $model = self::find()
-                ->where(['brend_id' => $id,'status' => self::STATUS_ACTIVE])
-                ->all();
-        } else {
-            $model = self::find()->all();
-        }
 
-        if ($model) {
-            return $model;
-        } else {
-            return false;
-        }
-    }
 
-    /*
-* Вернет товары этого бренда
-*/
-    public static function getQuantityOfGoodsByBrand($id)
-    {
-        if ($id != 0) {
-            $model = self::find()
-                ->where(['brend_id' => $id,'status' => self::STATUS_ACTIVE])
-                ->all();
-        } else {
-            $model = self::find()->all();
-        }
 
-        if ($model) {
-            return $model;
-        } else {
-            return false;
-        }
-    }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getBrend()
-    {
-        return $this->hasOne(Brend::className(), ['id' => 'brend_id']);
-    }
+
   /**
      * @return \yii\db\ActiveQuery
      */
@@ -263,10 +210,7 @@ class Goods extends \yii\db\ActiveRecord
     {
         return $this->hasOne(GoodsCategory::className(), ['id' => 'category_id']);
     }
-    public function getGroop()
-    {
-        return $this->hasOne(Groop::className(), ['id' => 'groop_id']);
-    }
+
     public function getName(){
         return $this->name;
     }

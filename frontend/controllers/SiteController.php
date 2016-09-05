@@ -17,6 +17,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\data\Pagination;
+use common\models\GoodsPodCategory;
 
 /**
  * Site controller
@@ -220,13 +221,13 @@ class SiteController extends Controller
     {
         $this->layout = 'goods';
         $category_id = Yii::$app->request->get('category_id');
-        $groop_id = Yii::$app->request->get('groop_id');
+        $pod_category_id = Yii::$app->request->get('pod_category_id');
 
 
         $item = Yii::$app->request->get('item');
         $modelGoodsCategory = GoodsCategory::find()->all();
-        $modelGoodsGroop = Groop::find()->all();
-        $modelBrend = Brend::find()->all();
+        $modelGoodsPodCategory = GoodsPodCategory::find()->all();
+
 
         // Вывести список статей
         $pageSize = 12;
@@ -234,7 +235,7 @@ class SiteController extends Controller
 
         $query->andFilterWhere([
             'category_id' => $category_id,
-            'groop_id' => $groop_id,
+            'pod_category_id' => $pod_category_id,
           ]);
 
         $query->andFilterWhere(['like', 'item', $item]);
@@ -254,7 +255,7 @@ class SiteController extends Controller
             'pages' => $pages,
             'pageSize' => $pageSize,
             'modelGoodsCategory' => $modelGoodsCategory,
-            'modelGoodsGroop'=> $modelGoodsGroop,
+            'modelGoodsPodCategory'=> $modelGoodsPodCategory,
         ]);
     }
 

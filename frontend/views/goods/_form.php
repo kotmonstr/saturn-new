@@ -4,15 +4,15 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\GoodsCategory;
 use frontend\assets\AdminAsset;
-use common\models\Brend;
-use common\models\Groop;
+use common\models\GoodsPodCategory;
+
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
 $this->registerJsFile('/js/switch-image.js', ['depends' => AdminAsset::className()]);
 
 $arrGoodsCategory = GoodsCategory::find()->all();
-$arrBrend = Brend::find()->all();
-$arrGroop = Groop::find()->all();
+$arrGoodsPodCategory = GoodsPodCategory::find()->all();
+
 ?>
 
 <section class="content">
@@ -31,12 +31,11 @@ $arrGroop = Groop::find()->all();
 
                 <? //= $form->field($model, 'quantity')->textInput() ?>
 
+
+
+                <?= $form->field($model, 'pod_category_id')->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать подкатегорию ', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
+
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
-
-
-
-                <?= $form->field($model, 'groop_id')->dropDownList(ArrayHelper::map($arrGroop, 'id', 'name'))->label('Группа ' . Html::a(' Создать группу ', '/groop/create', ['class' => 'btn btn-primary'])) ?>
-
 
                 <?php if ($model->status == 1) {
                     echo $form->field($model, 'status')->checkbox(['class' => 'act'])->label('');

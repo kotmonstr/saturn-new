@@ -38,16 +38,7 @@ use yii\helpers\Html;
                 </div>
 
                 <table class="shop-item-selections">
-                    <!-- Color Selector -->
-                    <tr>
-                        <td><b>Группа товара:</b></td>
-                        <td>
-                            <p>
-                                <?= $model->groop->name  ?>
-                            </p>
-                        </td>
-                    </tr>
-                    <!-- Size Selector -->
+
                     <tr>
                         <td><b>Категория товара:</b></td>
                         <td>
@@ -57,13 +48,14 @@ use yii\helpers\Html;
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Бренд:</b></td>
+                        <td><b>Подкатегория товара:</b></td>
                         <td>
                             <p>
-                                <?= $model->brend->name ?>
+                                <?//= $model->pod_category->name ?>
                             </p>
                         </td>
                     </tr>
+
 
                 </table>
             </div>

@@ -3,7 +3,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Shop */
-$this->title = 'Редактировать товар: ' . ' ' . $model->id;
+$this->title = 'Редактировать категорию: ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Shops', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

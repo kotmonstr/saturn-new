@@ -16,18 +16,16 @@ use common\models\ArticleCategory;
 use common\models\Article;
 use common\models\Goods;
 use common\models\GoodsCategory;
-use common\models\Groop;
-use common\models\Brend;
+use common\models\GoodsPodCategory;
 
 class SliderPhotoController extends Controller {
 
-    public $countallArticles = false;
-    public $countallGoods = false;
-    public $countallGoodsCaterory = false;
-    public $countallArticleCaterory = false;
+    public $countAllArticles = false;
+    public $countAllGoods = false;
+    public $countAllGoodsCategory = false;
+    public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
-    public $countAllGroop = false;
-    public $countAllBrend = false;
+    public $countAllGoodsPodCategory = false;
 
     public function behaviors() {
         return [
@@ -58,13 +56,7 @@ class SliderPhotoController extends Controller {
     public $enableCsrfValidation = false;
     public function actionIndex() {
 
-        $this->countallArticles = Article::find()->count();
-        $this->countallGoods = Goods::find()->count();
-        $this->countallGoodsCaterory = GoodsCategory::find()->count();
-        $this->countallArticleCaterory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGroop = Groop::find()->count();
-        $this->countAllBrend = Brend::find()->count();
+        $this->getAllCounters();
 
         $searchModel = new ImageSliderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -146,6 +138,14 @@ class SliderPhotoController extends Controller {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+    private function getAllCounters(){
+        $this->countAllArticles = Article::find()->count();
+        $this->countAllGoods = Goods::find()->count();
+        $this->countAllGoodsCategory = GoodsCategory::find()->count();
+        $this->countAllArticleCategory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
     }
 
 

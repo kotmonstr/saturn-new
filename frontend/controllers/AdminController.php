@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\GoodsPodCategory;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -18,8 +19,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
-use common\models\Groop;
-use common\models\Brend;
+
 
 
 /**
@@ -29,26 +29,27 @@ class AdminController extends Controller
 {
     public $layout = 'admin';
 
-    public $countallArticles = false;
-    public $countallGoods = false;
-    public $countallGoodsCaterory = false;
-    public $countallArticleCaterory = false;
+    public $countAllArticles = false;
+    public $countAllGoods = false;
+    public $countAllGoodsCategory = false;
+    public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
-    public $countAllGroop = false;
-    public $countAllBrend = false;
+    public $countAllGoodsPodCategory = false;
+
 
 
     public function actionIndex()
     {
-        $this->countallArticles = Article::find()->count();
-        $this->countallGoods = Goods::find()->count();
-        $this->countallGoodsCaterory = GoodsCategory::find()->count();
-        $this->countallArticleCaterory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGroop = Groop::find()->count();
-        $this->countAllBrend = Brend::find()->count();
-
+        $this->getAllCounters();
         return $this->render('index');
+    }
+     private function getAllCounters(){
+        $this->countAllArticles = Article::find()->count();
+        $this->countAllGoods = Goods::find()->count();
+        $this->countAllGoodsCategory = GoodsCategory::find()->count();
+        $this->countAllArticleCategory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
     }
 
 }

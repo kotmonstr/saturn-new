@@ -2,8 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\GoodsCategory;
-use common\models\Groop;
-use common\models\Brend;
+use common\models\GoodsPodCategory;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Shop */
@@ -32,22 +31,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
-                        // 'id',
                         'item',
                         'price',
-                        //'rating',
-                        [
-                            'attribute' => 'groop_id',
-                            'format' => 'raw',
-                            'value' => Html::a(Groop::find()->where(['id' => $model->groop_id])->one()->getName(), '/groop/view?id=' . $model->groop_id)
-                        ],
+
                         [
                             'attribute' => 'category_id',
                             'format' => 'raw',
-                            'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods_category/view?id=' . $model->category_id)
+                            'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods-category/view?id=' . $model->category_id)
+                        ],
+                        [
+                            'attribute' => 'pod_category_id',
+                            'format' => 'raw',
+                            'value' => Html::a(GoodsPodCategory::find()->where(['id' => $model->pod_category_id])->one()->getName(), '/goods-pod-category/view?id=' . $model->pod_category_id)
                         ],
 
-                        //'quantity',
                         'descr:ntext',
            
                         [

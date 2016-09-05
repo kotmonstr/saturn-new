@@ -43,11 +43,11 @@ $url = $controller.'/'.$action;
                 </a>
             </li>
             <li class="header">ТОВАРЫ</li>
-            <li class="treeview <?= $url == 'goods/index' ||  $url == 'goods/create' ? 'active' : null ?>">
+            <li class="treeview <?= $url == 'goods/index' ||  $url == 'goods/create' ? 'active' : null ||  $url == 'goods/view' ? 'active' : null ||  $url == 'goods/update' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Товары</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallGoods ?></span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGoods ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -56,53 +56,42 @@ $url = $controller.'/'.$action;
                 </ul>
             </li>
 
-            <li class="treeview <?= $url == 'groop/index' ||  $url == 'groop/create' ? 'active' : null ?>">
+            <li class="treeview <?= $url == 'goods-category/index' ||  $url == 'goods-category/create' ? 'active' : null ||  $url == 'goods-category/view' ? 'active' : null ||  $url == 'goods-category/update' ? 'active' : null?>">
                 <a href="#">
                     <i class="fa fa-diamond"></i>
                     <span>Категории</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGroop ?></span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGoodsCategory ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?= $url == 'groop/index'  ? 'active' : null ?>"><a href="<?= Url::to('/groop/index') ?>"><i class="fa <?= $url == 'groop/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
-                    <li class="<?= $url == 'groop/create' ? 'active' : null ?>"><a href="<?= Url::to('/groop/create') ?>"><i class="fa <?= $url == 'groop/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview <?= $url == 'goods-category/index' ||  $url == 'goods-category/create' ? 'active' : null ?>">
-                <a href="#">
-                    <i class="fa fa-diamond"></i>
-                    <span>Подкатегории</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallGoodsCaterory ?></span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="<?= $url == 'goods-category/index' ? 'active' : null ?>"><a href="<?= Url::to('/goods-category/index') ?>"><i class="fa <?= $url == 'goods-category/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'goods-category/index'  ? 'active' : null ?>"><a href="<?= Url::to('/goods-category/index') ?>"><i class="fa <?= $url == 'goods-category/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                     <li class="<?= $url == 'goods-category/create' ? 'active' : null ?>"><a href="<?= Url::to('/goods-category/create') ?>"><i class="fa <?= $url == 'goods-category/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
 
+            <li class="treeview <?= $url == 'goods-pod-category/index' ||  $url == 'goods-pod-category/create' ? 'active' : null ||  $url == 'goods-pod-category/view' ? 'active' : null ||  $url == 'goods-pod-category/update' ? 'active' : null?>">
+                <a href="#">
+                    <i class="fa fa-diamond"></i>
+                    <span>Подкатегории</span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGoodsPodCategory ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= $url == 'goods-pod-category/index' ? 'active' : null ?>"><a href="<?= Url::to('/goods-pod-category/index') ?>"><i class="fa <?= $url == 'goods-pod-category/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'goods-pod-category/create' ? 'active' : null ?>"><a href="<?= Url::to('/goods-pod-category/create') ?>"><i class="fa <?= $url == 'goods-pod-category/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
+                </ul>
+            </li>
 
 
-<!--            <li class="treeview --><?//= $url == 'brend/index' ||  $url == 'brend/create' ? 'active' : null ?><!--">-->
-<!--                <a href="#">-->
-<!--                    <i class="fa fa-diamond"></i>-->
-<!--                    <span>Бренды</span>-->
-<!--                    <span class="label label-primary pull-right from20-px-mr">--><?//= $this->context->countAllBrend ?><!--</span>-->
-<!--                    <i class="fa fa-angle-left pull-right"></i>-->
-<!--                </a>-->
-<!--                <ul class="treeview-menu">-->
-<!--                    <li class="--><?//= $url == 'brend/index'  ? 'active' : null ?><!--"><a href="--><?//= Url::to('/brend/index') ?><!--"><i class="fa --><?//= $url == 'brend/index' ? 'fa-circle' : 'fa-circle-o' ?><!-- text-aqua"></i> Просмотреть</a></li>-->
-<!--                    <li class="--><?//= $url == 'brend/create'  ? 'active' : null ?><!--"><a href="--><?//= Url::to('/brend/create') ?><!--"><i class="fa --><?//= $url == 'brend/create' ? 'fa-circle' : 'fa-circle-o' ?><!-- text-aqua"></i> Добавить</a></li>-->
-<!--                </ul>-->
-<!--            </li>-->
+
+
             <li class="header">СТАТЬИ</li>
 
-            <li class="treeview <?= $url == 'article/show' ||  $url == 'article/create' ? 'active' : null ?>">
+            <li class="treeview <?= $url == 'article/show' ||  $url == 'article/create' ? 'active' : null ||  $url == 'article/view' ? 'active' : null  ||  $url == 'article/update' ? 'active' : null  ?>">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Статьи</span>
-                    <span class="label label-primary pull-right from20-px-mr bg-red"><?= $this->context->countallArticles ?></span>
+                    <span class="label label-primary pull-right from20-px-mr bg-red"><?= $this->context->countAllArticles ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -110,17 +99,17 @@ $url = $controller.'/'.$action;
                     <li class="<?= $url == 'article/index'  ? 'active' : null ?>"><a href="<?= Url::to('/article/create') ?>"><i class="fa <?= $url == 'article/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                  </ul>
             </li>
-            <li class="treeview <?= $url == 'article-category/index' ||  $url == 'article-category/create' ? 'active' : null ?>">
+            <li class="treeview <?= $url == 'article-category/index' ||  $url == 'article-category/create' ? 'active' : null ||  $url == 'article-category/view' ? 'active' : null ||  $url == 'article-category/update' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Категории статей</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countallArticleCaterory  ?></span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllArticleCategory  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="<?= $url == 'article-category/index' ? 'active' : null ?>"><a href="<?= Url::to('/article-category/index') ?>"><i class="fa <?= $url == 'article-category/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                     <li class="<?= $url == 'article-category/create' ? 'active' : null ?>"><a href="<?= Url::to('/article-category/create') ?>"><i class="fa <?= $url == 'article-category/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
-                  </ul>
+                </ul>
             </li>
             </li>
             <li class="header">МЕДИЯ</li>
