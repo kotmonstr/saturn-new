@@ -29,10 +29,6 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
 
                 <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
 
-                <? //= $form->field($model, 'quantity')->textInput() ?>
-
-
-
                 <?= $form->field($model, 'pod_category_id')->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать подкатегорию ', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
