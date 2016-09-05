@@ -28,7 +28,7 @@ class GoodsPodCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'descr'], 'required'],
+            [['name', 'descr','category_id'], 'required'],
             [['descr'], 'string'],
             [['name', 'slug'], 'string', 'max' => 255],
         ];
@@ -44,9 +44,12 @@ class GoodsPodCategory extends \yii\db\ActiveRecord
             'name' => 'Имя',
             'descr' => 'Описание',
             'slug' => 'Slug',
+            'category_id'=>'Категория'
         ];
     }
     public function getName(){
         return $this->name;
     }
+
+
 }

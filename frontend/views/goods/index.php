@@ -34,8 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'category_id',
                             'format' => 'text',
                             'value' => function ($dataProvider) {
-                                $name = GoodsCategory::find()->where(['id' => $dataProvider->category_id])->one()->getName();
-                                return $name;
+                                $a = GoodsCategory::find()->where(['id' => $dataProvider->category_id])->one();
+                                $b = $a['name'];
+                                return $b;
                             }
                         ],
                         [
@@ -43,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'text',
                             'value' => function ($dataProvider) {
                                 $name = GoodsPodCategory::find()->where(['id' => $dataProvider->pod_category_id])->one()->getName();
+                                //$b = $a['name'];
                                 return $name;
                             }
                         ],

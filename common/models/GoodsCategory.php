@@ -58,13 +58,7 @@ class GoodsCategory extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getShops()
-    {
-        return $this->hasMany(Shop::className(), ['category_id' => 'id']);
-    }
+
 
        /**
      * @return \yii\db\ActiveQuery

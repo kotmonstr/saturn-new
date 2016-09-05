@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\GoodsCategory;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,6 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'name',
             'descr:ntext',
+              [
+                'attribute' => 'category_id',
+                'format' => 'text',
+                'value' => function ($dataProvider) {
+                    $name = GoodsCategory::find()->where(['id' => $dataProvider->category_id])->one()->getName();
+                    return $name;
+                }
+            ],
+
             //'slug',
             ['class' => 'yii\grid\ActionColumn'],
         ],
