@@ -236,7 +236,7 @@ class SiteController extends Controller
         $query->andFilterWhere([
             'category_id' => $category_id,
             'pod_category_id' => $pod_category_id,
-          ]);
+        ]);
 
         $query->andFilterWhere(['like', 'item', $item]);
 
@@ -255,17 +255,31 @@ class SiteController extends Controller
             'pages' => $pages,
             'pageSize' => $pageSize,
             'modelGoodsCategory' => $modelGoodsCategory,
-            'modelGoodsPodCategory'=> $modelGoodsPodCategory,
+            'modelGoodsPodCategory' => $modelGoodsPodCategory,
         ]);
     }
 
-    public function actionGoodsDetail($slug){
+    public function actionGoodsDetail($slug)
+    {
 
-        $this->layout = 'goods';
+        $this->layout = 'goods-detail';
 
-        $model = Goods::find()->where(['slug'=>$slug])->one();
+        $model = Goods::find()->where(['slug' => $slug])->one();
         return $this->render('goods-detail', [
             'model' => $model,
         ]);
+    }
+
+    public function actionGetPodCatsByCategory()
+    {
+        $id = Yii::$app->request->post('id');// category_id
+        $model = GoodsPodCategory::find()->where(['id' => $id])->all();
+        if ($model):
+            foreach ($model as $item) {
+                echo "<option value='" . $item->id . "'>" . $item->name . "</option>";
+            }
+        else:
+            echo "<option></option>";
+        endif;
     }
 }

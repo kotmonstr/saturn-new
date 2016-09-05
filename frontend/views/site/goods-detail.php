@@ -51,7 +51,7 @@ use yii\helpers\Html;
                         <td><b>Подкатегория товара:</b></td>
                         <td>
                             <p>
-                                <?//= $model->pod_category->name ?>
+                                <?= $model->podcategory->name ?>
                             </p>
                         </td>
                     </tr>

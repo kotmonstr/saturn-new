@@ -18,7 +18,7 @@ $arrGoodsCategory = GoodsCategory::find()->all();
 
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
+                <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
                 <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Выбирите главную категорию ') ?>
 

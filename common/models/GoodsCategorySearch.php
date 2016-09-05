@@ -19,7 +19,7 @@ class GoodsCategorySearch extends GoodsCategory
     {
         return [
             [['id'], 'integer'],
-            [['name', 'descr'], 'safe'],
+            [['name', 'descr','slug'], 'safe'],
         ];
     }
 

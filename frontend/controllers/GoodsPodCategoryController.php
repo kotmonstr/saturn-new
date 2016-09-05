@@ -50,12 +50,7 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionIndex()
     {
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+        $this->getAllCounters();
 
 
         $dataProvider = new ActiveDataProvider([
@@ -74,11 +69,7 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionView($id)
     {
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->getAllCounters();
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -92,11 +83,7 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionCreate()
     {
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->getAllCounters();
 
         $model = new GoodsPodCategory();
 
@@ -117,11 +104,7 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->getAllCounters();
 
         $model = $this->findModel($id);
 
@@ -161,5 +144,14 @@ class GoodsPodCategoryController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    private function getAllCounters(){
+        $this->countAllArticles = Article::find()->count();
+        $this->countAllGoods = Goods::find()->count();
+        $this->countAllGoodsCategory = GoodsCategory::find()->count();
+        $this->countAllArticleCategory = ArticleCategory::find()->count();
+        $this->countAllSliderFotos = ImageSlider::find()->count();
+        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
     }
 }

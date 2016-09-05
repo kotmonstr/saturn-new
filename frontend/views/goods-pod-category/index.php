@@ -25,13 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
             'name',
-            'descr:ntext',
+            'description:ntext',
               [
                 'attribute' => 'category_id',
                 'format' => 'text',
                 'value' => function ($dataProvider) {
-                    $name = GoodsCategory::find()->where(['id' => $dataProvider->category_id])->one()->getName();
-                    return $name;
+                    $model = GoodsCategory::find()->where(['id' => $dataProvider->category_id])->one();
+                    return $model->name;
                 }
             ],
 

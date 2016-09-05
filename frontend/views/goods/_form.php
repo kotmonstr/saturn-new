@@ -5,10 +5,12 @@ use yii\helpers\ArrayHelper;
 use common\models\GoodsCategory;
 use frontend\assets\AdminAsset;
 use common\models\GoodsPodCategory;
+use yii\helpers\Url;
 
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
 $this->registerJsFile('/js/switch-image.js', ['depends' => AdminAsset::className()]);
+
 
 $arrGoodsCategory = GoodsCategory::find()->all();
 $arrGoodsPodCategory = GoodsPodCategory::find()->all();
@@ -27,7 +29,8 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
 
                 <? //= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
 
-                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'))->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
+                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['onchange' => ' $.post("' . Url::toRoute('/site/get-pod-cats-by-category') . '", {id: $(this).val()}, function(res){
+                    $("#goods-pod_category_id").html(res);});',])->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
 
                 <?= $form->field($model, 'pod_category_id')->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать подкатегорию ', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
 
@@ -54,7 +57,7 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
                             <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>
                         <?php } ?>
                         <div style="width:700px;">
-                            <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image','value'=>$model->image])->label('') ?>
+                            <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image', 'value' => $model->image])->label('') ?>
                         </div>
                     </div>
                 </div>

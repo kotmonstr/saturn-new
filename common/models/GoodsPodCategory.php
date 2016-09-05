@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "goods_pod_category".
@@ -14,6 +15,15 @@ use Yii;
  */
 class GoodsPodCategory extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -28,8 +38,8 @@ class GoodsPodCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'descr','category_id'], 'required'],
-            [['descr'], 'string'],
+            [['name', 'description','category_id'], 'required'],
+            [['description'], 'string'],
             [['name', 'slug'], 'string', 'max' => 255],
         ];
     }
@@ -42,7 +52,7 @@ class GoodsPodCategory extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Имя',
-            'descr' => 'Описание',
+            'description' => 'Описание',
             'slug' => 'Slug',
             'category_id'=>'Категория'
         ];

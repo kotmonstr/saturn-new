@@ -11,7 +11,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $name
  * @property string $descr
  *
- * @property Shop[] $shops
+
  */
 class GoodsCategory extends \yii\db\ActiveRecord
 {

@@ -6,8 +6,7 @@ use Yii;
 use common\models\GoodsCategory;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
-use common\models\Groop;
-use common\models\Brend;
+use common\models\GoodsPodCategory;
 
 /**
  * This is the model class for table "goods".
@@ -25,7 +24,7 @@ class Goods extends \yii\db\ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_DESABLE = 0;
-    const BEST = 1;
+
 
     public $image_file;
     public $image_file_extra;
@@ -62,7 +61,7 @@ class Goods extends \yii\db\ActiveRecord
     {
         return [
             [['item', 'price', 'category_id', 'descr', 'status','new_image','pod_category_id'], 'required'],
-            [['price', 'category_id', 'status','best','pod_category_id'], 'integer'],
+            [['price', 'category_id', 'status','pod_category_id'], 'integer'],
             [['descr', 'image','slug','pdf'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
@@ -87,7 +86,6 @@ class Goods extends \yii\db\ActiveRecord
             'status' => 'Показывать/Спрятать',
             'image' => 'Картинка',
             'brend_id' => 'Бренд',
-            'best'=>'Рекомендованный',
             'rating'=>'Рейтинг',
             'slug'=>'slug'
         ];
@@ -120,22 +118,7 @@ class Goods extends \yii\db\ActiveRecord
         }
     }
 
-      /*
-     * Вернет рекомендованные товары
-     */
-    public static function getBest($max)
-    {
-        $model = self::find()
-            ->where(['status' => self::STATUS_ACTIVE,'best'=>self::BEST])
-            ->orderBy('id DESC')
-            ->limit($max)
-            ->all();
-        if ($model) {
-            return $model;
-        } else {
-            return false;
-        }
-    }
+
 
     /*
      * Вернет один товар
@@ -209,6 +192,11 @@ class Goods extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(GoodsCategory::className(), ['id' => 'category_id']);
+    }
+
+    public function getPodcategory()
+    {
+        return $this->hasOne(GoodsPodCategory::className(), ['id' => 'pod_category_id']);
     }
 
     public function getName(){
