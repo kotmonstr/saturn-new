@@ -30,28 +30,61 @@ use yii\helpers\Url;
 								</span>
                     </div>
                 </form>
-                <h4>Категории товаров</h4>
-                <ul class="recent-posts">
-                    <? if($modelGoodsCategory): ?>
-                        <? foreach ($modelGoodsCategory as $item): ?>
+                <script>
+                    jQuery( function() {
+                        jQuery( "#accordion" ).accordion();
+                    } );
+                </script>
 
-                            <li><a href="<?= Url::to(['/site/goods','category_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
 
-                        <? endforeach; ?>
-                    <? endif; ?>
+                <? if($modelGoodsCategory): ?>
 
-                </ul>
 
-                <h4>Подкатегории товаров</h4>
-                <ul class="blog-categories">
-                    <? if($modelGoodsPodCategory): ?>
-                        <? foreach ($modelGoodsPodCategory as $item): ?>
+                <div id="accordion">
+                    <? foreach ($modelGoodsCategory as $item): ?>
+                    <h4><?= $item->name ?></h4>
+                    <ul class="recent-posts">
 
-                            <li><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
+                        <? $podCat = \common\models\GoodsPodCategory::find()->where(['category_id'=> $item->id])->all(); ?>
 
-                        <? endforeach; ?>
-                    <? endif; ?>
-                </ul>
+                        <? if($podCat): ?>
+                            <? foreach ($podCat as $item): ?>
+
+                                <li><a href="<?= Url::to(['/site/goods','category_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
+
+                            <? endforeach; ?>
+                        <? endif; ?>
+
+                    </ul>
+
+
+                    <? endforeach; ?>
+
+
+
+                </div>
+                <? endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
 
             <div class="col-md-9">
