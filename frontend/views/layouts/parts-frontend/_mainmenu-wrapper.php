@@ -21,20 +21,24 @@ $url = $controller.'/'.$action;
                     <a href="<?= Url::to('/site/goods'); ?>">Товары</a>
                 </li>
 
+                <li class="<?= $url == 'site/service' ? 'active' : null ?>">
+                    <a href="<?= Url::to('/site/service'); ?>">Услуги</a>
+                </li>
+                
                 <li class="">
-                    <a href="<?= Url::to('/'); ?>">Услуги</a>
+                    <a href="<?= Url::to('/site/gallery'); ?>">Галерея</a>
                 </li>
 
                 <li class="">
-                    <a href="<?= Url::to('/'); ?>">О нас</a>
+                    <a href="<?= Url::to('/site/about'); ?>">О нас</a>
                 </li>
 
                 <li class="">
-                    <a href="<?= Url::to('/'); ?>">Регистрация</a>
+                    <a href="<?= Url::to('/site/login'); ?>">Регистрация</a>
                 </li>
 
                 <li class="">
-                    <a href="<?= Url::to('/'); ?>">Вход</a>
+                    <a href="<?= Url::to('/site/signup'); ?>">Вход</a>
                 </li>
 
                 <li>
@@ -46,3 +50,6 @@ $url = $controller.'/'.$action;
         </nav>
     </div>
 </div>
+
+
+

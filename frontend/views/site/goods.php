@@ -116,12 +116,6 @@ use yii\helpers\Url;
                     'hideOnSinglePage' => true
                 ]);
                 ?>
-                <ul class="pagination">
-                    <li class="last"><a
-                            href="/site/goods?page=<?= ceil($pages->totalCount / $pageSize) ?>"
-                            data-page="<?= ceil($pages->totalCount / $pageSize) ?>"><?= '...' . ceil($pages->totalCount / $pageSize); ?></a>
-                    </li>
-                </ul>
             </div>
         </div>
         <div class="clearfix"></div>

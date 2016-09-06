@@ -34,30 +34,10 @@ use yii\helpers\Html;
             <p class="col-sm-6 product-details">
                 <h4><?= $model->item ?></h4>
                 <div class="price">
-                    <span class="price-was"><?= $model->price.' Руб' ?></span> <?= $model->price.' Руб' ?>
+                    </span> <?= $model->price.' Руб' ?>
                 </div>
 
-                <table class="shop-item-selections">
 
-                    <tr>
-                        <td><b>Категория товара:</b></td>
-                        <td>
-                            <p>
-                                <?= $model->category->name ?>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Подкатегория товара:</b></td>
-                        <td>
-                            <p>
-                                <?= $model->podcategory->name ?>
-                            </p>
-                        </td>
-                    </tr>
-
-
-                </table>
             </div>
             <!-- End Product Summary & Options -->
 

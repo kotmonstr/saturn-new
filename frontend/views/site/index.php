@@ -1,3 +1,8 @@
+<?php
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
+?>
+
 <div class="section section-white">
     <div class="container">
         <div class="row">
@@ -24,96 +29,32 @@
     <div class="container">
         <h2>Наши работы</h2>
         <div class="row">
+
+            <? if($modelMyWorks): ?>
+            <? foreach ($modelMyWorks as $work): ?>
+
+
             <div class="col-md-4 col-sm-6">
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio1.jpg" alt="Project Name"></a>
+                        <a href="page-portfolio-item.html"><img src="/upload/article/<?= $work->image ?>" alt="Project Name"></a>
                     </div>
                     <div class="portfolio-info">
                         <ul>
-                            <li class="portfolio-project-name">Project Name</li>
-                            <li>Website design & Development</li>
-                            <li>Client: Some Client LTD</li>
-                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                            <li class="portfolio-project-name"><?= StringHelper::truncate($work->title,70) ?></li>
+                      
+
+                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Подробнее</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio2.jpg" alt="Project Name"></a>
-                    </div>
-                    <div class="portfolio-info">
-                        <ul>
-                            <li class="portfolio-project-name">Project Name</li>
-                            <li>Website design & Development</li>
-                            <li>Client: Some Client LTD</li>
-                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio3.jpg" alt="Project Name"></a>
-                    </div>
-                    <div class="portfolio-info">
-                        <ul>
-                            <li class="portfolio-project-name">Project Name</li>
-                            <li>Website design & Development</li>
-                            <li>Client: Some Client LTD</li>
-                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio4.jpg" alt="Project Name"></a>
-                    </div>
-                    <div class="portfolio-info">
-                        <ul>
-                            <li class="portfolio-project-name">Project Name</li>
-                            <li>Website design & Development</li>
-                            <li>Client: Some Client LTD</li>
-                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio5.jpg" alt="Project Name"></a>
-                    </div>
-                    <div class="portfolio-info">
-                        <ul>
-                            <li class="portfolio-project-name">Project Name</li>
-                            <li>Website design & Development</li>
-                            <li>Client: Some Client LTD</li>
-                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio6.jpg" alt="Project Name"></a>
-                    </div>
-                    <div class="portfolio-info">
-                        <ul>
-                            <li class="portfolio-project-name">Project Name</li>
-                            <li>Website design & Development</li>
-                            <li>Client: Some Client LTD</li>
-                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+            <? endforeach; ?>
+            <?endif; ?>
+
+
+
         </div>
     </div>
 </div>

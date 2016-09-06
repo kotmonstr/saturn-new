@@ -1,13 +1,15 @@
 .blog-post {
-
     transition: 3s;
     opacity: 0.8;
-}.blog-post:hover {
+}
+
+.blog-post:hover {
     -webkit-box-shadow: 2px 2px 10px #999;
     -moz-box-shadow: 2px 2px 10px #999;
     box-shadow: 2px 2px 10px #999;
     opacity: 1;
+}
 
-
-
+.mainmenu > ul > li > a, .mainmenu .mainmenu-submenu-inner > li > a {
+    padding: 1em 0.8em;
 }

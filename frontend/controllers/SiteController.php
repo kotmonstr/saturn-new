@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Article;
 use common\models\Brend;
 use common\models\Goods;
 use common\models\GoodsCategory;
@@ -71,14 +72,63 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return mixed
-     */
+
     public function actionIndex()
     {
-        return $this->render('index');
+        $modelMyWorks = Article::find()->where(['article_category' => 12])->limit(6)->all();
+        return $this->render('index',
+            [
+                'modelMyWorks' => $modelMyWorks
+            ]
+        );
+    }
+
+    public function actionGallery()
+    {
+        
+        $modelMyWorks = Article::find()->where(['article_category' => 12])->limit(6)->all();
+        return $this->render('gallery',
+            [
+                'modelMyWorks' => $modelMyWorks
+            ]
+        );
+    }
+
+    public function actionArticleDetail($id)
+    {
+        $this->layout = 'goods';
+        
+        $model = Article::find()->where(['id' => $id])->one();
+        return $this->render('article-detail',
+            [
+                'model' => $model
+            ]
+        );
+    }
+
+    public function actionService()
+    {
+        $this->layout = 'goods';
+
+        $pageSize = 12;
+        $query = Article::find()->where(['article_category' => 12]);
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);
+
+        $model = $query->offset($pages->offset)
+            ->orderBy('created_at DESC')
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('service', [
+            'model' => $model,
+            'pages' => $pages,
+            'pageSize' => $pageSize,
+
+        ]);
+
+
     }
 
     /**
@@ -88,6 +138,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'goods';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -121,6 +173,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $this->layout = 'goods';
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
@@ -144,6 +197,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+        $this->layout = 'goods';
         return $this->render('about');
     }
 
@@ -154,6 +208,8 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        $this->layout = 'goods';
+
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
