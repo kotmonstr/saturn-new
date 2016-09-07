@@ -276,6 +276,7 @@ class SiteController extends Controller
     public function actionGoods()
     {
         $this->layout = 'goods';
+
         $category_id = Yii::$app->request->get('category_id');
         $pod_category_id = Yii::$app->request->get('pod_category_id');
 

@@ -3,6 +3,8 @@ use yii\helpers\StringHelper;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use common\models\GoodsPodCategory;
+
 ?>
 
 <!-- Page Title -->
@@ -24,68 +26,36 @@ use yii\helpers\Html;
                 <h4>Искать товар</h4>
 
                 <form action="<?= Url::to('/site/goods') ?>" method="GET">
-                    <div class="input-group">
+                    <div class="input-group" style="margin-bottom: 10px">
                         <input class="form-control input-md" name="item" id="appendedInputButtons" type="text">
-								<span class="input-group-btn">
-									<button class="btn btn-md" type="submit">Искать</button>
-								</span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-md" type="submit">Искать</button>
+                            </span>
                     </div>
                 </form>
-                <script>
-                    jQuery( function() {
-                        jQuery( "#accordion" ).accordion();
-                    } );
-                </script>
 
 
-                <? if($modelGoodsCategory): ?>
+                <? if ($modelGoodsCategory): ?>
+                    <div id="accordion">
+                        <? foreach ($modelGoodsCategory as $item): ?>
+                            <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '30px', 'width' => '30px']) ?> <?= $item->name ?></h4>
+                            <ul class="recent-posts">
 
+                                <? $podCat = GoodsPodCategory::find()
 
-                <div id="accordion">
-                    <? foreach ($modelGoodsCategory as $item): ?>
-                    <h4><?= Html::img($item->image_path.$item->image,['height'=>'30px','width'=>'30px']) ?> <?= $item->name ?></h4>
-                    <ul class="recent-posts">
+                                    ->leftJoin('goods','goods.pod_category_id = goods_pod_category.id')
+                                    ->where(['goods_pod_category.category_id' => $item->id])
+                                    ->all(); ?>
 
-                        <? $podCat = \common\models\GoodsPodCategory::find()->where(['category_id'=> $item->id])->all(); ?>
-
-                        <? if($podCat): ?>
-                            <? foreach ($podCat as $item): ?>
-
-                                <li><a href="<?= Url::to(['/site/goods','category_id'=>$item->id]) ?>"><?= $item->name ?></a></li>
-
-                            <? endforeach; ?>
-                        <? endif; ?>
-
-                    </ul>
-
-
-                    <? endforeach; ?>
-
-
-
-                </div>
+                                    <? if($podCat): ?>
+                                        <? foreach ($podCat as $item2): ?>
+                                            <li class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id]) ?>"><?= $item2->name ?></a></li>
+                                        <? endforeach; ?>
+                                <? endif; ?>
+                            </ul>
+                        <? endforeach; ?>
+                    </div>
                 <? endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
 
             <div class="col-md-9">
@@ -100,43 +70,42 @@ use yii\helpers\Html;
                                     $currTime = $goods->created_at;
                                     $today = time();
                                     $diff = $today - $currTime;
-
-                                    $timeConstant = 1*24*60*60;
-
+                                    $timeConstant = 1 * 24 * 60 * 60;
                                     ?>
 
-
-                            <? if($diff <= $timeConstant): ?>
-                                    <div class="price-ribbon ribbon-green">New</div>
-                            <? endif ?>
+                                    <? if ($diff <= $timeConstant): ?>
+                                        <div class="price-ribbon ribbon-green">New</div>
+                                    <? endif ?>
                                 </div>
 
                                 <div class="post-info">
                                     <div class="post-date">
-                                        <div class="date"><?= $goods->price.' руб' ?></div>
+                                        <div class="date"><?= $goods->price . ' руб' ?></div>
                                     </div>
 
                                 </div>
+                                <a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"><img
+                                        src="<?= '/upload/goods/' . $goods->image ?>"
+                                        class="post-image"
+                                        alt="Post Title"></a>
 
-
-                                <a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>"><img src="<?= '/upload/goods/'.$goods->image ?>"
-                                                                                 class="post-image"
-                                                                                 alt="Post Title"></a>
                                 <div class="post-title">
-                                    <h3><a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item,30); ?></a></h3>
+                                    <h3><a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
+                                           title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item, 30); ?></a>
+                                    </h3>
                                 </div>
                                 <div class="post-summary">
-                                    <a href="<?= Url::to('/upload/pdf/'.$goods->pdf ) ?>"><p title="Скачать"><?= StringHelper::truncate($goods->pdf,50); ?></p></a>
+                                    <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"><p
+                                            title="Скачать"><?= StringHelper::truncate($goods->pdf, 50); ?></p></a>
                                 </div>
                                 <div class="post-more">
-                                    <a href="<?= Url::to(['/site/goods-detail/','slug'=>$goods->slug]) ?>" class="btn btn-small">Открыть</a>
+                                    <a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
+                                       class="btn btn-small">Открыть</a>
                                 </div>
                             </div>
                         </div>
-
                     <? endforeach; ?>
                 <? endif ?>
-
 
             </div>
         </div>
@@ -157,10 +126,41 @@ use yii\helpers\Html;
 </div>
 <!-- End Posts List -->
 <style>
-    .blog-post{
-        height: 355px!important;
+    .blog-post {
+        height: 355px !important;
     }
-    .post-image{
-        height: 200px!important;
+
+    .post-image {
+        height: 200px !important;
+    }
+    .cateegory-main {
+        cursor: pointer;
+    }
+
+    .cateegory-main:focus {
+        outline: none;
+    }
+
+    .pod-category {
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    .pod-category:first-child {
+        border-top: none !important
+    }
+    .recent-posts{
+        //height: 10px;
     }
 </style>
+
+<script>
+    jQuery(function () {
+        jQuery("#accordion").accordion({
+            active: false,
+            collapsible: true,
+            //heightStyle: "fill",
+            //icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" }
+        });
+    });
+</script>
