@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "article_category".
@@ -10,55 +11,52 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $description
- *
- * @property Article[] $articles
+ * @property string $slug
+ * @property string $image
+ * @property string $image_path
  */
 class ArticleCategory extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+            ],
+        ];
+    }
     public static function tableName()
     {
         return 'article_category';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['name', 'description'], 'required'],
             [['description'], 'string'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'slug'], 'string', 'max' => 255],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
             'name' => 'Наименование',
             'description' => 'Описание',
+            'slug' => 'Slug',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getArticle()
     {
         return $this->hasMany(Article::className(), ['article_category' => 'id']);
     }
 
-    /**
-     * @inheritdoc
-     * @return TemplateQuery the active query used by this AR class.
-     */
+
     public static function find()
     {
         return new TemplateQuery(get_called_class());

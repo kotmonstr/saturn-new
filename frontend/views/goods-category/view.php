@@ -31,6 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'id',
                             'name',
                             'descr:ntext',
+                            [
+                                'attribute' => 'image',
+                                'value' => isset($model->image) && $model->image != '' ? '/upload/goods_category/' . $model->image : '/img-custom/no_photo.jpg',
+                                'format' => ['image', ['width' => '300', 'height' => '300']],
+                            ],
                         ],
                     ]) ?>
 

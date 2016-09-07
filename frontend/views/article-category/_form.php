@@ -2,9 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\ArticleCategory */
-/* @var $form yii\widgets\ActiveForm */
+
 ?>
 <section class="content">
     <div class="row">

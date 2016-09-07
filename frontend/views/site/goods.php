@@ -2,6 +2,7 @@
 use yii\helpers\StringHelper;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
+use yii\helpers\Html;
 ?>
 
 <!-- Page Title -->
@@ -42,7 +43,7 @@ use yii\helpers\Url;
 
                 <div id="accordion">
                     <? foreach ($modelGoodsCategory as $item): ?>
-                    <h4><?= $item->name ?></h4>
+                    <h4><?= Html::img($item->image_path.$item->image,['height'=>'30px','width'=>'30px']) ?> <?= $item->name ?></h4>
                     <ul class="recent-posts">
 
                         <? $podCat = \common\models\GoodsPodCategory::find()->where(['category_id'=> $item->id])->all(); ?>

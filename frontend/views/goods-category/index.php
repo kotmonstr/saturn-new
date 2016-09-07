@@ -35,6 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }
 
                             ],
+                            ['attribute' => 'image', 'format' => 'html', 'value' => function ($dataProvider) {
+                                if ($dataProvider->image) {
+                                    return Html::img($dataProvider->image_path . $dataProvider->image, ['height' => '100px']);
+                                } else {
+                                    return '';
+                                }
+                            }, 'label' => 'Предпросмотр',],
                             ['class' => 'yii\grid\ActionColumn'],
                         ],
                     ]); ?>
