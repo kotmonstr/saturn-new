@@ -2,10 +2,8 @@
 namespace frontend\controllers;
 
 use common\models\Article;
-use common\models\Brend;
 use common\models\Goods;
 use common\models\GoodsCategory;
-use common\models\Groop;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -279,32 +277,41 @@ class SiteController extends Controller
 
         $category_id = Yii::$app->request->get('category_id');
         $pod_category_id = Yii::$app->request->get('pod_category_id');
-
-
         $item = Yii::$app->request->get('item');
         $modelGoodsCategory = GoodsCategory::find()->all();
         $modelGoodsPodCategory = GoodsPodCategory::find()->all();
 
 
         // Вывести список статей
-        $pageSize = 12;
+        $pageSize = 100;
+
         $query = Goods::find();
 
-        $query->andFilterWhere([
-            'category_id' => $category_id,
-            'pod_category_id' => $pod_category_id,
-        ]);
-
-        $query->andFilterWhere(['like', 'item', $item]);
+//        $query->andFilterWhere([
+//            //'category_id' => $category_id,
+//            'pod_category_id' => $pod_category_id,
+//        ]);
+//
+//        $query->andFilterWhere(['like', 'item', $item]);
 
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);
 
+        if( $pod_category_id){
+            $model = $query->offset($pages->offset)
+                ->orderBy('created_at DESC')
+                ->where(['status'=> 1,'pod_category_id' => $pod_category_id,])
+                ->limit($pages->limit)
+                ->all();
+        }else{
+            $model = $query->offset($pages->offset)
+                ->orderBy('created_at DESC')
+                ->where(['status'=> 1])
+                ->limit($pages->limit)
+                ->all();
+        }
 
-        $model = $query->offset($pages->offset)
-            ->orderBy('created_at DESC')
-            ->limit($pages->limit)
-            ->all();
+
 
 
         return $this->render('goods', [
@@ -330,13 +337,13 @@ class SiteController extends Controller
     public function actionGetPodCatsByCategory()
     {
         $id = Yii::$app->request->post('id');// category_id
-        $model = GoodsPodCategory::find()->where(['id' => $id])->all();
-        if ($model):
+        $model = GoodsPodCategory::find()->where(['category_id' => $id])->all();
+        if( isset($model)):
             foreach ($model as $item) {
                 echo "<option value='" . $item->id . "'>" . $item->name . "</option>";
             }
         else:
-            echo "<option></option>";
+            echo "<option>-</option>";
         endif;
     }
 }

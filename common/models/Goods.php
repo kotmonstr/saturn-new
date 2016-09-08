@@ -7,6 +7,7 @@ use common\models\GoodsCategory;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use common\models\GoodsPodCategory;
+use common\models\Exchange;
 
 /**
  * This is the model class for table "goods".
@@ -25,13 +26,11 @@ class Goods extends \yii\db\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_DESABLE = 0;
 
-
     public $image_file;
     public $image_file_extra;
     public $new_image;
-    //public $pdf_file;
     public $file;
-    //public $groop_id;
+    public $currency;
 
     public function behaviors()
     {
@@ -60,9 +59,11 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item', 'price', 'category_id', 'descr', 'status','new_image','pod_category_id'], 'required'],
-            [['category_id', 'status','pod_category_id'], 'integer'],
-            [['price'],'double'],
+            [['item', 'price', 'category_id', 'descr','new_image','pod_category_id'], 'required'],
+
+            [['category_id','pod_category_id','currency'], 'integer'],
+            [['price'], 'double'],
+
             [['descr', 'image','slug','pdf'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
@@ -88,9 +89,12 @@ class Goods extends \yii\db\ActiveRecord
             'image' => 'Картинка',
             'brend_id' => 'Бренд',
             'rating'=>'Рейтинг',
-            'slug'=>'slug'
+            'slug'=>'slug',
+            'currency'=>'Валюта'
         ];
     }
+
+
 
     public function upload()
     {
@@ -103,91 +107,7 @@ class Goods extends \yii\db\ActiveRecord
     }
 
 
-    /*
-     * Вернет несколько последних товаров
-     */
-    public static function getNewest($q = 6)
-    {
-        $model = self::find()
-            ->where(['status' => self::STATUS_ACTIVE])
-            ->orderBy('id DESC')
-            ->all();
-        if ($model) {
-            return $model;
-        } else {
-            return false;
-        }
-    }
-
-
-
-    /*
-     * Вернет один товар
-     */
-    public static function getItemById($id)
-    {
-        $model = self::find()->where(['id' => $id])->one();
-        if ($model) {
-            return $model;
-        } else {
-            return false;
-        }
-    }
-
-    /*
-     * Вернет цену товара
-     */
-    public static function getPriceById($id)
-    {
-
-        $model = self::find()->where(['id' => $id])->one();
-        if ($model) {
-            return $model->price;
-        } else {
-            return false;
-        }
-    }
-
-    /*
-  * Вернет категорию товара
-  */
-    public static function getCategoryById($id)
-    {
-        $model = self::find()->where(['id' => $id])->one();
-        if ($model) {
-            return $model->category_id;
-        } else {
-            return false;
-        }
-    }
-
-
-
-    /*
-* Вернет товары этой категории
-*/
-    public static function getGoodsByCategoriId($id)
-    {
-        if ($id != 0) {
-            $model = self::find()
-                ->where(['category_id' => $id,'status' => self::STATUS_ACTIVE])
-                ->all();
-        } else {
-            $model = self::find()->all();
-        }
-
-        if ($model) {
-            return $model;
-        } else {
-            return false;
-        }
-    }
-
-
-
-
-
-  /**
+ /**
      * @return \yii\db\ActiveQuery
      */
     public function getCategory()
@@ -202,6 +122,22 @@ class Goods extends \yii\db\ActiveRecord
 
     public function getName(){
         return $this->name;
+    }
+    public static function getCurrs($currency){
+
+        $rates = new Exchange(date("Y-m-d"));
+        switch ($currency) {
+            case 1:
+                $curs = 1;
+                break;
+            case 2:
+                $curs = $rates->GetRate("EUR");
+                break;
+            case 3:
+                $curs = $rates->GetRate("USD");
+                break;
+        }
+        return $curs;
     }
 
 

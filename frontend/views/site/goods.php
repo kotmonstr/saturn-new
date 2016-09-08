@@ -38,16 +38,16 @@ use common\models\GoodsPodCategory;
                 <? if ($modelGoodsCategory): ?>
                     <div id="accordion">
                         <? foreach ($modelGoodsCategory as $item): ?>
-                            <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '30px', 'width' => '30px']) ?> <?= $item->name ?></h4>
+                            <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '30px']) ?> <?= $item->name ?></h4>
                             <ul class="recent-posts">
 
                                 <? $podCat = GoodsPodCategory::find()
 
-                                    ->leftJoin('goods','goods.pod_category_id = goods_pod_category.id')
-                                    ->where(['goods_pod_category.category_id' => $item->id])
+                                    //->leftJoin('goods','goods.pod_category_id = goods_pod_category.id')
+                                    ->where(['category_id' => $item->id])
                                     ->all(); ?>
 
-                                    <? if($podCat): ?>
+                                    <? if(isset($podCat) && $podCat != ''): ?>
                                         <? foreach ($podCat as $item2): ?>
                                             <li class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id]) ?>"><?= $item2->name ?></a></li>
                                         <? endforeach; ?>
@@ -78,28 +78,27 @@ use common\models\GoodsPodCategory;
                                     <? endif ?>
                                 </div>
 
-                                <div class="post-info">
-                                    <div class="post-date">
-                                        <div class="date"><?= $goods->price . ' руб' ?></div>
-                                    </div>
-
-                                </div>
+<!--                                <div class="post-info">-->
+<!--                                    <div class="post-date">-->
+<!--                                        <div class="date">--><?//= $goods->price . ' руб' ?><!--</div>-->
+<!--                                    </div>-->
+<!---->
+<!--                                </div>-->
                                 <a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"><img
                                         src="<?= '/upload/goods/' . $goods->image ?>"
                                         class="post-image"
                                         alt="Post Title"></a>
 
                                 <div class="post-title">
-                                    <h3><a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
-                                           title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item, 30); ?></a>
-                                    </h3>
+                                    <h5><a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
+                                           title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item, 100); ?></a>
+                                    </h5>
                                 </div>
-                                <div class="post-summary">
-                                    <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"><p
-                                            title="Скачать"><?= StringHelper::truncate($goods->pdf, 50); ?></p></a>
+                                <div class="good-price" style="text-align: center">
+                                    <?= $goods->price . ' руб' ?>
                                 </div>
                                 <div class="post-more">
-                                    <a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
+                                    <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"
                                        class="btn btn-small">Открыть</a>
                                 </div>
                             </div>
@@ -115,7 +114,7 @@ use common\models\GoodsPodCategory;
                 <?=
                 LinkPager::widget([
                     'pagination' => $pages,
-                    'maxButtonCount' => 5,
+                    //'maxButtonCount' => 5,
                     'hideOnSinglePage' => true
                 ]);
                 ?>
@@ -151,6 +150,14 @@ use common\models\GoodsPodCategory;
     }
     .recent-posts{
         //height: 10px;
+    }
+    .good-price{
+        font-weight: bold;
+        font-size: 14px;
+        padding: 5px;
+    }
+    h5 a{
+        color: #53555c;!important;
     }
 </style>
 

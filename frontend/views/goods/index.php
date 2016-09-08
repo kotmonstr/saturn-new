@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
+                        'id',
                         [
                             'attribute' => 'item',
                             'format' => 'html',
@@ -43,9 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'pod_category_id',
                             'format' => 'text',
                             'value' => function ($dataProvider) {
-                                $name = GoodsPodCategory::find()->where(['id' => $dataProvider->pod_category_id])->one()->getName();
-                                //$b = $a['name'];
-                                return $name;
+                                $name = GoodsPodCategory::find()->where(['id' => $dataProvider->pod_category_id])->one();
+                                return !empty($name['name']) ? $name['name'] : false;
+
+                            }
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'format' => 'text',
+                            'value' => function ($dataProvider) {
+
+                                return $dataProvider->status == 1 ? 'показан' : 'не показан';
+
                             }
                         ],
 

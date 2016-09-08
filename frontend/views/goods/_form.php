@@ -6,11 +6,11 @@ use common\models\GoodsCategory;
 use frontend\assets\AdminAsset;
 use common\models\GoodsPodCategory;
 use yii\helpers\Url;
-use vova07\imperavi\Widget;
+
 
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
-$this->registerJsFile('/js/switch-image.js', ['depends' => AdminAsset::className()]);
+$this->registerJsFile('/js/switch-goods.js', ['depends' => AdminAsset::className()]);
 
 
 $arrGoodsCategory = GoodsCategory::find()->all();
@@ -25,37 +25,19 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
 
                  <div class="row">
                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'form-send-file']); ?>
+                    <?= $form->field($model, 'id',['options' => ['class' => 'hidden']])->textInput(['maxlength' => 255]) ?>
+
                     <?= $form->field($model, 'item',['options' => ['class' => 'col-md-8']])->textInput(['maxlength' => 255]) ?>
                     <?= $form->field($model, 'currency',['options' => ['class' => 'col-md-2']])->dropDownList([1 => 'RUB',2 => 'EUR', 3 => 'USD']) ?>
                     <?= $form->field($model, 'price',['options' => ['class' => 'col-md-2']])->textInput() ?>
                 </div>
                 <div class="row">
-                    <?= $form->field($model, 'category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['onchange' => ' $.post("' . Url::toRoute('/site/get-pod-cats-by-category') . '", {id: $(this).val()}, function(res){
-                        $("#goods-pod_category_id").html(res);});',])->label('Категория товара ' . Html::a(' Создать', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
+                    <?= $form->field($model, 'category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['onchange' => 'jQuery.post("' . Url::toRoute('/site/get-pod-cats-by-category') . '", {id: jQuery(this).val()}, function(res){jQuery("#goods-pod_category_id").html(res);});'])->label('Категория товара ' . Html::a(' Создать', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
                     <?= $form->field($model, 'pod_category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
                 </div>
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
-<!--                --><?//= $form->field($model, 'descr')->widget(Widget::className(), [
-//                    'settings' => [
-//                        'iframe' => true,
-//                        'air' => true,
-//                        'formatting' => ['iframe'],
-//                        'lang' => 'ru',
-//                        'minHeight' => 200,
-//                        'pastePlainText' => true,
-//                        'buttonSource' => true,
-//                        'focus' => true,
-//                        'imageUpload' => '/article/upload',
-//                        'imageManagerJson' => '/article/uploaded',
-//                        'plugins' => [
-//                            'clips',
-//                            'fullscreen',
-//                            'imagemanager',
-//                            //'filemanager'
-//                        ]
-//                    ]
-//                ]) ?>
+
 
                 <?php if ($model->status == 1) {
                     echo $form->field($model, 'status')->checkbox(['class' => 'act'])->label('');

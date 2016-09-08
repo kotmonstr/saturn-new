@@ -39,11 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods-category/view?id=' . $model->category_id)
                         ],
-                        [
-                            'attribute' => 'pod_category_id',
-                            'format' => 'raw',
-                            'value' => Html::a(GoodsPodCategory::find()->where(['id' => $model->pod_category_id])->one()->getName(), '/goods-pod-category/view?id=' . $model->pod_category_id)
-                        ],
+                       // [
+                            //'attribute' => 'pod_category_id',
+                            //'format' => 'raw',
+                            //'value' => Html::a(GoodsPodCategory::find()->where(['id' => $model->pod_category_id])->one()->getName(), '/goods-pod-category/view?id=' . $model->pod_category_id)
+                       // ],
 
                         'descr:ntext',
            

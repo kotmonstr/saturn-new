@@ -32,11 +32,6 @@ class GoodsController extends Controller
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
 
-    public function behaviors()
-    {
-        return ['verbs' => ['class' => VerbFilter::className(), 'actions' => ['delete' => ['post'],],], 'access' => ['class' => AccessControl::className(), //'only' => ['index'],
-            'rules' => [['actions' => ['index', 'view', 'create', 'update', 'delete', 'submit', 'upload-extra-image'], 'allow' => true, 'roles' => ['@', '?'],],],],];
-    }
 
     public function actionIndex()
     {
@@ -251,5 +246,27 @@ class GoodsController extends Controller
         $curs = Goods::getCurrs($model->currency);
         $model->price = $model->price * $curs;
         return $model;
+    }
+
+    public function actionChangeActivety()
+    {
+        $arrResult = [];
+        $id = Yii::$app->request->post('id');
+        $state = Yii::$app->request->post('state');
+        //vd($id . ': ' . $state);
+        if ($state == 'true') {
+            $status = 1;
+        } else {
+            $status = 0;
+        }
+        if ($id) {
+            $model = Goods::find()->where(['id' => $id])->one();
+            $model->status = $status;
+            $model->updateAttributes(['status']);
+        }
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $arrResult['state'] = $status;
+        $arrResult['id'] = $id;
+        return $arrResult;
     }
 }
