@@ -61,7 +61,8 @@ class Goods extends \yii\db\ActiveRecord
     {
         return [
             [['item', 'price', 'category_id', 'descr', 'status','new_image','pod_category_id'], 'required'],
-            [['price', 'category_id', 'status','pod_category_id'], 'integer'],
+            [['category_id', 'status','pod_category_id'], 'integer'],
+            [['price'],'double'],
             [['descr', 'image','slug','pdf'], 'string'],
             [['item'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
