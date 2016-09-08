@@ -17,7 +17,8 @@ use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
 use common\models\GoodsPodCategory;
-
+use common\models\Exchange;
+use common\models\ExchangeRatesCBRF;
 
 
 class GoodsController extends Controller
@@ -34,7 +35,7 @@ class GoodsController extends Controller
     public function behaviors()
     {
         return ['verbs' => ['class' => VerbFilter::className(), 'actions' => ['delete' => ['post'],],], 'access' => ['class' => AccessControl::className(), //'only' => ['index'],
-            'rules' => [['actions' => ['index', 'view', 'create', 'update', 'delete', 'submit', 'upload-extra-image'], 'allow' => true, 'roles' => ['@','?'],],],],];
+            'rules' => [['actions' => ['index', 'view', 'create', 'update', 'delete', 'submit', 'upload-extra-image'], 'allow' => true, 'roles' => ['@', '?'],],],],];
     }
 
     public function actionIndex()
@@ -60,17 +61,18 @@ class GoodsController extends Controller
 
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
+            $model = $this->changePrice($model);
 
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->file) {
-                $model->file->saveAs('upload/pdf/' . $model->file->name );
+                $model->file->saveAs('upload/pdf/' . $model->file->name);
                 $model->pdf = $model->file->name;
             }
 
             $model->image = Yii::$app->request->post('Goods')['new_image'];
 
-           //$model->validate();
-            //vd($model->getErrors());
+            //$model->validate();
+            // vd($model->getErrors());
             $model->save();
 
             Yii::$app->session->setFlash('success', 'Товар успешно создан.');
@@ -86,11 +88,12 @@ class GoodsController extends Controller
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
-           // vd($model);
+            // vd($model);
+            $model = $this->changePrice($model);
 
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->file) {
-                $model->file->saveAs('upload/pdf/' . $model->file->name );
+                $model->file->saveAs('upload/pdf/' . $model->file->name);
                 $model->pdf = $model->file->name;
             }
 
@@ -233,12 +236,20 @@ class GoodsController extends Controller
         }
     }
 
-    private function getAllCounters(){
+    private function getAllCounters()
+    {
         $this->countAllArticles = Article::find()->count();
         $this->countAllGoods = Goods::find()->count();
         $this->countAllGoodsCategory = GoodsCategory::find()->count();
         $this->countAllArticleCategory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+    }
+
+    public function changePrice($model)
+    {
+        $curs = Goods::getCurrs($model->currency);
+        $model->price = $model->price * $curs;
+        return $model;
     }
 }
