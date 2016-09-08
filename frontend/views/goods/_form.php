@@ -6,6 +6,7 @@ use common\models\GoodsCategory;
 use frontend\assets\AdminAsset;
 use common\models\GoodsPodCategory;
 use yii\helpers\Url;
+use vova07\imperavi\Widget;
 
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
@@ -21,20 +22,40 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'form-send-file']); ?>
 
-                <?= $form->field($model, 'item')->textInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'price')->textInput() ?>
-
-                <? //= $form->field($model, 'rating')->dropDownList([1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]) ?>
-
-                <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['onchange' => ' $.post("' . Url::toRoute('/site/get-pod-cats-by-category') . '", {id: $(this).val()}, function(res){
-                    $("#goods-pod_category_id").html(res);});',])->label('Категория товара ' . Html::a(' Создать категорию ', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
-
-                <?= $form->field($model, 'pod_category_id')->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать подкатегорию ', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
+                 <div class="row">
+                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'form-send-file']); ?>
+                    <?= $form->field($model, 'item',['options' => ['class' => 'col-md-8']])->textInput(['maxlength' => 255]) ?>
+                    <?= $form->field($model, 'currency',['options' => ['class' => 'col-md-2']])->dropDownList([1 => 'RUB',2 => 'EUR', 3 => 'USD']) ?>
+                    <?= $form->field($model, 'price',['options' => ['class' => 'col-md-2']])->textInput() ?>
+                </div>
+                <div class="row">
+                    <?= $form->field($model, 'category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['onchange' => ' $.post("' . Url::toRoute('/site/get-pod-cats-by-category') . '", {id: $(this).val()}, function(res){
+                        $("#goods-pod_category_id").html(res);});',])->label('Категория товара ' . Html::a(' Создать', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
+                    <?= $form->field($model, 'pod_category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
+                </div>
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
+<!--                --><?//= $form->field($model, 'descr')->widget(Widget::className(), [
+//                    'settings' => [
+//                        'iframe' => true,
+//                        'air' => true,
+//                        'formatting' => ['iframe'],
+//                        'lang' => 'ru',
+//                        'minHeight' => 200,
+//                        'pastePlainText' => true,
+//                        'buttonSource' => true,
+//                        'focus' => true,
+//                        'imageUpload' => '/article/upload',
+//                        'imageManagerJson' => '/article/uploaded',
+//                        'plugins' => [
+//                            'clips',
+//                            'fullscreen',
+//                            'imagemanager',
+//                            //'filemanager'
+//                        ]
+//                    ]
+//                ]) ?>
 
                 <?php if ($model->status == 1) {
                     echo $form->field($model, 'status')->checkbox(['class' => 'act'])->label('');
@@ -51,21 +72,20 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
                         <?= $model->image != '' ? Html::img('/upload/goods/' . $model->image, ['width' => '200px', 'height' => '200px', 'class' => 'target_image']) : Html::img('/images/no_photo.png', ['width' => '200px', 'height' => '200px', 'class' => 'target_image']); ?>
 
                         <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('Картинка') ?>
-                        <?= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>
+                        <?//= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>
 
                         <?php if (!$model->isNewRecord) { ?>
                             <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>
                         <?php } ?>
-                        <div style="width:700px;">
+                        <div style="width:700px;display: none">
                             <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image', 'value' => $model->image])->label('') ?>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="form-group" style="margin-top: 10px">
+                <div class="form-group" style="">
                     <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Редактировать', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-
                 </div>
 
                 <?php ActiveForm::end(); ?>
