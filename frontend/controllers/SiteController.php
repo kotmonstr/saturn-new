@@ -278,7 +278,17 @@ class SiteController extends Controller
         $category_id = Yii::$app->request->get('category_id');
         $pod_category_id = Yii::$app->request->get('pod_category_id');
         $item = Yii::$app->request->get('item');
-        $modelGoodsCategory = GoodsCategory::find()->all();
+
+        $modelGoodsCategory = GoodsCategory::find()
+//            ->leftJoin('goods_pod_category', '`goods_pod_category`.`id` = `goods_category`.`id`')
+//            //->where(['=','goods.status', 1])
+//            ->where(['<>','goods_pod_category.name' ,44])
+//            ->with('goods_category')
+            ->all();
+
+
+
+
         $modelGoodsPodCategory = GoodsPodCategory::find()->all();
 
 

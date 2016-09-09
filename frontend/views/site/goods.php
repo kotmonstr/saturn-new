@@ -41,11 +41,24 @@ use common\models\GoodsPodCategory;
                             <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '30px']) ?> <?= $item->name ?></h4>
                             <ul class="recent-posts">
 
-                                <? $podCat = GoodsPodCategory::find()
+<!--                                --><?// $podCat = GoodsPodCategory::find()
+//
+//                                    ->leftJoin('goods','goods.pod_category_id = goods_pod_category.id')
+//                                    ->where(['category_id' => $item->id])
+//                                    ->all(); ?>
 
-                                    //->leftJoin('goods','goods.pod_category_id = goods_pod_category.id')
-                                    ->where(['category_id' => $item->id])
-                                    ->all(); ?>
+                                <?
+                                $podCat = GoodsPodCategory::find()
+                                ->leftJoin('goods', '`goods`.`pod_category_id` = `goods_pod_category`.`id`')
+                                ->where(['=','goods.status', 1])
+                                ->AndWhere(['goods_pod_category.category_id' => $item->id])
+                                ->with('goods')
+                                ->all();
+                                ?>
+
+
+
+
 
                                     <? if(isset($podCat) && $podCat != ''): ?>
                                         <? foreach ($podCat as $item2): ?>

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use common\models\GoodsPodCategory;
 
 /**
  * This is the model class for table "goods_category".
@@ -85,5 +86,14 @@ class GoodsCategory extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGoods_category()
+    {
+        return $this->hasOne(GoodsPodCategory::className(), ['category_id'=>'id']);
+    }
+
 
 }
