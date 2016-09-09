@@ -25,11 +25,11 @@ $url = $controller.'/'.$action;
                     <a href="<?= Url::to('/site/service'); ?>">Услуги</a>
                 </li>
                 
-                <li class="">
+                <li class="<?= $url == 'site/gallery' ? 'active' : null ?>">
                     <a href="<?= Url::to('/site/gallery'); ?>">Галерея</a>
                 </li>
 
-                <li class="">
+                <li class="<?= $url == 'site/about' ? 'active' : null ?>">
                     <a href="<?= Url::to('/site/about'); ?>">О нас</a>
                 </li>
 
