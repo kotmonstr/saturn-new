@@ -13,3 +13,10 @@
 .mainmenu > ul > li > a, .mainmenu .mainmenu-submenu-inner > li > a {
     padding: 1em 0.8em;
 }
+.blog-posts-wrapper{
+    min-height: 473px;
+}
+
+.custom-wrapp {
+    min-height: calc(100vh - 355px);
+}

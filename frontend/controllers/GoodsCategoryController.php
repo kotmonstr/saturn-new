@@ -18,6 +18,7 @@ use common\models\Brend;
 use common\models\GoodsPodCategory;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
+use common\models\Gallery;
 
 /**
  * DefaultController implements the CRUD actions for GoodsCategory model.
@@ -32,6 +33,7 @@ class GoodsCategoryController extends Controller
     public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
+    public $countAllGalleryPhotos = false;
 
 
     /**
@@ -192,5 +194,6 @@ class GoodsCategoryController extends Controller
         $this->countAllArticleCategory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+        $this->countAllGalleryPhotos = Gallery::find()->count();
     }
 }

@@ -17,6 +17,7 @@ use common\models\Article;
 use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\GoodsPodCategory;
+use common\models\Gallery;
 
 class SliderPhotoController extends Controller {
 
@@ -26,6 +27,7 @@ class SliderPhotoController extends Controller {
     public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
+    public $countAllGalleryPhotos = false;
 
     public function behaviors() {
         return [
@@ -146,6 +148,7 @@ class SliderPhotoController extends Controller {
         $this->countAllArticleCategory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+        $this->countAllGalleryPhotos = Gallery::find()->count();
     }
 
 

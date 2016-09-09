@@ -29,8 +29,9 @@ GoodsAsset::register($this);
 <?//= SliderWidget::widget(); ?>
 <?//= $this->render('parts-frontend/_homepage-slider'); ?>
         <?= $content ?>
+<div class="custom-wrapp">
 <?= $this->render('parts-frontend/_footer'); ?>
-
+</div>
 
 
 <?php $this->endBody() ?>

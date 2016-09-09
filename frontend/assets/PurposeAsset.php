@@ -12,7 +12,7 @@ class PurposeAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'PURPOSE/css/bootstrap.min.css',
-        'PURPOSE/css/icomoon-social.css"',
+        'PURPOSE/css/icomoon-social.css',
         'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
         'http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800',
         'PURPOSE/css/leaflet.css',

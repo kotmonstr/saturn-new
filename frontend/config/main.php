@@ -10,6 +10,9 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
+    'charset' => 'utf-8',
+    'timeZone' => 'Europe/Moscow',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
 //        'assetManager' => [

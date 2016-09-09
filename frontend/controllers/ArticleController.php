@@ -22,6 +22,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ImageSlider;
 use common\models\GoodsPodCategory;
+use common\models\Gallery;
 
 
 
@@ -64,6 +65,7 @@ class ArticleController extends Controller
     public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
+    public $countAllGalleryPhotos = false;
 
     public $uploudPath = '/web/upload/article';
 
@@ -286,5 +288,6 @@ class ArticleController extends Controller
         $this->countAllArticleCategory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+        $this->countAllGalleryPhotos = Gallery::find()->count();
     }
 }

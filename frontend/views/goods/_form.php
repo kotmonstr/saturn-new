@@ -38,12 +38,13 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
-
+        <? if(!$model->isNewRecord ): ?>
                 <?php if ($model->status == 1) {
                     echo $form->field($model, 'status')->checkbox(['class' => 'act'])->label('');
                 } else {
                     echo $form->field($model, 'status')->checkbox(['class' => 'non-act'])->label('');
                 } ?>
+        <?endif ?>
 
                 <div class="row">
                     <div class="col-md-6">

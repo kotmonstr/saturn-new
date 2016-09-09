@@ -19,6 +19,7 @@ use common\models\ImageSlider;
 use common\models\GoodsPodCategory;
 use common\models\Exchange;
 use common\models\ExchangeRatesCBRF;
+use common\models\Gallery;
 
 
 class GoodsController extends Controller
@@ -31,6 +32,7 @@ class GoodsController extends Controller
     public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
+    public $countAllGalleryPhotos = false;
 
 
     public function actionIndex()
@@ -57,6 +59,7 @@ class GoodsController extends Controller
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
             $model = $this->changePrice($model);
+            $model->status = 1;
 
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->file) {
@@ -239,6 +242,7 @@ class GoodsController extends Controller
         $this->countAllArticleCategory = ArticleCategory::find()->count();
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+        $this->countAllGalleryPhotos = Gallery::find()->count();
     }
 
     public function changePrice($model)

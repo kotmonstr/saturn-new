@@ -124,15 +124,15 @@ $url = $controller.'/'.$action;
                     <li class="<?= $url == 'slider-photo/index' ? 'active' : null ?>"><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa <?= $url == 'slider-photo/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
 
-            <li class="treeview">
+            <li class="treeview <?= $url == 'gallery/index' ||  $url == 'gallery/create' ? 'active' : null ?>" >
                 <a href="#">
                     <i class="fa fa-photo"></i>
                     <span>Галерея</span>
-                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGalleryPhotos  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'gallery/index' ? 'active' : null ?>"><a href="<?= Url::to('/gallery/index') ?>"><i class="fa <?= $url == 'gallery/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -143,7 +143,7 @@ $url = $controller.'/'.$action;
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa fa-circle-o"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'gallery/index' ? 'active' : null ?>"><a href="<?= Url::to('/gallery/index') ?>"><i class="fa <?= $url == 'gallery/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
             </li>
 

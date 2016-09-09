@@ -27,7 +27,7 @@ use yii\widgets\LinkPager;
             <div class="col-md-4 col-sm-6">
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/upload/article/<?= $work->image ?>" alt="Project Name" style="height: 260px"></a>
+                        <a href="<?= Url::to(['/site/article-detail','id'=> $work->id]); ?>"><img src="/upload/article/<?= $work->image ?>" alt="Project Name" style="height: 260px"></a>
                     </div>
                     <div class="portfolio-info">
                         <ul>
@@ -57,6 +57,5 @@ use yii\widgets\LinkPager;
   
             </div>
         </div>
-        <div class="clearfix"></div>
     </div>
 </div>

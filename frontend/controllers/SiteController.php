@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Article;
+use common\models\Gallery;
 use common\models\Goods;
 use common\models\GoodsCategory;
 use Yii;
@@ -83,11 +84,12 @@ class SiteController extends Controller
 
     public function actionGallery()
     {
+        $this->layout = 'gallery';
         
-        $modelMyWorks = Article::find()->where(['article_category' => 12])->limit(6)->all();
+        $model = Gallery::find()->where(['status' => 1])->all();
         return $this->render('gallery',
             [
-                'modelMyWorks' => $modelMyWorks
+                'model' => $model
             ]
         );
     }

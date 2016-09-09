@@ -19,6 +19,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\ArticleCategory;
 use common\models\ImageSlider;
+use common\models\Gallery;
 
 
 
@@ -35,6 +36,7 @@ class AdminController extends Controller
     public $countAllArticleCategory = false;
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
+    public $countAllGalleryPhotos = false;
 
 
 
@@ -44,12 +46,13 @@ class AdminController extends Controller
         return $this->render('index');
     }
      private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+         $this->countAllArticles = Article::find()->count();
+         $this->countAllGoods = Goods::find()->count();
+         $this->countAllGoodsCategory = GoodsCategory::find()->count();
+         $this->countAllArticleCategory = ArticleCategory::find()->count();
+         $this->countAllSliderFotos = ImageSlider::find()->count();
+         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
+         $this->countAllGalleryPhotos = Gallery::find()->count();
     }
 
 }

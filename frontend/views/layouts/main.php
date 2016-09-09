@@ -28,7 +28,9 @@ SliderAsset::register($this);
 
 <?= SliderWidget::widget(); ?>
 <?//= $this->render('parts-frontend/_homepage-slider'); ?>
+<div class="custom-wrapp">
         <?= $content ?>
+</div>
 <?= $this->render('parts-frontend/_footer'); ?>
 
 
