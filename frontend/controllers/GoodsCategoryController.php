@@ -19,6 +19,7 @@ use common\models\GoodsPodCategory;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 use common\models\Gallery;
+use common\models\Message;
 
 /**
  * DefaultController implements the CRUD actions for GoodsCategory model.
@@ -34,6 +35,7 @@ class GoodsCategoryController extends Controller
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
     public $countAllGalleryPhotos = false;
+    public $countAllMessage = false;
 
 
     /**
@@ -195,5 +197,6 @@ class GoodsCategoryController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
         $this->countAllGalleryPhotos = Gallery::find()->count();
+        $this->countAllMessage = Message::find()->count();
     }
 }

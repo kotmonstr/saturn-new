@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\GoodsPodCategory;
+use common\models\Message;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -23,6 +24,7 @@ use common\models\Gallery;
 
 
 
+
 /**
  * Default controller for the `home` module
  */
@@ -37,6 +39,7 @@ class AdminController extends Controller
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
     public $countAllGalleryPhotos = false;
+    public $countAllMessage = false;
 
 
 
@@ -53,6 +56,7 @@ class AdminController extends Controller
          $this->countAllSliderFotos = ImageSlider::find()->count();
          $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
          $this->countAllGalleryPhotos = Gallery::find()->count();
+         $this->countAllMessage = Message::find()->count();
     }
 
 }

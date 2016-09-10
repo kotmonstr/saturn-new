@@ -149,7 +149,17 @@ $url = $controller.'/'.$action;
 
 
             <li class="header">НЕ ГОТОВО</li>
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span>Сообщения</span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllMessage ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= $url == 'message/index' ? 'active' : null ?>"><a href="<?= Url::to('/message/index') ?>"><i class="fa <?= $url == 'messageindex' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                </ul>
+            </li>
 
 
 

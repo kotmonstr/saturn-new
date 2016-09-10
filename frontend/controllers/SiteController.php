@@ -18,6 +18,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\data\Pagination;
 use common\models\GoodsPodCategory;
+use common\models\Message;
+
 
 /**
  * Site controller
@@ -295,7 +297,7 @@ class SiteController extends Controller
 
 
         // Вывести список статей
-        $pageSize = 100;
+        $pageSize = 12;
 
         $query = Goods::find();
 
@@ -358,4 +360,24 @@ class SiteController extends Controller
             echo "<option>-</option>";
         endif;
     }
+
+    public function actionContactUs(){
+
+        $this->layout = 'goods-detail';
+
+        $model = new Message();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->save();
+                Yii::$app->session->setFlash('success', 'Ваше сообщение отправленно.');
+                return $this->refresh();
+            }
+        }
+
+        return $this->render('contact-us', ['model'=>$model
+          ]);
+    }
+
+
 }

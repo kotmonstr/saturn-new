@@ -14,6 +14,7 @@ use common\models\GoodsCategory;
 use common\models\ImageSlider;
 use common\models\GoodsPodCategory;
 use common\models\Gallery;
+use common\models\Message;
 
 /**
  * DefaultController implements the CRUD actions for ArticleCategory model.
@@ -29,6 +30,7 @@ class ArticleCategoryController extends Controller
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
     public $countAllGalleryPhotos = false;
+    public $countAllMessage = false;
 
 
     public function behaviors()
@@ -152,5 +154,6 @@ class ArticleCategoryController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
         $this->countAllGalleryPhotos = Gallery::find()->count();
+        $this->countAllMessage = Message::find()->count();
     }
 }

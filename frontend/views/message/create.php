@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Groop */
+/* @var $model common\models\Message */
 
-$this->title = 'Создать группу';
-$this->params['breadcrumbs'][] = ['label' => 'Groops', 'url' => ['index']];
+$this->title = 'Create Message';
+$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="groop-create">
+<div class="message-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

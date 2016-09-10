@@ -18,5 +18,10 @@
 }
 
 .custom-wrapp {
-    min-height: calc(100vh - 355px);
+    //min-height: calc(100vh - 355px);
+}
+.help-block{
+    position: absolute;
+    line-height: 4px;
+    right: -40px;
 }

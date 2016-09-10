@@ -124,16 +124,30 @@ use common\models\GoodsPodCategory;
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-sm-9" style="text-align: center">
+                <div class="pagination-wrapper ">
                 <?=
                 LinkPager::widget([
                     'pagination' => $pages,
                     //'maxButtonCount' => 5,
-                    'hideOnSinglePage' => true
+                    'hideOnSinglePage' => true,
+
+                        'firstPageLabel' => 'Первая',
+                        'lastPageLabel' => 'Последняя',
+                        'prevPageLabel' => '<',
+                        'nextPageLabel' => '>',
+                        'maxButtonCount' => 5,
+
+                    'options' => [
+                        //'tag' => 'div',
+                        'class' => 'pagination pagination-lg',
+                         ],
+
                 ]);
                 ?>
-            </div>
-        </div>
-        <div class="clearfix"></div>
+                </div>
+
+
+
     </div>
 </div>
 <!-- End Posts List -->

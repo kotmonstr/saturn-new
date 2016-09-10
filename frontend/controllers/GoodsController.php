@@ -20,6 +20,7 @@ use common\models\GoodsPodCategory;
 use common\models\Exchange;
 use common\models\ExchangeRatesCBRF;
 use common\models\Gallery;
+use common\models\Message;
 
 
 class GoodsController extends Controller
@@ -33,6 +34,7 @@ class GoodsController extends Controller
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
     public $countAllGalleryPhotos = false;
+    public $countAllMessage = false;
 
 
     public function actionIndex()
@@ -243,6 +245,7 @@ class GoodsController extends Controller
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
         $this->countAllGalleryPhotos = Gallery::find()->count();
+        $this->countAllMessage = Message::find()->count();
     }
 
     public function changePrice($model)

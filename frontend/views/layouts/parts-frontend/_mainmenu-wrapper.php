@@ -30,7 +30,11 @@ $url = $controller.'/'.$action;
                 </li>
 
                 <li class="<?= $url == 'site/about' ? 'active' : null ?>">
-                    <a href="<?= Url::to('/site/about'); ?>">О нас</a>
+                    <a href="<?= Url::to('/site/about'); ?>">О компании</a>
+                </li>
+
+                <li class="<?= $url == 'site/contact-us' ? 'active' : null ?>">
+                    <a href="<?= Url::to('/site/contact-us'); ?>">Контакты</a>
                 </li>
 
                 <li class="">

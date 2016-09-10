@@ -18,6 +18,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\GoodsPodCategory;
 use common\models\ImageSlider;
+use common\models\Message;
 
 class GalleryController extends Controller {
 
@@ -28,6 +29,7 @@ class GalleryController extends Controller {
     public $countAllSliderFotos = false;
     public $countAllGoodsPodCategory = false;
     public $countAllGalleryPhotos = false;
+    public $countAllMessage = false;
 
 
     public $layout = 'admin';
@@ -129,6 +131,7 @@ class GalleryController extends Controller {
         $this->countAllSliderFotos = ImageSlider::find()->count();
         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
         $this->countAllGalleryPhotos = Gallery::find()->count();
+        $this->countAllMessage = Message::find()->count();
     }
 
 
