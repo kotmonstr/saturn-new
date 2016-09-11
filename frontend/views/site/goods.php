@@ -7,7 +7,7 @@ use common\models\GoodsPodCategory;
 
 $i=0;
 ?>
-<input id="pod_id" type="text" value="<?= $cat; ?> ">
+<input id="pod_id" type="hidden" value="<?= $cat; ?> ">
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
     <div class="container">
