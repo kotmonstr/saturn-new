@@ -148,7 +148,7 @@ $url = $controller.'/'.$action;
             </li>
 
 
-            <li class="header">ДОПОЛНИТЕЛЬНО/li>
+            <li class="header">ДОПОЛНИТЕЛЬНО</li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope"></i>

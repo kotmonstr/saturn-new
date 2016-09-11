@@ -33,7 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             // 'updated_at',
             // 'user_name',
-             'status',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($dataProvider) {
+                   return  $dataProvider->status == 1 ? 'Просмотренно' : 'Не просмотренно';
+                        }
+
+            ],
              'created_at:datetime',
 
             ['class' => ActionColumn::className(),

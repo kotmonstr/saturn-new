@@ -39,7 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at:datetime',
             //'updated_at',
 
-            'status',
+            //'status',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' =>  $model->status ==1 ? 'Просмотренно' : 'Не просмотренно'
+            ]
         ],
     ]) ?>
 
