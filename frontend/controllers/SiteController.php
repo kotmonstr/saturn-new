@@ -335,6 +335,7 @@ class SiteController extends Controller
             'pageSize' => $pageSize,
             'modelGoodsCategory' => $modelGoodsCategory,
             'modelGoodsPodCategory' => $modelGoodsPodCategory,
+            'pod_category_id' => $pod_category_id ? $pod_category_id : null,
         ]);
     }
 
