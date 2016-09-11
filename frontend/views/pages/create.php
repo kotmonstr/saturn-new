@@ -6,7 +6,7 @@ $this->title = 'Создание страницы';
 $this->params['breadcrumbs'][] = ['label' => 'Pages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pages-create">
+
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -14,4 +14,3 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
     ]) ?>
 
-</div>

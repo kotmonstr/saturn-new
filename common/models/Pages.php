@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 use Yii;
+use yii\behaviors\SluggableBehavior;
 /**
  * This is the model class for table "pages".
  *
@@ -11,6 +12,17 @@ use Yii;
  */
 class Pages extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                // 'slugAttribute' => 'slug',
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */

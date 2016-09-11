@@ -1,9 +1,11 @@
 <?php
 use yii\helpers\Url;
+use common\models\Pages;
 
 $controller = Yii::$app->controller->id;
 $action = Yii::$app->controller->action->id;
 $url = $controller.'/'.$action;
+$modelPages = Pages::find()->where(['status'=>1])->all();
 //vd($url);
 ?>
 <!-- Navigation & Logo-->
@@ -36,6 +38,14 @@ $url = $controller.'/'.$action;
                 <li class="<?= $url == 'site/contact-us' ? 'active' : null ?>">
                     <a href="<?= Url::to('/site/contact-us'); ?>">Контакты</a>
                 </li>
+
+                <? if($modelPages): ?>
+                    <? foreach ($modelPages as $page): ?>
+                        <li class="<?= $url == 'site/page' ? 'active' : null ?>">
+                            <a href="<?= Url::to(['/site/page','slug'=>$page->slug]); ?>"><?= $page->name ?></a>
+                        </li>
+                    <? endforeach; ?>
+                <? endif; ?>
 
                 <li class="">
                     <a href="<?= Url::to('/site/login'); ?>">Регистрация</a>

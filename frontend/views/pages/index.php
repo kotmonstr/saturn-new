@@ -9,17 +9,13 @@ use yii\helpers\StringHelper;
 $this->title = 'Мои страницы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="box col-md-10">
-    <div class="box-inner" style="padding:15px">
-        <div class="box-header well" data-original-title="">
-            <h2><i class="glyphicon glyphicon-th"></i><?= $this->title ?></h2>
-            <div class="box-icon">
-                <a href="<?= Url::toRoute('/page/index') ?>" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-            </div>
-        </div>
-        <div class="box-content">
-            <div class="row">
-                <div class="pages-index">
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+
+
 
                     <h1><?= Html::encode($this->title) ?></h1>
                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -63,3 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]); ?>
 
                 </div>
+                </div>
+                </div>
+                </section>

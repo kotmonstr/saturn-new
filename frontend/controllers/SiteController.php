@@ -5,6 +5,7 @@ use common\models\Article;
 use common\models\Gallery;
 use common\models\Goods;
 use common\models\GoodsCategory;
+use common\models\Pages;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -379,5 +380,13 @@ class SiteController extends Controller
           ]);
     }
 
+    public function actionPage($slug){
+        $this->layout = 'goods-detail';
+
+        $model = Pages::find()->where(['slug' => $slug])->one();
+        return $this->render('page', [
+            'model' => $model,
+        ]);
+    }
 
 }
