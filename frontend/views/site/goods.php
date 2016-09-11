@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use common\models\GoodsPodCategory;
 
 ?>
-
+<input id="pod_id" type="text" value="<?= $pod_category_id; ?> ">
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
     <div class="container">
@@ -62,7 +62,7 @@ use common\models\GoodsPodCategory;
 
                                     <? if(isset($podCat) && $podCat != ''): ?>
                                         <? foreach ($podCat as $item2): ?>
-                                            <li class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id]) ?>"><?= $item2->name ?></a></li>
+                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id]) ?>"><?= $item2->name ?></a></li>
                                         <? endforeach; ?>
                                 <? endif; ?>
                             </ul>
@@ -189,9 +189,25 @@ use common\models\GoodsPodCategory;
 </style>
 
 <script>
+    var result = false;
+    var iter=0;
     jQuery(function () {
+
+        jQuery('li.pod-category').each(function(i,elem) {
+
+           //alert(jQuery(this).attr("data-id"));
+            //alert(jQuery('#pod_id').val());
+            if (jQuery(this).attr("data-id") == jQuery('#pod_id').val() ) {
+                result = iter;
+               
+            }
+            iter++;
+        });
+
+
+
         jQuery("#accordion").accordion({
-            active: false,
+            active: result,
             collapsible: true,
             //heightStyle: "fill",
             //icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" }
