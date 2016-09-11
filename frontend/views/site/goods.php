@@ -5,8 +5,9 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use common\models\GoodsPodCategory;
 
+$i=0;
 ?>
-<input id="pod_id" type="text" value="<?= $pod_category_id; ?> ">
+<input id="pod_id" type="text" value="<?= $cat; ?> ">
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
     <div class="container">
@@ -40,14 +41,8 @@ use common\models\GoodsPodCategory;
                         <? foreach ($modelGoodsCategory as $item): ?>
                             <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '30px']) ?> <?= $item->name ?></h4>
                             <ul class="recent-posts">
-
-<!--                                --><?// $podCat = GoodsPodCategory::find()
-//
-//                                    ->leftJoin('goods','goods.pod_category_id = goods_pod_category.id')
-//                                    ->where(['category_id' => $item->id])
-//                                    ->all(); ?>
-
                                 <?
+
                                 $podCat = GoodsPodCategory::find()
                                 ->leftJoin('goods', '`goods`.`pod_category_id` = `goods_pod_category`.`id`')
                                 ->where(['=','goods.status', 1])
@@ -56,16 +51,13 @@ use common\models\GoodsPodCategory;
                                 ->all();
                                 ?>
 
-
-
-
-
                                     <? if(isset($podCat) && $podCat != ''): ?>
                                         <? foreach ($podCat as $item2): ?>
-                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id]) ?>"><?= $item2->name ?></a></li>
+                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id,'cat'=>$i]) ?>"><?= $item2->name ?></a></li>
                                         <? endforeach; ?>
                                 <? endif; ?>
                             </ul>
+                            <? $i++; ?>
                         <? endforeach; ?>
                     </div>
                 <? endif; ?>
@@ -91,12 +83,6 @@ use common\models\GoodsPodCategory;
                                     <? endif ?>
                                 </div>
 
-<!--                                <div class="post-info">-->
-<!--                                    <div class="post-date">-->
-<!--                                        <div class="date">--><?//= $goods->price . ' руб' ?><!--</div>-->
-<!--                                    </div>-->
-<!---->
-<!--                                </div>-->
                                 <a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"><img
                                         src="<?= '/upload/goods/' . $goods->image ?>"
                                         class="post-image"
@@ -189,25 +175,10 @@ use common\models\GoodsPodCategory;
 </style>
 
 <script>
-    var result = false;
-    var iter=0;
-    jQuery(function () {
-
-        jQuery('li.pod-category').each(function(i,elem) {
-
-           //alert(jQuery(this).attr("data-id"));
-            //alert(jQuery('#pod_id').val());
-            if (jQuery(this).attr("data-id") == jQuery('#pod_id').val() ) {
-                result = iter;
-               
-            }
-            iter++;
-        });
-
-
-
+    jQuery(document).ready(function(){
+        var cat= parseInt(jQuery('#pod_id').val());
         jQuery("#accordion").accordion({
-            active: result,
+            active: cat,
             collapsible: true,
             //heightStyle: "fill",
             //icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" }

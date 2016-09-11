@@ -11,7 +11,7 @@
 }
 
 .mainmenu > ul > li > a, .mainmenu .mainmenu-submenu-inner > li > a {
-    padding: 1em 0.8em;
+    padding: 1em 0.5em;
 }
 .blog-posts-wrapper{
     min-height: 473px;

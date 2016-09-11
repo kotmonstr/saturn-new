@@ -282,6 +282,7 @@ class SiteController extends Controller
 
         $category_id = Yii::$app->request->get('category_id');
         $pod_category_id = Yii::$app->request->get('pod_category_id');
+        $cat = Yii::$app->request->get('cat');
         $item = Yii::$app->request->get('item');
 
         $modelGoodsCategory = GoodsCategory::find()
@@ -336,6 +337,7 @@ class SiteController extends Controller
             'modelGoodsCategory' => $modelGoodsCategory,
             'modelGoodsPodCategory' => $modelGoodsPodCategory,
             'pod_category_id' => $pod_category_id ? $pod_category_id : null,
+            'cat'=>$cat
         ]);
     }
 

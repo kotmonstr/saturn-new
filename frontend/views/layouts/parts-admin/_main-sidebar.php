@@ -188,6 +188,21 @@ $url = $controller.'/'.$action;
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-text"></i>
+                    <span>Реквизиты</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                        <li class="<?= $url == 'pages/index' ? 'active' : null ?>"><a href="<?= Url::to('/pages/index') ?>"><i class="fa <?= $url == 'pages/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                        <li class="<?= $url == 'pages/create' ? 'active' : null ?>"><a href="<?= Url::to('/pages/create') ?>"><i class="fa <?= $url == 'pages/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
+
+                </ul>
+            </li>
+
 
 
 

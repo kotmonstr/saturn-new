@@ -47,19 +47,19 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
                     <? endforeach; ?>
                 <? endif; ?>
 
-                <li class="">
-                    <a href="<?= Url::to('/site/login'); ?>">Регистрация</a>
-                </li>
-
-                <li class="">
-                    <a href="<?= Url::to('/site/signup'); ?>">Вход</a>
-                </li>
+                <? if(yii::$app->user->isGuest): ?>
+                    <li class="">
+                        <a href="<?= Url::to('/site/login'); ?>">Регистрация</a>
+                    </li>
+                <? else: ?>
+                    <li class="">
+                        <a href="<?= Url::to('/site/signup'); ?>">Вход</a>
+                    </li>
+                <? endif; ?>
 
                 <li>
                     <a href="<?= Url::to('/admin/index'); ?>">Админка</a>
                 </li>
-
-
             </ul>
         </nav>
     </div>
