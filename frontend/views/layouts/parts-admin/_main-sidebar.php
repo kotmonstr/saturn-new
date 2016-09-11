@@ -148,7 +148,7 @@ $url = $controller.'/'.$action;
             </li>
 
 
-            <li class="header">НЕ ГОТОВО</li>
+            <li class="header">ДОПОЛНИТЕЛЬНО/li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope"></i>
@@ -158,6 +158,33 @@ $url = $controller.'/'.$action;
                 </a>
                 <ul class="treeview-menu">
                     <li class="<?= $url == 'message/index' ? 'active' : null ?>"><a href="<?= Url::to('/message/index') ?>"><i class="fa <?= $url == 'messageindex' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-refresh"></i>
+                    <span>Кеш</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class=""><a href="<?= Url::to('/cash/clear') ?>"><i class="fa fa-circle-o"></i>Очистить</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-text"></i>
+                    <span>Cтраницы</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                        <li class="<?= $url == 'pages/index' ? 'active' : null ?>"><a href="<?= Url::to('/pages/index') ?>"><i class="fa <?= $url == 'pages/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                        <li class="<?= $url == 'pages/create' ? 'active' : null ?>"><a href="<?= Url::to('/pages/create') ?>"><i class="fa <?= $url == 'pages/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
+
                 </ul>
             </li>
 
