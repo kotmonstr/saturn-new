@@ -148,7 +148,7 @@ $url = $controller.'/'.$action;
 
 
             <li class="header">ДОПОЛНИТЕЛЬНО</li>
-            <li class="treeview">
+            <li class="treeview <?= $url == 'message/index'  ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-envelope"></i>
                     <span>Сообщения</span>
@@ -172,7 +172,7 @@ $url = $controller.'/'.$action;
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview <?= $url == 'pages/index' ||  $url == 'pages/create' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-file-text"></i>
                     <span>Cтраницы</span>
@@ -187,7 +187,7 @@ $url = $controller.'/'.$action;
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview <?= $url == 'reqvizit/index' ? 'active' : null ?>">
                 <a href="#">
                     <i class="fa fa-file-text"></i>
                     <span>Реквизиты</span>

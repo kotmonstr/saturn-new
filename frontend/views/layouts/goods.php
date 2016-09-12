@@ -24,6 +24,7 @@ GoodsAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<div class="wrapper">
 <?= $this->render('parts-frontend/_mainmenu-wrapper'); ?>
 
 <?//= SliderWidget::widget(); ?>
@@ -32,7 +33,7 @@ GoodsAsset::register($this);
         <?= $content ?>
 </div>
 <?= $this->render('parts-frontend/_footer'); ?>
-
+</div>
 
 
 <?php $this->endBody() ?>

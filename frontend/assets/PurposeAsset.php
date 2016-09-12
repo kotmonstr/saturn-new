@@ -17,6 +17,7 @@ class PurposeAsset extends AssetBundle
         'http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800',
         'PURPOSE/css/leaflet.css',
         'PURPOSE/css/main.css',
+        'css/custom.css',
       
 
         /*        <link rel="stylesheet" href="css/bootstrap.min.css">
