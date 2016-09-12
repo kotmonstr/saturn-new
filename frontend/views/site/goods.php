@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use common\models\GoodsPodCategory;
 
+
 $i=0;
 ?>
 <input id="pod_id" type="hidden" value="<?= $cat; ?> ">
@@ -39,7 +40,7 @@ $i=0;
                 <? if ($modelGoodsCategory): ?>
                     <div id="accordion">
                         <? foreach ($modelGoodsCategory as $item): ?>
-                            <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '30px']) ?> <?= $item->name ?></h4>
+                            <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '12px']) ?> <?= $item->name ?></h4>
                             <ul class="recent-posts">
                                 <?
 
@@ -111,6 +112,8 @@ $i=0;
             <div class="col-md-3"></div>
             <div class="col-sm-9" style="text-align: center">
                 <div class="pagination-wrapper ">
+
+
                 <?=
                 LinkPager::widget([
                     'pagination' => $pages,
@@ -121,7 +124,7 @@ $i=0;
                         'lastPageLabel' => 'Последняя',
                         'prevPageLabel' => '<',
                         'nextPageLabel' => '>',
-                        'maxButtonCount' => 5,
+                        //'maxButtonCount' => 5,
 
                     'options' => [
                         //'tag' => 'div',
@@ -130,7 +133,10 @@ $i=0;
 
                 ]);
                 ?>
-                </div>
+
+
+
+</div>
 
 
 

@@ -25,6 +25,7 @@ class PagesController extends Controller
     public $countAllGoodsPodCategory = false;
     public $countAllGalleryPhotos = false;
     public $countAllMessage = false;
+
     public function behaviors()
     {
         return [

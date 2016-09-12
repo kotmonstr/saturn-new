@@ -6,7 +6,7 @@ $controller = Yii::$app->controller->id;
 $action = Yii::$app->controller->action->id;
 $url = $controller.'/'.$action;
 $modelPages = Pages::find()->where(['status'=>1])->all();
-//vd($url);
+
 ?>
 <!-- Navigation & Logo-->
 <div class="mainmenu-wrapper">
@@ -41,21 +41,27 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 
                 <? if($modelPages): ?>
                     <? foreach ($modelPages as $page): ?>
-                        <li class="<?= $url == 'site/page' ? 'active' : null ?>">
+                        <? $curPageSlug = !empty($_GET['slug']) ? $_GET['slug'] : null; ?>
+
+                       <li class="<?= isset($curPageSlug) && $curPageSlug == $page->slug ? 'active' : null ?>">
                             <a href="<?= Url::to(['/site/page','slug'=>$page->slug]); ?>"><?= $page->name ?></a>
                         </li>
                     <? endforeach; ?>
                 <? endif; ?>
 
                 <? if(yii::$app->user->isGuest): ?>
-                    <li class="">
-                        <a href="<?= Url::to('/site/login'); ?>">Регистрация</a>
-                    </li>
-                <? else: ?>
-                    <li class="">
-                        <a href="<?= Url::to('/site/signup'); ?>">Вход</a>
+                    <li class="<?= $url == 'site/signup' ? 'active' : null ?>">
+                        <a href="<?= Url::to('/site/signup'); ?>">Регистрация</a>
                     </li>
                 <? endif; ?>
+
+                <li class="<?= $url == 'site/login' || $url == '/site/logout' ? 'active' : null ?>">
+                    <? if(yii::$app->user->isGuest): ?>
+                        <a href="<?= Url::to('/site/login'); ?>">Вход</a>
+                    <? else: ?>
+                        <a href="<?= Url::to('/site/logout'); ?>">Выход(<?= Yii::$app->user->identity->username ?>)</a>
+                    <? endif ?>
+                </li>
 
                 <li>
                     <a href="<?= Url::to('/admin/index'); ?>">Админка</a>

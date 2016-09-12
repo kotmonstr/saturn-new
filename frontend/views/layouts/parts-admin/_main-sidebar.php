@@ -35,7 +35,6 @@ $url = $controller.'/'.$action;
         </form>
 
         <ul class="sidebar-menu">
-            <li class="header">Главное меню управления</li>
 
             <li class="<?= $url == 'admin/index' ? 'active' : null ?>" >
                 <a href="<?= Url::to('/admin/index'); ?>">
@@ -197,8 +196,7 @@ $url = $controller.'/'.$action;
                 </a>
                 <ul class="treeview-menu">
 
-                        <li class="<?= $url == 'pages/index' ? 'active' : null ?>"><a href="<?= Url::to('/pages/index') ?>"><i class="fa <?= $url == 'pages/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
-                        <li class="<?= $url == 'pages/create' ? 'active' : null ?>"><a href="<?= Url::to('/pages/create') ?>"><i class="fa <?= $url == 'pages/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
+                        <li class="<?= $url == 'reqvizit/index' ? 'active' : null ?>"><a href="<?= Url::to('/reqvizit/index') ?>"><i class="fa <?= $url == 'reqvizit/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
 
                 </ul>
             </li>

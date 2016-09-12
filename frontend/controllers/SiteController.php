@@ -53,7 +53,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -293,48 +293,50 @@ class SiteController extends Controller
 //            ->with('goods_category')
             ->all();
 
-
-
-
         $modelGoodsPodCategory = GoodsPodCategory::find()->all();
 
 
-        // Вывести список статей
-        $pageSize = 12;
-
         $query = Goods::find();
 
+//$query->where(['status'=> 1]);
 //        $query->andFilterWhere([
 //            //'category_id' => $category_id,
 //            'pod_category_id' => $pod_category_id,
 //        ]);
 //
-//        $query->andFilterWhere(['like', 'item', $item]);
 
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);
 
-        if( $pod_category_id){
-            $model = $query->offset($pages->offset)
-                ->orderBy('created_at DESC')
-                ->where(['status'=> 1,'pod_category_id' => $pod_category_id,])
-                ->limit($pages->limit)
-                ->all();
-        }else{
-            $model = $query->offset($pages->offset)
+
+        //$countQuery = $countQuery->where(['status' => 1, 'pod_category_id' => $pod_category_id,]);
+
+
+
+        if( $pod_category_id) {
+            $query = $query->orderBy('created_at DESC')
+                            ->where(['status' => 1, 'pod_category_id' => $pod_category_id,]);
+        }
+        elseif( $item){
+            $query = $query
                 ->orderBy('created_at DESC')
                 ->where(['status'=> 1])
-                ->limit($pages->limit)
-                ->all();
+                ->andWhere(['like', 'item', $item]);
+        }else{
+            $query = $query->orderBy('created_at DESC')
+                ->where(['status'=> 1]);
         }
 
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>12]);
 
+        $model = $query->offset($pages->getOffset())
+                        ->limit($pages->getLimit())
+                        ->all();
 
 
         return $this->render('goods', [
             'model' => $model,
             'pages' => $pages,
-            'pageSize' => $pageSize,
+            //'pageSize' => $pageSize,
             'modelGoodsCategory' => $modelGoodsCategory,
             'modelGoodsPodCategory' => $modelGoodsPodCategory,
             'pod_category_id' => $pod_category_id ? $pod_category_id : null,
