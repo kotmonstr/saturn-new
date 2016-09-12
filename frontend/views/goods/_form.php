@@ -11,6 +11,7 @@ use yii\helpers\Url;
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
 $this->registerJsFile('/js/switch-goods.js', ['depends' => AdminAsset::className()]);
+$this->registerJsFile('/js/dropdown.js', ['depends' => AdminAsset::className()]);
 
 
 $arrGoodsCategory = GoodsCategory::find()->all();
@@ -32,8 +33,8 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
                     <?= $form->field($model, 'price',['options' => ['class' => 'col-md-2']])->textInput() ?>
                 </div>
                 <div class="row">
-                    <?= $form->field($model, 'category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['onchange' => 'jQuery.post("' . Url::toRoute('/site/get-pod-cats-by-category') . '", {id: jQuery(this).val()}, function(res){jQuery("#goods-pod_category_id").html(res);});'])->label('Категория товара ' . Html::a(' Создать', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
-                    <?= $form->field($model, 'pod_category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'))->label('Подкатегория ' . Html::a(' Создать', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
+                    <?= $form->field($model, 'category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['prompt'=>'--Выберите--','onchange' => 'getPodCatBycatId(jQuery(this).val())'])->label('Категория товара ' . Html::a(' Создать', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
+                    <?= $form->field($model, 'pod_category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'),['prompt'=>'--Выберите--'])->label('Подкатегория ' . Html::a(' Создать', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
                 </div>
 
                 <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>

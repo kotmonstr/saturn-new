@@ -20,6 +20,7 @@ use frontend\models\ContactForm;
 use yii\data\Pagination;
 use common\models\GoodsPodCategory;
 use common\models\Message;
+use yii\web\Response;
 
 
 /**
@@ -354,15 +355,10 @@ class SiteController extends Controller
 
     public function actionGetPodCatsByCategory()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $id = Yii::$app->request->post('id');// category_id
         $model = GoodsPodCategory::find()->where(['category_id' => $id])->all();
-        if( isset($model)):
-            foreach ($model as $item) {
-                echo "<option value='" . $item->id . "'>" . $item->name . "</option>";
-            }
-        else:
-            echo "<option>-</option>";
-        endif;
+        return $this->renderAjax('dropdown',['model' => $model]);
     }
 
     public function actionContactUs(){
@@ -379,13 +375,11 @@ class SiteController extends Controller
             }
         }
 
-        return $this->render('contact-us', ['model'=>$model
-          ]);
+        return $this->render('contact-us', ['model'=>$model]);
     }
 
     public function actionPage($slug){
         $this->layout = 'goods-detail';
-
         $model = Pages::find()->where(['slug' => $slug])->one();
         return $this->render('page', [
             'model' => $model,
