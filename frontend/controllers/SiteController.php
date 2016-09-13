@@ -281,9 +281,10 @@ class SiteController extends Controller
     {
         $this->layout = 'goods';
 
-        $category_id = Yii::$app->request->get('category_id');
         $pod_category_id = Yii::$app->request->get('pod_category_id');
+        $pod_cat_name = Yii::$app->request->get('pod_cat_name');
         $cat = Yii::$app->request->get('cat');
+        $cat_name = Yii::$app->request->get('cat_name');
         $item = Yii::$app->request->get('item');
 
         $modelGoodsCategory = GoodsCategory::find()
@@ -297,19 +298,6 @@ class SiteController extends Controller
 
 
         $query = Goods::find();
-
-//$query->where(['status'=> 1]);
-//        $query->andFilterWhere([
-//            //'category_id' => $category_id,
-//            'pod_category_id' => $pod_category_id,
-//        ]);
-//
-
-
-
-        //$countQuery = $countQuery->where(['status' => 1, 'pod_category_id' => $pod_category_id,]);
-
-
 
         if( $pod_category_id) {
             $query = $query->orderBy('created_at DESC')
@@ -336,11 +324,12 @@ class SiteController extends Controller
         return $this->render('goods', [
             'model' => $model,
             'pages' => $pages,
-            //'pageSize' => $pageSize,
             'modelGoodsCategory' => $modelGoodsCategory,
             'modelGoodsPodCategory' => $modelGoodsPodCategory,
             'pod_category_id' => $pod_category_id ? $pod_category_id : null,
-            'cat'=>$cat
+            'pod_cat_name' => $pod_cat_name,
+            'cat'=>$cat,
+            'cat_name'=> $cat_name
         ]);
     }
 

@@ -4,7 +4,7 @@ use yii\widgets\LinkPager;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use common\models\GoodsPodCategory;
-
+use yii\widgets\Breadcrumbs;
 
 $i=0;
 ?>
@@ -24,6 +24,31 @@ $i=0;
 <div class="section blog-posts-wrapper">
     <div class="container">
         <div class="row">
+            <div class="col-sm-12">
+               <? echo Breadcrumbs::widget([
+                //'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
+                'links' => [
+                                [
+                                    'label' => 'Товары',
+                                    'url' => ['/site/goods'],
+                                    'template' => "<li><b>{link}</b></li>\n", // template for this link only
+                                ],
+                                [
+                                    'label' => $cat_name ? $cat_name : false,
+                                    'url' => ['/site/goods', 'cat' => $cat,'cat_name'=> $cat_name],
+                                    'template' => $cat_name ? "<li title='Категория'><b>{link}</b></li>\n" : false, // template for this link only
+                                ],
+                                [
+                                    'label' => $pod_cat_name ? $pod_cat_name : false ,
+                                    'template' => $pod_cat_name  ? "<li title='Под категория'><b>{link}</b></li>\n" : false, // template for this link only
+
+                                ],
+
+                ]]); ?>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-3 blog-sidebar">
                 <h4>Искать товар</h4>
 
@@ -38,9 +63,12 @@ $i=0;
 
 
                 <? if ($modelGoodsCategory): ?>
+                    <a href="<?= Url::to('/site/goods') ?>"><h4 class="cateegory-main" >Все товары</h4></a>
+
                     <div id="accordion">
+
                         <? foreach ($modelGoodsCategory as $item): ?>
-                            <h4 class="cateegory-main"><?= Html::img($item->image_path . $item->image, ['height' => '12px']) ?> <?= $item->name ?></h4>
+                            <h4 class="cateegory-main secnd-tab" title="Категория"><?= Html::img($item->image_path . $item->image, ['height' => '12px']) ?> <?= $item->name ?></h4>
                             <ul class="recent-posts">
                                 <?
 
@@ -54,7 +82,7 @@ $i=0;
 
                                     <? if(isset($podCat) && $podCat != ''): ?>
                                         <? foreach ($podCat as $item2): ?>
-                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a href="<?= Url::to(['/site/goods','pod_category_id'=>$item2->id,'cat'=>$i]) ?>"><?= $item2->name ?></a></li>
+                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a title="Под категория" href="<?= Url::to(['/site/goods','cat_name'=> $item->name,'pod_category_id'=>$item2->id,'pod_cat_name'=>$item2->name ,'cat'=>$i]) ?>"><?= $item2->name ?></a></li>
                                         <? endforeach; ?>
                                 <? endif; ?>
                             </ul>
@@ -142,6 +170,9 @@ $i=0;
 
     </div>
 </div>
+
+        </div>
+    </div>
 <!-- End Posts List -->
 <style>
     .blog-post {
@@ -160,7 +191,7 @@ $i=0;
     }
 
     .pod-category {
-        margin-left: 20px;
+        margin-left: 40px;
         cursor: pointer;
     }
 
@@ -177,6 +208,9 @@ $i=0;
     }
     h5 a{
         color: #53555c;!important;
+    }
+    .secnd-tab{
+        margin-left: 20px;
     }
 </style>
 

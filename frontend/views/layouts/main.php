@@ -24,17 +24,17 @@ SliderAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrapper">
+
 <?= $this->render('parts-frontend/_mainmenu-wrapper'); ?>
 
 <?= SliderWidget::widget(); ?>
 <?//= $this->render('parts-frontend/_homepage-slider'); ?>
-<div class="custom-wrapp">
+
         <?= $content ?>
-</div>
+
 
 <?= $this->render('parts-frontend/_footer'); ?>
-</div>
+
 
 
 <?php $this->endBody() ?>
