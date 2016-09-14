@@ -23,8 +23,8 @@ use vova07\imperavi\Widget;
                             'pastePlainText' => true,
                             'buttonSource' => true,
                             'focus' => true,
-                            'imageUpload' => '/page/upload',
-                            'imageManagerJson' => '/page/uploaded',
+                            'imageUpload' => '/pages/upload',
+                            'imageManagerJson' => '/pages/uploaded',
                             'plugins' => [
                                 'clips',
                                 'fullscreen',

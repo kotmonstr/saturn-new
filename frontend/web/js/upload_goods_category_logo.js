@@ -7,10 +7,23 @@ function sendfile() {
         data: fd,
         processData: false,
         contentType: false,
+        beforeSend: function (xhr) {
+            jpreloader('show');
+        },
         success: function (data) {
+            jpreloader('hide');
             jQuery('.target_image').attr('src', '/upload/goods_category/' + data.imageName)
             jQuery('#goodscategory-image').val(data.imageName);
         }
     });
+}
+
+/* Preloader */
+function jpreloader(item) {
+    if (item == 'show') {
+        $(document.body).append('<div class="back_background jpreloader" style="z-index: 90000;"></div>');
+    } else {
+        $('.jpreloader').remove();
+    }
 }
 

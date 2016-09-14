@@ -3,9 +3,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\StringHelper;
-/* @var $this yii\web\View */
-/* @var $searchModel frontend\models\PagesSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+
 $this->title = 'Мои страницы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-header well" data-original-title="">
             <h2><i class="glyphicon glyphicon-th"></i><?= $this->title ?></h2>
             <div class="box-icon">
-                <a href="<?= Url::toRoute('/page/index') ?>" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                <a href="<?= Url::toRoute('/pages/index') ?>" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
             </div>
         </div>
         <div class="box-content">
@@ -39,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'name',
                                 'format' => 'html',
                                 'value' => function ($dataProvider) {
-                                    return Html::a($dataProvider->name,'/page/update?id='.$dataProvider->id);
+                                    return Html::a($dataProvider->name,'/pages/update?id='.$dataProvider->id);
                                 }
                             ],
                             // 'content:ntext',

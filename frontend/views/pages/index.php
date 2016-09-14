@@ -3,9 +3,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\StringHelper;
-/* @var $this yii\web\View */
-/* @var $searchModel frontend\models\PagesSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+
 $this->title = 'Мои страницы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -35,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'name',
                                 'format' => 'html',
                                 'value' => function ($dataProvider) {
-                                    return Html::a($dataProvider->name,'/page/update?id='.$dataProvider->id);
+                                    return Html::a($dataProvider->name,'/pages/update?id='.$dataProvider->id);
                                 }
                             ],
                             // 'content:ntext',

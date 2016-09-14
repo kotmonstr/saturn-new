@@ -37,18 +37,20 @@ class PagesController extends Controller
             ],
         ];
     }
+    public $uploudPath = '/web/upload/article';
+
     public function actions()
     {
         return [
             'image-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadAction',
-                'url' => '/frontend/web/upload/imp/', // URL адрес папки куда будут загружатся изображения.
-                'path' => Yii::getAlias('@frontend') . '/web/upload/imp' // Или абсолютный путь к папке куда будут загружатся изображения.
+                'url' => '/frontend/web/upload/article/', // URL адрес папки куда будут загружатся изображения.
+                //'path' => Yii::getAlias('@frontend') . '/web/upload/imp' // Или абсолютный путь к папке куда будут загружатся изображения.
             ],
             'images-get' => [
                 'class' => 'vova07\imperavi\actions\GetAction',
-                'url' => '/frontend/web/upload/imp/', // URL адрес папки куда будут загружатся изображения.
-                //'path' => '/web/upload/imp', // Или абсолютный путь к папке куда будут загружатся изображения.
+                'url' => '/frontend/web/upload/article', // URL адрес папки куда будут загружатся изображения.
+                //'path' => Yii::getAlias('@frontend') . '/web/upload/imp', // Или абсолютный путь к папке куда будут загружатся изображения.
                 'type' => GetAction::TYPE_IMAGES,
             ]
         ];
@@ -136,31 +138,29 @@ class PagesController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    // Вернет только что загруженное фото
     public function actionUpload()
     {
-        $uploaddir = Yii::getAlias('@frontend') . '/web/upload/imp/';
-        $file = md5(date('YmdHis')).'.'.pathinfo(@$_FILES['file']['name'], PATHINFO_EXTENSION);
-        if (move_uploaded_file(@$_FILES['file']['tmp_name'], $uploaddir.$file)) {
+        $uploaddir = Yii::getAlias('@frontend') . '/web/upload/article/';
+        $file = md5(date('YmdHis')) . '.' . pathinfo(@$_FILES['file']['name'], PATHINFO_EXTENSION);
+        if (move_uploaded_file(@$_FILES['file']['tmp_name'], $uploaddir . $file)) {
             $array = array(
-                'filelink' => '/upload/imp/'.$file
+                'filelink' => '/upload/article/' . $file
             );
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $array;
     }
-    // Вернет уже загруженные файлы
     public function actionUploaded()
     {
-        $uploaddir = Yii::getAlias('@frontend') . '/web/upload/imp/';
+        $uploaddir = Yii::getAlias('@frontend') . '/web/upload/article';
         $arr = scandir($uploaddir);
-        $i=0;
-        foreach($arr as $key =>  $val){
+        $i = 0;
+        foreach ($arr as $key => $val) {
             $i++;
-            if( $i > 2 ) {
-                $array['filelink' . $i]['thumb'] = '/upload/imp/' . $val;
-                $array['filelink' . $i]['image'] = '/upload/imp/' . $val;
-                $array['filelink' . $i]['title'] = '/upload/imp/' . $val;
+            if ($i > 2) {
+                $array['filelink' . $i]['thumb'] = '/upload/article/' . $val;
+                $array['filelink' . $i]['image'] = '/upload/article/' . $val;
+                $array['filelink' . $i]['title'] = '/upload/article/' . $val;
             }
         }
         $array = stripslashes(json_encode($array));

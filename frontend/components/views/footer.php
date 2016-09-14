@@ -13,7 +13,7 @@ use yii\helpers\Url;
                     </div>
                 </div>
             </div>
-            <div class="col-footer col-md-2 col-xs-6">
+            <div class="col-footer col-md-3 col-xs-6">
                 <h3>Страницы</h3>
                 <ul class="no-list-style footer-navigate-section">
                     <li><a href="<?= Url::to('/site/goods'); ?>">Товары</a></li>
@@ -24,8 +24,7 @@ use yii\helpers\Url;
                     <li><a href="#">FAQ</a></li>
                 </ul>
             </div>
-
-            <div class="col-footer col-md-4 col-xs-6">
+            <div class="col-footer col-md-3 col-xs-6">
                 <h3>Контактные данные</h3>
                 <p class="contact-us-details">
                     <?= isset($model->company_name) ? '<b>Компания: </b>'. $model->company_name.'<br>' : null ?>

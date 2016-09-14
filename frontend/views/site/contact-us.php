@@ -35,10 +35,17 @@ $arrThemes = ['Товары','Услуги','Заказ'];
                 <!-- End Map -->
                 <!-- Contact Info -->
                 <p class="contact-us-details">
-                    <b>Address:</b> 123 Fake Street, LN1 2ST, London, United Kingdom<br/>
-                    <b>Phone:</b> +44 123 654321<br/>
-                    <b>Fax:</b> +44 123 654321<br/>
-                    <b>Email:</b> <a href="mailto:getintoutch@yourcompanydomain.com">getintoutch@yourcompanydomain.com</a>
+
+                    <?= isset($modelReqvizit->company_name) ? '<b>Компания: </b>'. $modelReqvizit->company_name.'<br>' : null ?>
+                    <?= isset($modelReqvizit->zip_code) ? '<b>Индекс: </b>'. $modelReqvizit->zip_code .'<br>': null ?>
+                    <?= isset($modelReqvizit->country) ? '<b>Страна: </b>'. $modelReqvizit->country .'<br>': null ?>
+                    <?= isset($modelReqvizit->address) ? '<b>Адрес: </b>'. $modelReqvizit->address .'<br>': null ?>
+                    <?= isset($modelReqvizit->mobile) ? '<b>Телефон: </b>'. $modelReqvizit->mobile .'<br>': null ?>
+                    <?= isset($modelReqvizit->fax) ? '<b>Fax: </b>'. $modelReqvizit->fax .'<br>': null ?>
+                    <?= isset($modelReqvizit->email) ? '<b>Email: </b><a href="mailto:">'. $modelReqvizit->email .'</a><br>': null ?>
+                    <?= isset($modelReqvizit->schet) ? '<b>P/счет: </b>'. $modelReqvizit->schet.'<br>' : null ?>
+                    <?= isset($modelReqvizit->inn) ? '<b>ИНН: </b>'. $modelReqvizit->inn .'<br>': null ?>
+
                 </p>
                 <!-- End Contact Info -->
             </div>

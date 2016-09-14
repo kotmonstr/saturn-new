@@ -10,9 +10,21 @@ function getPodCatBycatId(id) {
             _csrf: csrf_token,
             id: id,
         },
+        beforeSend: function (xhr) {
+            jpreloader('show');
+        },
         success: function (data) {
-
+            jpreloader('hide');
             jQuery('#goods-pod_category_id').html(data);
         }
     });
+}
+
+/* Preloader */
+function jpreloader(item) {
+    if (item == 'show') {
+        $(document.body).append('<div class="back_background jpreloader" style="z-index: 90000;"></div>');
+    } else {
+        $('.jpreloader').remove();
+    }
 }

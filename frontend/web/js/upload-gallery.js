@@ -27,9 +27,9 @@ function sendfile() {
                 }
             }); */
         }
-    })
+    });
 
-    ;/* Preloader */
+    /* Preloader */
     function jpreloader(item) {
         if (item == 'show') {
             $(document.body).append('<div class="back_background jpreloader" style="z-index: 90000;"></div>');

@@ -6,6 +6,7 @@ use common\models\Gallery;
 use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\Pages;
+use common\models\Reqvizit;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -357,6 +358,7 @@ class SiteController extends Controller
         $this->layout = 'goods-detail';
 
         $model = new Message();
+        $modelReqvizit = Reqvizit::find()->one();
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
@@ -366,7 +368,10 @@ class SiteController extends Controller
             }
         }
 
-        return $this->render('contact-us', ['model'=>$model]);
+        return $this->render('contact-us', [
+            'model'=>$model,
+            'modelReqvizit'=> $modelReqvizit
+        ]);
     }
 
     public function actionPage($slug){

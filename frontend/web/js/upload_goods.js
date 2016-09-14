@@ -7,10 +7,11 @@ function sendfile() {
         data: fd,
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
-        //beforeSend: function (xhr) {
-        //    jpreloader('show');
-        //},
+        beforeSend: function (xhr) {
+            jpreloader('show');
+        },
         success: function (data) {
+            jpreloader('hide');
             //$('#goods-image_file').html(data.imageName);
 
             jQuery('.target_image').attr('src', '/upload/goods/' + data.imageName)
@@ -40,8 +41,11 @@ function uploadExtraImage(id) {
         data: fd,
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
-
+        beforeSend: function (xhr) {
+            jpreloader('show');
+        },
         success: function (data) {
+            jpreloader('hide');
             if (data.limit) {
                 //ToDo cистемное сообщение
                 jQuery('#system').css('opacity', '1').show(), jQuery('.layout').show();

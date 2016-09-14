@@ -27,8 +27,22 @@ function sendDataToSlider(id,state){
             id: id,
             state:state
         },
+        beforeSend: function (xhr) {
+            jpreloader('show');
+        },
         success: function (data) {
+            jpreloader('hide');
             //alert(data.id +' | '+ data.state);
         }
     });
+}
+
+
+/* Preloader */
+function jpreloader(item) {
+    if (item == 'show') {
+        $(document.body).append('<div class="back_background jpreloader" style="z-index: 90000;"></div>');
+    } else {
+        $('.jpreloader').remove();
+    }
 }
