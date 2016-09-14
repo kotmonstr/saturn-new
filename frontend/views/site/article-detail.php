@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Url;
+?>
+
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
     <div class="container">
@@ -25,10 +29,13 @@
                 </form>
                 <h4>Последние</h4>
                 <ul class="recent-posts">
-                    <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="#">Sed sit amet metus sit</a></li>
-                    <li><a href="#">Nunc et diam volutpat tellus ultrices</a></li>
-                    <li><a href="#">Quisque sollicitudin cursus felis</a></li>
+
+                    <? if($modelArticleLast): ?>
+                        <? foreach($modelArticleLast as $article){ ?>
+                            <li><a href="<?= Url::to(['/site/article-detail','id'=> $article->id]) ?>"><?= $article->title ?></a></li>
+                        <? } ?>
+                    <? endif; ?>
+
                 </ul>
                 <h4>Категории</h4>
                 <ul class="blog-categories">

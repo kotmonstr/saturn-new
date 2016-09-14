@@ -29,6 +29,8 @@ use yii\web\Response;
  */
 class SiteController extends Controller
 {
+    const SERVICE = 12;
+
     /**
      * @inheritdoc
      */
@@ -104,9 +106,17 @@ class SiteController extends Controller
         $this->layout = 'goods';
         
         $model = Article::find()->where(['id' => $id])->one();
+
+        $modelArticleLast = Article::find()
+            ->where(['article_category' => self::SERVICE])
+            ->limit(9)
+            ->orderBy('id DESC')
+            ->all();
+        
         return $this->render('article-detail',
             [
-                'model' => $model
+                'model' => $model,
+                'modelArticleLast' => $modelArticleLast,
             ]
         );
     }

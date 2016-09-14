@@ -1,5 +1,9 @@
 <?php
 use yii\helpers\Url;
+
+$controller = Yii::$app->controller->id;
+$action = Yii::$app->controller->action->id;
+$url = $controller.'/'.$action;
 ?>
 
 <li class="<?= $url == 'site/page' ? 'active-bold' : null ?>">
