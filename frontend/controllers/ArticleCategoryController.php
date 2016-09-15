@@ -5,34 +5,14 @@ namespace frontend\controllers;
 use Yii;
 use common\models\ArticleCategory;
 use common\models\ArticleCategorySearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\Article;
-use common\models\Goods;
-use common\models\GoodsCategory;
-use common\models\ImageSlider;
-use common\models\GoodsPodCategory;
-use common\models\Gallery;
-use common\models\Message;
 
 /**
  * DefaultController implements the CRUD actions for ArticleCategory model.
  */
-class ArticleCategoryController extends Controller
+class ArticleCategoryController extends CoreController
 {
-    public $layout = 'admin';
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
-
-
     public function behaviors()
     {
         return [
@@ -51,7 +31,6 @@ class ArticleCategoryController extends Controller
      */
     public function actionIndex()
     {
-        $this->getAllCounters();
 
         $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -69,8 +48,6 @@ class ArticleCategoryController extends Controller
      */
     public function actionView($id)
     {
-        $this->getAllCounters();
-
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -83,7 +60,6 @@ class ArticleCategoryController extends Controller
      */
     public function actionCreate()
     {
-        $this->getAllCounters();
 
         $model = new ArticleCategory();
 
@@ -104,7 +80,6 @@ class ArticleCategoryController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->getAllCounters();
 
         $model = $this->findModel($id);
 
@@ -146,14 +121,4 @@ class ArticleCategoryController extends Controller
         }
     }
 
-    private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
-    }
 }

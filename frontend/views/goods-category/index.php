@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                             ['attribute' => 'image', 'format' => 'html', 'value' => function ($dataProvider) {
                                 if ($dataProvider->image) {
-                                    return Html::img($dataProvider->image_path . $dataProvider->image, ['height' => '100px']);
+                                    return Html::img($dataProvider->image_path . $dataProvider->image, ['height' => '30px']);
                                 } else {
                                     return '';
                                 }

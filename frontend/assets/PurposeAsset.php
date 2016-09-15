@@ -39,7 +39,7 @@ class PurposeAsset extends AssetBundle
         'http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js',
         'PURPOSE/js/jquery.fitvids.js',
         'PURPOSE/js/jquery.sequence-min.js',
-        'PURPOSE/js/jquery.bxslider.js"',
+        'PURPOSE/js/jquery.bxslider.js',
         'PURPOSE/js/main-menu.js',
         'PURPOSE/js/template.js',
 

@@ -2,61 +2,16 @@
 
 namespace frontend\controllers;
 
-use common\models\GoodsPodCategory;
-use common\models\Message;
-use Yii;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
-use common\models\Article;
-use common\models\Goods;
-use common\models\GoodsCategory;
-use common\models\ArticleCategory;
-use common\models\ImageSlider;
-use common\models\Gallery;
-
-
-
 
 /**
  * Default controller for the `home` module
  */
-class AdminController extends Controller
+class AdminController extends CoreController
 {
-    public $layout = 'admin';
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
-
-
 
     public function actionIndex()
     {
-        $this->getAllCounters();
         return $this->render('index');
-    }
-     private function getAllCounters(){
-         $this->countAllArticles = Article::find()->count();
-         $this->countAllGoods = Goods::find()->count();
-         $this->countAllGoodsCategory = GoodsCategory::find()->count();
-         $this->countAllArticleCategory = ArticleCategory::find()->count();
-         $this->countAllSliderFotos = ImageSlider::find()->count();
-         $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-         $this->countAllGalleryPhotos = Gallery::find()->count();
-         $this->countAllMessage = Message::find()->count();
     }
 
 }

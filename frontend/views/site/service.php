@@ -2,6 +2,7 @@
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use app\components\GoodsSliderWidget;
 ?>
 
 <!-- Page Title -->
@@ -57,5 +58,8 @@ use yii\widgets\LinkPager;
   
             </div>
         </div>
+
+        <?= GoodsSliderWidget::widget(); ?>
+
     </div>
 </div>

@@ -20,23 +20,17 @@ use common\models\GoodsPodCategory;
 use common\models\Gallery;
 use common\models\Message;
 
-class SliderPhotoController extends Controller {
+class SliderPhotoController extends CoreController
+{
 
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['get','post'],
+                    'delete' => ['get', 'post'],
                 ],
             ],
             'access' => [
@@ -44,10 +38,10 @@ class SliderPhotoController extends Controller {
                 //'only' => ['index'],
                 'rules' => [
                     [
-                        'actions' => ['preview','upload','index', 'view', 'create', 'update', 'delete','upload-submit','form','form-multy','get-photo','submit-multy','delete-photo','change-activety'],
+                        'actions' => ['preview', 'upload', 'index', 'view', 'create', 'update', 'delete', 'upload-submit', 'form', 'form-multy', 'get-photo', 'submit-multy', 'delete-photo', 'change-activety'],
                         'allow' => true,
-                        'roles' => ['@','?'],
-                    ],  [
+                        'roles' => ['@', '?'],
+                    ], [
                         //'actions' => ['view','get-photo','preview'],
                         //'allow' => true,
                         //'roles' => ['?'],
@@ -56,11 +50,11 @@ class SliderPhotoController extends Controller {
             ],
         ];
     }
-    public $layout = 'admin';
-    public $enableCsrfValidation = false;
-    public function actionIndex() {
 
-        $this->getAllCounters();
+     public $enableCsrfValidation = false;
+
+    public function actionIndex()
+    {
 
         $searchModel = new ImageSliderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -69,20 +63,26 @@ class SliderPhotoController extends Controller {
             'dataProvider' => $dataProvider,
         ]);
     }
-    public function actionDelete($id) {
+
+    public function actionDelete($id)
+    {
 
         $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', 'Фотография удалена');
         return $this->redirect('index');
     }
-    protected function findModel($id) {
+
+    protected function findModel($id)
+    {
         if (($model = ImageSlider::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionSubmitMulty() {
+
+    public function actionSubmitMulty()
+    {
 
         FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/multy-big');
         FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/multy-thumbs');
@@ -109,22 +109,29 @@ class SliderPhotoController extends Controller {
             //return $arr;
         }
     }
-    public function actionChangeActivety(){
+
+    public function actionChangeActivety()
+    {
         $arrResult = [];
-        $id= Yii::$app->request->post('id');
-        $state= Yii::$app->request->post('state');
+        $id = Yii::$app->request->post('id');
+        $state = Yii::$app->request->post('state');
         //vd( $id .': ' .$state );
-        if($state == 'true'){$status = 0;}else{$status = 1;}
-        if($id){
-            $model = ImageSlider::find()->where(['id'=> $id])->one();
+        if ($state == 'true') {
+            $status = 0;
+        } else {
+            $status = 1;
+        }
+        if ($id) {
+            $model = ImageSlider::find()->where(['id' => $id])->one();
             $model->status = $status;
             $model->updateAttributes(['status']);
         }
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $arrResult['state']=$status;
-        $arrResult['id']=$id;
+        $arrResult['state'] = $status;
+        $arrResult['id'] = $id;
         return $arrResult;
     }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -137,21 +144,12 @@ class SliderPhotoController extends Controller {
             ]);
         }
     }
+
     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-    private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
     }
 
 

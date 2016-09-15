@@ -30,6 +30,7 @@ $arrThemes = ['Товары','Услуги','Заказ'];
             <div class="col-sm-7">
                 <!-- Map -->
                 <div id="contact-us-map">
+
                     <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=67WOuEMjZVH5_zD6AWCf4ALTdsaM5mea&amp;width=653&amp;height=300&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
                 </div>
                 <!-- End Map -->

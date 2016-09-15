@@ -14,16 +14,6 @@ $url = $controller.'/'.$action;
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="/images/logo-saturn-sque.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p><?= $userName?></p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
@@ -189,15 +179,25 @@ $url = $controller.'/'.$action;
 
             <li class="treeview <?= $url == 'reqvizit/index' ? 'active' : null ?>">
                 <a href="#">
-                    <i class="fa fa-file-text"></i>
+                    <i class="fa fa-info"></i>
                     <span>Реквизиты</span>
                     <span class="label label-primary pull-right from20-px-mr"></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-
                         <li class="<?= $url == 'reqvizit/index' ? 'active' : null ?>"><a href="<?= Url::to('/reqvizit/index') ?>"><i class="fa <?= $url == 'reqvizit/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                </ul>
+            </li>
 
+            <li class="treeview <?= $url == 'config/index' ? 'active' : null ?>">
+                <a href="#">
+                    <i class="fa fa-toggle-on"></i>
+                    <span>Настройки</span>
+                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                        <li class="<?= $url == 'config/index' ? 'active' : null ?>"><a href="<?= Url::to('/config/index') ?>"><i class="fa <?= $url == 'config/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
             </li>
 

@@ -5,58 +5,30 @@ use common\models\GoodsPhotos;
 use Yii;
 use common\models\Goods;
 use common\models\GoodsSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
-use yii\imagine\Image;
-use common\models\Article;
-use common\models\GoodsCategory;
-use common\models\ArticleCategory;
-use common\models\ImageSlider;
-use common\models\GoodsPodCategory;
-use common\models\Exchange;
-use common\models\ExchangeRatesCBRF;
-use common\models\Gallery;
-use common\models\Message;
 
 
-class GoodsController extends Controller
+
+class GoodsController extends CoreController
 {
-    public $layout = 'admin';
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
-
 
     public function actionIndex()
     {
         $searchModel = new GoodsSearch();
         $dataProvider = $searchModel->search(['user_id' => Yii::$app->user->id]);
 
-        $this->getAllCounters();
-
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }
 
     public function actionView($id)
     {
-        $this->getAllCounters();
-
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
 
     public function actionCreate()
     {
-        $this->getAllCounters();
 
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
@@ -84,7 +56,6 @@ class GoodsController extends Controller
 
     public function actionUpdate($id)
     {
-        $this->getAllCounters();
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
@@ -234,18 +205,6 @@ class GoodsController extends Controller
                 return $arrResult;
             }
         }
-    }
-
-    private function getAllCounters()
-    {
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
     }
 
     public function changePrice($model)

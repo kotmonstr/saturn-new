@@ -226,14 +226,14 @@ AdminAsset::register($this);
 
 <script>
     jQuery(document).ready(function () {
-        jQuery('.sidebar-toggle').click(function () {
-            if (jQuery('body').hasClass('sidebar-collapse')) {
-                jQuery('body').removeClass('sidebar-collapse');
-            } else {
-                jQuery('body').addClass('sidebar-collapse');
-            }
+        //jQuery('.sidebar-toggle').click(function () {
+        //    if (jQuery('body').hasClass('sidebar-collapse')) {
+        //        jQuery('body').removeClass('sidebar-collapse');
+        //    } else {
+        //        jQuery('body').addClass('sidebar-collapse');
+        //    }
 
-        });
+        //});
 
 
         if (jQuery(".alert").length > 0) {
@@ -247,8 +247,8 @@ AdminAsset::register($this);
         }
     })
 
-    jQuery('.treeview').click(function () {
-        jQuery('.treeview').removeClass('active');
-        jQuery(this).addClass('active');
-    });
+    //jQuery('.treeview').click(function () {
+    //    jQuery('.treeview').removeClass('active');
+    //    jQuery(this).addClass('active');
+    //});
 </script>

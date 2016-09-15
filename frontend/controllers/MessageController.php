@@ -5,32 +5,16 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Message;
 use common\models\MessageSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\Article;
-use common\models\Goods;
-use common\models\GoodsCategory;
-use common\models\ArticleCategory;
-use common\models\ImageSlider;
-use common\models\GoodsPodCategory;
-use common\models\Gallery;
+
 
 /**
  * MessageController implements the CRUD actions for Message model.
  */
-class MessageController extends Controller
+class MessageController extends CoreController
 {
-    public $layout = 'admin';
 
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
     /**
      * @inheritdoc
      */
@@ -53,8 +37,6 @@ class MessageController extends Controller
     public function actionIndex()
     {
 
-        $this->getAllCounters();
-
         $searchModel = new MessageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -71,8 +53,6 @@ class MessageController extends Controller
      */
     public function actionView($id)
     {
-        $this->getAllCounters();
-
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -143,17 +123,5 @@ class MessageController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
-    private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
-    }
-
 
 }

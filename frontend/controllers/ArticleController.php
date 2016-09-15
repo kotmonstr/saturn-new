@@ -4,8 +4,6 @@ namespace frontend\controllers;
 
 use common\models\ArticleCategory;
 use common\models\Blog;
-use yii\base\Module;
-use yii\web\Controller;
 use common\models\Article;
 use Yii;
 use yii\data\Pagination;
@@ -18,16 +16,9 @@ use yii\web\NotFoundHttpException;
 use common\models\ArticleSearch;
 use vova07\imperavi\actions\GetAction;
 use yii\web\Response;
-use common\models\Goods;
-use common\models\GoodsCategory;
-use common\models\ImageSlider;
-use common\models\GoodsPodCategory;
-use common\models\Gallery;
-use common\models\Message;
 
 
-
-class ArticleController extends Controller
+class ArticleController extends CoreController
 {
     public function behaviors()
     {
@@ -57,18 +48,8 @@ class ArticleController extends Controller
         ];
     }
 
-    public $layout = 'admin';
+
     public $meta = [];
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
-
     public $uploudPath = '/web/upload/article';
 
     public function actions()
@@ -90,8 +71,6 @@ class ArticleController extends Controller
 
     public function actionIndex()
     {
-        $this->getAllCounters();
-
 
         $catID = Yii::$app->request->get('category');
         $pageSize = 9;
@@ -144,9 +123,6 @@ class ArticleController extends Controller
         $id = Yii::$app->request->get('id');
         $Article = $this->findModel($id);
 
-        $this->getAllCounters();
-
-
         return $this->render('view', ['model' => $Article]);
     }
 
@@ -155,9 +131,6 @@ class ArticleController extends Controller
 
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $this->getAllCounters();
-
 
         return $this->render('show', [
             'searchModel' => $searchModel,
@@ -168,8 +141,6 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
-
-        $this->getAllCounters();
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -183,8 +154,7 @@ class ArticleController extends Controller
 
     public function actionUpdate($id)
     {
-        $this->getAllCounters();
-        $model = $this->findModel($id);
+         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -283,14 +253,5 @@ class ArticleController extends Controller
         $array = stripslashes(json_encode($array));
         echo $array;
     }
-    private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
-    }
+
 }

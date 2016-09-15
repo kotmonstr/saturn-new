@@ -13,18 +13,9 @@ use yii\web\Response;
 /**
  * PageController implements the CRUD actions for Pages model.
  */
-class PagesController extends Controller
+class PagesController extends CoreController
 {
-    public $layout = 'admin';
 
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
 
     public function behaviors()
     {

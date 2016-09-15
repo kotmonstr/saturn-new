@@ -24,27 +24,14 @@ use common\models\Message;
 /**
  * DefaultController implements the CRUD actions for GoodsCategory model.
  */
-class GoodsCategoryController extends Controller
+class GoodsCategoryController extends CoreController
 {
-    public $layout = "admin";
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
-
-
     /**
      * Lists all GoodsCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $this->getAllCounters();
 
         $searchModel = new GoodsCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -61,8 +48,6 @@ class GoodsCategoryController extends Controller
      */
     public function actionView($id)
     {
-        $this->getAllCounters();
-
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -76,7 +61,6 @@ class GoodsCategoryController extends Controller
      */
     public function actionCreate()
     {
-        $this->getAllCounters();
         $model = new GoodsCategory();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -103,8 +87,6 @@ class GoodsCategoryController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->getAllCounters();
-
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -186,17 +168,5 @@ class GoodsCategoryController extends Controller
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return $arrResult;
         }
-    }
-
-    private function getAllCounters()
-    {
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
     }
 }

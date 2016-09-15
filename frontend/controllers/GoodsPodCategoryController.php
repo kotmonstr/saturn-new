@@ -5,33 +5,15 @@ namespace frontend\controllers;
 use Yii;
 use common\models\GoodsPodCategory;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\Article;
-use common\models\Goods;
-use common\models\GoodsCategory;
-use common\models\ArticleCategory;
-use common\models\ImageSlider;
-use common\models\Gallery;
-use common\models\Message;
+
 
 /**
  * GoodsPodCategoryController implements the CRUD actions for GoodsPodCategory model.
  */
-class GoodsPodCategoryController extends Controller
+class GoodsPodCategoryController extends CoreController
 {
-    public $layout = 'admin';
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
-
     /**
      * @inheritdoc
      */
@@ -53,8 +35,6 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionIndex()
     {
-        $this->getAllCounters();
-
 
         $dataProvider = new ActiveDataProvider([
             'query' => GoodsPodCategory::find(),
@@ -72,8 +52,6 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionView($id)
     {
-        $this->getAllCounters();
-
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -86,8 +64,6 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionCreate()
     {
-        $this->getAllCounters();
-
         $model = new GoodsPodCategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -107,7 +83,6 @@ class GoodsPodCategoryController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->getAllCounters();
 
         $model = $this->findModel($id);
 
@@ -147,16 +122,5 @@ class GoodsPodCategoryController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
     }
 }

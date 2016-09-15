@@ -3,18 +3,29 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\Reqvizit;
-use common\models\ReqvizitSearch;
+use common\models\Config;
+use common\models\ConfigSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ReqvizitController implements the CRUD actions for Reqvizit model.
+ * ConfigController implements the CRUD actions for Config model.
  */
-class ReqvizitController extends CoreController
+class ConfigController extends CoreController
 {
 
+    protected $data = array();
+
+    public function init()
+    {
+        $items = Config::find()->all();
+        foreach ($items as $item){
+            if ($item->param)
+                $this->data[$item->param] = $item->value === '' ?  $item->default : $item->value;
+        }
+        parent::init();
+    }
     /**
      * @inheritdoc
      */
@@ -31,12 +42,12 @@ class ReqvizitController extends CoreController
     }
 
     /**
-     * Lists all Reqvizit models.
+     * Lists all Config models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ReqvizitSearch();
+        $searchModel = new ConfigSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +57,7 @@ class ReqvizitController extends CoreController
     }
 
     /**
-     * Displays a single Reqvizit model.
+     * Displays a single Config model.
      * @param integer $id
      * @return mixed
      */
@@ -58,13 +69,13 @@ class ReqvizitController extends CoreController
     }
 
     /**
-     * Creates a new Reqvizit model.
+     * Creates a new Config model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Reqvizit();
+        $model = new Config();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +87,7 @@ class ReqvizitController extends CoreController
     }
 
     /**
-     * Updates an existing Reqvizit model.
+     * Updates an existing Config model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -95,7 +106,7 @@ class ReqvizitController extends CoreController
     }
 
     /**
-     * Deletes an existing Reqvizit model.
+     * Deletes an existing Config model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,15 +119,15 @@ class ReqvizitController extends CoreController
     }
 
     /**
-     * Finds the Reqvizit model based on its primary key value.
+     * Finds the Config model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Reqvizit the loaded model
+     * @return Config the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Reqvizit::findOne($id)) !== null) {
+        if (($model = Config::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

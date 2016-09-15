@@ -32,12 +32,12 @@ class GoodsAsset extends AssetBundle
         //'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
         //'window.jQuery || document.write(\'<script src="js/jquery-1.9.1.min.js',
         'PURPOSE/js/bootstrap.min.js',
-        //'http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js',
-        //'PURPOSE/js/jquery.fitvids.js',
-        //'PURPOSE/js/jquery.sequence-min.js',
-        //'PURPOSE/js/jquery.bxslider.js"',
-        //'PURPOSE/js/main-menu.js',
-        //'PURPOSE/js/template.js',
+        'http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js',
+        'PURPOSE/js/jquery.fitvids.js',
+        'PURPOSE/js/jquery.sequence-min.js',
+        'PURPOSE/js/jquery.bxslider.js',
+        'PURPOSE/js/main-menu.js',
+        'PURPOSE/js/template.js',
         'ui-js/jquery-ui.js',
 
 

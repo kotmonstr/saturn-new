@@ -4,39 +4,18 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Gallery;
 use common\models\GallerySearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\UploadedFile;
 use yii\imagine\Image;
-use common\models\Photo;
 use yii\helpers\FileHelper;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use common\models\ArticleCategory;
-use common\models\Article;
-use common\models\Goods;
-use common\models\GoodsCategory;
-use common\models\GoodsPodCategory;
-use common\models\ImageSlider;
-use common\models\Message;
-
-class GalleryController extends Controller {
-
-    public $countAllArticles = false;
-    public $countAllGoods = false;
-    public $countAllGoodsCategory = false;
-    public $countAllArticleCategory = false;
-    public $countAllSliderFotos = false;
-    public $countAllGoodsPodCategory = false;
-    public $countAllGalleryPhotos = false;
-    public $countAllMessage = false;
 
 
-    public $layout = 'admin';
+class GalleryController extends CoreController
+{
+
     public $enableCsrfValidation = false;
-    public function actionIndex() {
 
-        $this->getAllCounters();
+    public function actionIndex()
+    {
 
         $searchModel = new GallerySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -45,21 +24,27 @@ class GalleryController extends Controller {
             'dataProvider' => $dataProvider,
         ]);
     }
-    public function actionDelete($id) {
+
+    public function actionDelete($id)
+    {
 
         $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', 'Фотография удалена');
         return $this->redirect('index');
     }
-    protected function findModel($id) {
+
+    protected function findModel($id)
+    {
         if (($model = Gallery::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionSubmitMulty() {
-//vd(1);
+
+    public function actionSubmitMulty()
+    {
+
         FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/multy-big');
         FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/multy-thumbs');
         $arr = [];
@@ -88,22 +73,29 @@ class GalleryController extends Controller {
             //return $arr;
         }
     }
-    public function actionChangeActivety(){
+
+    public function actionChangeActivety()
+    {
         $arrResult = [];
-        $id= Yii::$app->request->post('id');
-        $state= Yii::$app->request->post('state');
+        $id = Yii::$app->request->post('id');
+        $state = Yii::$app->request->post('state');
         //vd( $id .': ' .$state );
-        if($state == 'true'){$status = 1;}else{$status = 0;}
-        if($id){
-            $model = Gallery::find()->where(['id'=> $id])->one();
+        if ($state == 'true') {
+            $status = 1;
+        } else {
+            $status = 0;
+        }
+        if ($id) {
+            $model = Gallery::find()->where(['id' => $id])->one();
             $model->status = $status;
             $model->updateAttributes(['status']);
         }
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $arrResult['state']=$status;
-        $arrResult['id']=$id;
+        $arrResult['state'] = $status;
+        $arrResult['id'] = $id;
         return $arrResult;
     }
+
     public function actionUpdate($id)
     {
         //vd(1);
@@ -117,21 +109,12 @@ class GalleryController extends Controller {
             ]);
         }
     }
+
     public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-    private function getAllCounters(){
-        $this->countAllArticles = Article::find()->count();
-        $this->countAllGoods = Goods::find()->count();
-        $this->countAllGoodsCategory = GoodsCategory::find()->count();
-        $this->countAllArticleCategory = ArticleCategory::find()->count();
-        $this->countAllSliderFotos = ImageSlider::find()->count();
-        $this->countAllGoodsPodCategory = GoodsPodCategory::find()->count();
-        $this->countAllGalleryPhotos = Gallery::find()->count();
-        $this->countAllMessage = Message::find()->count();
     }
 
 
