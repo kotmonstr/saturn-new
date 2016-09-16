@@ -18,7 +18,7 @@ use yii\helpers\Url;
         <div class="row">
             <!-- Sidebar -->
             <div class="col-sm-4 blog-sidebar">
-                <h4>Поиск по Услугам</h4>
+                <h4>Поиск по блогу</h4>
                 <form>
                     <div class="input-group">
                         <input class="form-control input-md" id="appendedInputButtons" type="text">
@@ -67,7 +67,9 @@ use yii\helpers\Url;
                     <div class="single-post-content">
                         <h3><?= $model->title ?></h3>
                         <p><?= $model->content ?></p>
+
                     </div>
+
 
                 </div>
             </div>

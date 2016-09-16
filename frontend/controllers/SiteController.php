@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Article;
+use common\models\ArticleCategory;
 use common\models\Gallery;
 use common\models\Goods;
 use common\models\GoodsCategory;
@@ -390,6 +391,47 @@ class SiteController extends Controller
         return $this->render('page', [
             'model' => $model,
         ]);
+    }
+
+    public function actionArticle()
+    {
+        $this->layout = 'goods-detail';
+
+        $modelLast = Article::find()->orderBy('created_at DESC')->limit(10)->all();
+        $modelCategory = ArticleCategory::find()->limit(10)->all();
+        $category_id = Yii::$app->request->get('category_id');
+        $query = Article::find();
+
+        if( $category_id) {
+            $query = $query->orderBy('created_at DESC')
+                ->where(['article_category' => $category_id]);
+        }else{
+            $query = $query->orderBy('created_at DESC');
+            $model = Article::find()->all();
+        }
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>10]);
+
+        $model = $query->offset($pages->getOffset())
+            ->limit($pages->getLimit())
+            ->all();
+
+
+        $current_month = date('m');
+        for ($i = 0; $i >= -5; $i--) {
+            $monthList[] = date("F",mktime(0, 0, 0, $current_month + $i, 1, date("Y"))).' '.date("Y");
+        }
+//vd($monthList);
+
+
+
+        return $this->render('article',[
+            'model' => $model,
+            'pages'=> $pages,
+            'modelLast'=> $modelLast,
+            'modelCategory'=> $modelCategory,
+            'monthList'=> $monthList
+            ]);
     }
 
 }

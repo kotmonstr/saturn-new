@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use common\models\GoodsPodCategory;
 use yii\widgets\Breadcrumbs;
 
-$i=0;
+$i = 0;
 ?>
 <input id="pod_id" type="hidden" value="<?= $cat; ?> ">
 <!-- Page Title -->
@@ -25,26 +25,26 @@ $i=0;
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-               <? echo Breadcrumbs::widget([
-                //'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
-                'links' => [
-                                [
-                                    'label' => 'Товары',
-                                    'url' => ['/site/goods'],
-                                    'template' => "<li><b>{link}</b></li>\n", // template for this link only
-                                ],
-                                [
-                                    'label' => $cat_name ? $cat_name : false,
-                                    'url' => ['/site/goods', 'cat' => $cat,'cat_name'=> $cat_name],
-                                    'template' => $cat_name ? "<li title='Категория'><b>{link}</b></li>\n" : false, // template for this link only
-                                ],
-                                [
-                                    'label' => $pod_cat_name ? $pod_cat_name : false ,
-                                    'template' => $pod_cat_name  ? "<li title='Под категория'><b>{link}</b></li>\n" : false, // template for this link only
+                <? echo Breadcrumbs::widget([
+                    //'itemTemplate' => "<li><i>{link}</i></li>\n", // template for all links
+                    'links' => [
+                        [
+                            'label' => 'Товары',
+                            'url' => ['/site/goods'],
+                            'template' => "<li><b>{link}</b></li>\n", // template for this link only
+                        ],
+                        [
+                            'label' => $cat_name ? $cat_name : false,
+                            'url' => ['/site/goods', 'cat' => $cat, 'cat_name' => $cat_name],
+                            'template' => $cat_name ? "<li title='Категория'><b>{link}</b></li>\n" : false, // template for this link only
+                        ],
+                        [
+                            'label' => $pod_cat_name ? $pod_cat_name : false,
+                            'template' => $pod_cat_name ? "<li title='Под категория'><b>{link}</b></li>\n" : false, // template for this link only
 
-                                ],
+                        ],
 
-                ]]); ?>
+                    ]]); ?>
             </div>
         </div>
 
@@ -55,7 +55,7 @@ $i=0;
                 <form action="<?= Url::to('/site/goods') ?>" method="GET">
                     <div class="input-group" style="margin-bottom: 10px">
                         <input class="form-control input-md" name="item" id="appendedInputButtons" type="text">
-                            <span class="input-group-btn">
+                        <span class="input-group-btn">
                                 <button class="btn btn-md" type="submit">Искать</button>
                             </span>
                     </div>
@@ -63,29 +63,33 @@ $i=0;
 
 
                 <? if ($modelGoodsCategory): ?>
-                    <a href="<?= Url::to('/site/goods') ?>"><h4 class="cateegory-main" >Все товары</h4></a>
+                    <a href="<?= Url::to('/site/goods') ?>"><h4 class="cateegory-main">Все товары</h4></a>
 
                     <div id="accordion">
 
                         <? foreach ($modelGoodsCategory as $item): ?>
-                            <h4 class="cateegory-main secnd-tab" title="Категория"><?= Html::img($item->image_path . $item->image, ['height' => '12px']) ?> <?= $item->name ?></h4>
-                            <ul class="recent-posts">
-                                <?
-
-                                $podCat = GoodsPodCategory::find()
+                            <?
+                            $podCat = GoodsPodCategory::find()
                                 ->leftJoin('goods', '`goods`.`pod_category_id` = `goods_pod_category`.`id`')
-                                ->where(['=','goods.status', 1])
+                                ->where(['=', 'goods.status', 1])
                                 ->AndWhere(['goods_pod_category.category_id' => $item->id])
                                 ->with('goods')
                                 ->all();
-                                ?>
-
-                                    <? if(isset($podCat) && $podCat != ''): ?>
+                            ?>
+                            <? if ($podCat): ?>
+                                <h4 class="cateegory-main secnd-tab"
+                                    title="Категория"><?= Html::img($item->image_path . $item->image, ['height' => '12px']) ?> <?= $item->name ?></h4>
+                                <ul class="recent-posts">
+                                    <? if (isset($podCat) && $podCat != ''): ?>
                                         <? foreach ($podCat as $item2): ?>
-                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a title="Под категория" href="<?= Url::to(['/site/goods','cat_name'=> $item->name,'pod_category_id'=>$item2->id,'pod_cat_name'=>$item2->name ,'cat'=>$i]) ?>"><?= $item2->name ?></a></li>
+                                            <li data-id="<?= $item2->id ?>" class="pod-category"><a
+                                                    title="Под категория"
+                                                    href="<?= Url::to(['/site/goods', 'cat_name' => $item->name, 'pod_category_id' => $item2->id, 'pod_cat_name' => $item2->name, 'cat' => $i]) ?>"><?= $item2->name ?></a>
+                                            </li>
                                         <? endforeach; ?>
-                                <? endif; ?>
-                            </ul>
+                                    <? endif; ?>
+                                </ul>
+                            <? endif; ?>
                             <? $i++; ?>
                         <? endforeach; ?>
                     </div>
@@ -108,7 +112,7 @@ $i=0;
                                     ?>
 
                                     <? if ($diff <= $timeConstant): ?>
-                                        <div class="price-ribbon ribbon-green">New</div>
+                                        <div class="price-ribbon ribbon-green">Новинка</div>
                                     <? endif ?>
                                 </div>
 
@@ -123,7 +127,7 @@ $i=0;
                                     </h5>
                                 </div>
                                 <div class="good-price" style="text-align: center">
-                                    <?= $goods->price . ' руб' ?>
+                                    <?= ceil($goods->price) . ' Руб' ?>
                                 </div>
                                 <div class="post-more">
                                     <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"
@@ -142,11 +146,11 @@ $i=0;
                 <div class="pagination-wrapper ">
 
 
-                <?=
-                LinkPager::widget([
-                    'pagination' => $pages,
-                    //'maxButtonCount' => 5,
-                    'hideOnSinglePage' => true,
+                    <?=
+                    LinkPager::widget([
+                        'pagination' => $pages,
+                        //'maxButtonCount' => 5,
+                        'hideOnSinglePage' => true,
 
                         'firstPageLabel' => 'Первая',
                         'lastPageLabel' => 'Последняя',
@@ -154,25 +158,19 @@ $i=0;
                         'nextPageLabel' => '>',
                         //'maxButtonCount' => 5,
 
-                    'options' => [
-                        //'tag' => 'div',
-                        'class' => 'pagination pagination-lg',
-                         ],
+                        'options' => [
+                            //'tag' => 'div',
+                            'class' => 'pagination pagination-lg',
+                        ],
 
-                ]);
-                ?>
-
-
-
-</div>
-
-
-
-    </div>
-</div>
-
+                    ]);
+                    ?>
+                </div>
+            </div>
         </div>
+
     </div>
+</div>
 <!-- End Posts List -->
 <style>
     .blog-post {
@@ -182,6 +180,7 @@ $i=0;
     .post-image {
         height: 200px !important;
     }
+
     .cateegory-main {
         cursor: pointer;
     }
@@ -198,25 +197,30 @@ $i=0;
     .pod-category:first-child {
         border-top: none !important
     }
-    .recent-posts{
-        //height: 10px;
+
+    .recent-posts {
+    / / height: 10 px;
     }
-    .good-price{
+
+    .good-price {
         font-weight: bold;
         font-size: 14px;
         padding: 5px;
     }
-    h5 a{
-        color: #53555c;!important;
+
+    h5 a {
+        color: #53555c;
+    !important;
     }
-    .secnd-tab{
+
+    .secnd-tab {
         margin-left: 20px;
     }
 </style>
 
 <script>
-    jQuery(document).ready(function(){
-        var cat= parseInt(jQuery('#pod_id').val());
+    jQuery(document).ready(function () {
+        var cat = parseInt(jQuery('#pod_id').val());
         jQuery("#accordion").accordion({
             active: cat,
             collapsible: true,
