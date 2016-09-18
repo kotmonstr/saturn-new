@@ -115,7 +115,7 @@ $url = $controller.'/'.$action;
 
             <li class="treeview <?= $url == 'gallery/index' ||  $url == 'gallery/create' ? 'active' : null ?>" >
                 <a href="#">
-                    <i class="fa fa-photo"></i>
+                    <i class="fa fa-object-ungroup"></i>
                     <span>Галерея</span>
                     <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGalleryPhotos  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -124,15 +124,17 @@ $url = $controller.'/'.$action;
                     <li class="<?= $url == 'gallery/index' ? 'active' : null ?>"><a href="<?= Url::to('/gallery/index') ?>"><i class="fa <?= $url == 'gallery/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+
+            <li class="treeview <?= $url == 'video/index' ||  $url == 'video/create' ? 'active' : null ?>">
                 <a href="#">
-                    <i class="fa fa-photo"></i>
+                    <i class="fa fa-video-camera"></i>
                     <span>Видео галерея</span>
-                    <span class="label label-primary pull-right from20-px-mr"></span>
+                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllVideo  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?= $url == 'gallery/index' ? 'active' : null ?>"><a href="<?= Url::to('/gallery/index') ?>"><i class="fa <?= $url == 'gallery/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'video/index' ? 'active' : null ?>"><a href="<?= Url::to('/video/index') ?>"><i class="fa <?= $url == 'video/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'video/create' ? 'active' : null ?>"><a href="<?= Url::to('/video/create') ?>"><i class="fa <?= $url == 'video/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
 

@@ -71,8 +71,8 @@ public $template;
         return [
             'id' => Yii::t('app', 'ID'),
             'youtube_id' => Yii::t('app', 'Youtube ID'),
-            'title' => Yii::t('app', 'Title'),
-            'descr' => Yii::t('app', 'Descr'),
+            'title' => Yii::t('app', 'Название'),
+            'descr' => Yii::t('app', 'Описание'),
             'created_at' => Yii::t('app', 'Created At'),
             'categoria' => Yii::t('app', 'Categoria'),
             'author_id' => Yii::t('app', 'author_id'),
