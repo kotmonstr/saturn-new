@@ -10,12 +10,18 @@ $this->title = 'Создать подкатегорию';
 $this->params['breadcrumbs'][] = ['label' => 'Goods Pod Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+            </div>
+        </div>
+    </div>
+</section>
 

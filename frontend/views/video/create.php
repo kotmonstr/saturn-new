@@ -10,7 +10,10 @@ $this->title = 'Создать Видео';
 $this->params['breadcrumbs'][] = ['label' => 'Videos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="video-create">
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -18,4 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
     ]) ?>
 
-</div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,18 +1,10 @@
 <?php
-
+use Madcoda\Youtube;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use Madcoda\Youtube as MadcodaYoutube;
 
-//use Google_Client;
-
-
-$client = new Google_Client();
-$client->setDeveloperKey("AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c");
-
-$service = new Google_Service_YouTube($client);
-
-//vd($service->videos->listVideos('QY6FShdRdl8'));
 
 $this->title = 'Видео';
 $this->params['breadcrumbs'][] = $this->title;
@@ -43,17 +35,25 @@ $this->params['breadcrumbs'][] = $this->title;
                         // 'author_id',
                         // 'slug',
                         [
-                            'label'=>'Дата создания',
-                            'format'=>'raw',
-                            'value'=> function($model){
-                                return Yii::$app->formatter->asDate($model->created_at,'long');
+                            'label' => 'Дата создания',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return Yii::$app->formatter->asDate($model->created_at, 'long');
                             }
                         ],
                         [
                             'attribute' => 'Картинка',
-                            //'format' => 'html',
-                            'value' => function ($dataProvider) {
-                                return '333';
+                            'format' => 'html',
+                            'value' => function ($model) {
+
+                                $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
+                                $video = $youtube->getVideoInfo($model->youtube_id);
+                                if (is_object($video)) {
+                                    $imageSrc = $video->snippet->thumbnails->medium->url;
+                                    return Html::img($imageSrc, ['height' => '50px']);
+                                }else{
+                                    return 'Отсутствует';
+                                }
                             }
                         ],
 

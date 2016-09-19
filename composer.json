@@ -21,7 +21,7 @@
         "vova07/yii2-imperavi-widget": "1.2.10",
         "yiisoft/yii2-imagine": "2.0.3",
         "2amigos/yii2-file-upload-widget": "1.0.4",
-        "google/apiclient": "2.0.3"
+        "madcoda/php-youtube-api": "1.2"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -2,12 +2,14 @@
 
 namespace frontend\controllers;
 
+use Madcoda\Youtube;
 use Yii;
 use common\models\Video;
 use common\models\VideoSearch;
 use frontend\controllers\CoreController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Madcoda\Youtube as MadcodaYoutube;
 
 
 
@@ -121,5 +123,31 @@ class VideoController extends CoreController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionSendYoutubeCode()
+    {
+        $result =[];
+        $videoId = Yii::$app->request->post('code');
+        $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
+        $video = $youtube->getVideoInfo($videoId);
+        $title = $video->snippet->title;
+        $descr = $video->snippet->description;
+        $imageSrc = $video->snippet->thumbnails->medium->url;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $result['imageSrc'] = $imageSrc;
+        $result['title'] = $title;
+        $result['descr'] = $descr;
+
+        return $result;
+        
+//        $this->renderAjax('info', [
+//            'imageSrc' => $imageSrc,
+//            'title' => $title,
+//            'descr' => $descr,
+//            //'preview' => $preview,
+//            'id' => $video->id,
+//        ]);
     }
 }
