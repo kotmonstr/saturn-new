@@ -8,6 +8,7 @@ use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\Pages;
 use common\models\Reqvizit;
+use common\models\Video;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -432,6 +433,14 @@ class SiteController extends Controller
             'modelCategory'=> $modelCategory,
             'monthList'=> $monthList
             ]);
+    }
+
+    public function actionVideo(){
+        $model = Video::find()->all();
+
+        return $this->render('video',[
+            'model' => $model,
+        ]);
     }
 
 }

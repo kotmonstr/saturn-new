@@ -35,6 +35,10 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
                 <a href="<?= Url::to('/site/article'); ?>">Блог</a>
             </li>
 
+            <li class="<?= $url == 'site/video' ? 'active-bold' : null ?>">
+                <a href="<?= Url::to('/site/video'); ?>">Видео</a>
+            </li>
+
             <li class="<?= $url == 'site/about' ? 'active-bold' : null ?>">
                 <a href="<?= Url::to('/site/about'); ?>">О компании</a>
             </li>
@@ -82,7 +86,7 @@ line-height: 40px;
         list-style:none;
         //font-weight:bold;
         //margin-bottom:10px;
-        font-size: 14px;
+        font-size: 12px;
     }
     #nav li{
         float:left;

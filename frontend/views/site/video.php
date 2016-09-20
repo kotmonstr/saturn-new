@@ -13,7 +13,7 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Галерея</h1>
+                <h1>Видео</h1>
             </div>
         </div>
     </div>
@@ -26,15 +26,16 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
             <div class="col-md-12">
 
                 <? if (!empty($model)): ?>
-                    <? foreach ($model as $galerySlide): ?>
+                    <? foreach ($model as $youtube): ?>
 
                         <div class="col-md-4 col-sm-6">
                             <div class="blog-post ">
                                 <div class="post-image">
-                                    <?= Html::a(Html::img($galerySlide->file_path . $galerySlide->file_name, []), $galerySlide->file_path . $galerySlide->file_name, ['class' => 'fancybox', 'title' => $galerySlide->text, 'rel' => 'fancybox-thumb']) ?>
+                                    <iframe class="fancybox" width="100%" height="100%" src="https://www.youtube.com/embed/<?= $youtube->youtube_id ?>" frameborder="0" allowfullscreen></iframe>
+
                                 </div>
                                 <div>
-                                    <?= $galerySlide->text ?>
+                                    <?= $youtube->title ?>
                                 </div>
                             </div>
 
@@ -44,9 +45,9 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
 
                 <? else: ?>
 
-                        <div class="col-md-4 col-md-offset-5" >
-                            <p>Список пуст.</p>
-                        </div>
+                    <div class="col-md-4 col-md-offset-5" >
+                        <p>Список пуст.</p>
+                    </div>
 
                 <? endif ?>
 
@@ -54,6 +55,7 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
         </div>
     </div>
 </div>
+
 
 
 <style>

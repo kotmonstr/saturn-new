@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                         ],
                         [
-                            'attribute' => 'Картинка',
+                            'attribute' => 'Preview image',
                             'format' => 'html',
                             'value' => function ($model) {
 

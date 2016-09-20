@@ -12,8 +12,8 @@ function sendYoutubeCode() {
             _csrf: csrf_token
         }),
         success: function (data) {
-            $('#video-title').val(data.title);
-            $('#video-descr').val(data.descr);
+            $('#video-title').val(data.title).attr('disabled',false);
+            $('#video-descr').val(data.descr).attr('disabled',false);
             $('.info').html('<img src="'+ data.imageSrc+'" height="100px" >');
 
         }
