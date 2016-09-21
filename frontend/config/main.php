@@ -9,7 +9,10 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'common\models\settings'
+    ],
     'language' => 'ru-RU',
     'charset' => 'utf-8',
     'timeZone' => 'Europe/Moscow',

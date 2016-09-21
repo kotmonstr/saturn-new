@@ -15,7 +15,7 @@ use common\models\Message;
 
 class CoreController extends Controller {
 
-    public $layout = 'admin';
+    public $layout = '/admin';
 
     public $countAllArticles = false;
     public $countAllGoods = false;
