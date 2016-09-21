@@ -205,7 +205,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/images/logo-saturn-sque.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Aamin</span>
+                        <span class="hidden-xs">Admin</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->

@@ -94,11 +94,21 @@ class SiteController extends Controller
     public function actionGallery()
     {
         $this->layout = 'gallery';
-        
-        $model = Gallery::find()->where(['status' => 1])->all();
+
+        $query = Gallery::find();
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>6]);
+
+        $model = $query->offset($pages->getOffset())
+            ->limit($pages->getLimit())
+            ->where(['status' => 1])
+            ->all();
+
         return $this->render('gallery',
             [
-                'model' => $model
+                'model' => $model,
+                'pages'=> $pages,
             ]
         );
     }
@@ -436,10 +446,21 @@ class SiteController extends Controller
     }
 
     public function actionVideo(){
-        $model = Video::find()->all();
+
+        $this->layout = 'gallery';
+
+        $query = Video::find();
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>6]);
+
+        $model = $query->offset($pages->getOffset())
+            ->limit($pages->getLimit())
+            ->all();
 
         return $this->render('video',[
             'model' => $model,
+            'pages'=> $pages,
         ]);
     }
 

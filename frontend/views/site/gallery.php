@@ -23,7 +23,6 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
 <div class="section blog-posts-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
 
                 <? if (!empty($model)): ?>
                     <? foreach ($model as $galerySlide): ?>
@@ -50,6 +49,34 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
 
                 <? endif ?>
 
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center">
+                <div class="pagination-wrapper ">
+
+
+                    <?=
+                    LinkPager::widget([
+                        'pagination' => $pages,
+                        //'maxButtonCount' => 5,
+                        'hideOnSinglePage' => true,
+
+                        'firstPageLabel' => 'Первая',
+                        'lastPageLabel' => 'Последняя',
+                        'prevPageLabel' => '<',
+                        'nextPageLabel' => '>',
+                        //'maxButtonCount' => 5,
+
+                        'options' => [
+                            //'tag' => 'div',
+                            'class' => 'pagination pagination-lg',
+                        ],
+
+                    ]);
+                    ?>
+                </div>
             </div>
         </div>
     </div>

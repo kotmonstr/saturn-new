@@ -28,7 +28,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'user_name',
-            'subject',
+            //'subject',
+            [
+                'attribute' => 'subject',
+                'format' => 'raw',
+                'value' => function ($dataProvider) {
+
+
+                    switch ($dataProvider->subject) {
+                        case 1:
+                            $result = 'Товары';
+                            break;
+                        case 2:
+                            $result = 'Услуги';
+                            break;
+                        case 3:
+                            $result = 'Заказ';
+                            break;
+                    }
+                    return  $result;
+                }
+
+            ],
+
+
             //'email:email',
 
             // 'updated_at',

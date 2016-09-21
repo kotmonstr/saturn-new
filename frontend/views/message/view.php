@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Message */
 
-$this->title = $model->id;
+$this->title = $model->user_name ;
 $this->params['breadcrumbs'][] = ['label' => 'Сообщения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -37,13 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'subject',
             'email:email',
             'created_at:datetime',
-            //'updated_at',
-
-            //'status',
             [
                 'attribute' => 'status',
-                'format' => 'raw',
-                'value' =>  $model->status ==1 ? 'Просмотренно' : 'Не просмотренно'
+                'format' => 'text',
+                'value' =>  $model->status == 1 ? 'Просмотренно' : 'Не просмотренно'
             ]
         ],
     ]) ?>

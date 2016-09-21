@@ -44,8 +44,8 @@ class Message extends \yii\db\ActiveRecord
         return [
             [['message', 'subject', 'subject', 'user_name','email'], 'required'],
             [['message'], 'string'],
-            [['created_at', 'updated_at', 'status'], 'integer'],
-            [['subject', 'email', 'user_name'], 'string', 'max' => 255],
+            [['created_at', 'updated_at', 'status','subject'], 'integer'],
+            [['email', 'user_name'], 'string', 'max' => 255],
         ];
     }
 
