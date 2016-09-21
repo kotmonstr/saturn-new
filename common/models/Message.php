@@ -20,6 +20,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class Message extends \yii\db\ActiveRecord
 {
+    public $reCaptcha;
+
     public function behaviors()
     {
         return [
@@ -46,6 +48,7 @@ class Message extends \yii\db\ActiveRecord
             [['message'], 'string'],
             [['created_at', 'updated_at', 'status'], 'integer'],
             [['subject', 'email', 'user_name'], 'string', 'max' => 255],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LckOQcUAAAAALOfigoY4XA3YGeGgi4-sita2vdW']
         ];
     }
 
