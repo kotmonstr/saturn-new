@@ -15,6 +15,12 @@ return [
     'timeZone' => 'Europe/Moscow',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LckOQcUAAAAAOpv5GS1VRSEI1_tJa2iwtJHTpiz',
+            'secret' => '6LckOQcUAAAAALOfigoY4XA3YGeGgi4-sita2vdW',
+        ],
 //        'assetManager' => [
 //            'bundles' => [
 //                'yii\web\JqueryAsset' => [

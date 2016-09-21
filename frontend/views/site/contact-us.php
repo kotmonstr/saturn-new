@@ -1,6 +1,10 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use frontend\assets\GalleryAsset;
+
+$this->registerJsFile('https://www.google.com/recaptcha/api.js',['depends'=>GalleryAsset::className(),'position'=> \yii\web\View::POS_HEAD]);
+
 
 $arrThemes = ['Товары','Услуги','Заказ'];
 ?>
@@ -73,7 +77,15 @@ $arrThemes = ['Товары','Услуги','Заказ'];
 
                     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
+                    <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
+                        'name' => 'reCaptcha',
+                        'siteKey' => '6LckOQcUAAAAAOpv5GS1VRSEI1_tJa2iwtJHTpiz',
+                        'widgetOptions' => ['class' => 'col-sm-offset-3']
+                    ]) ?>
+
                     <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary pull-right']) ?>
+
+
 
                     <?php ActiveForm::end(); ?>
 

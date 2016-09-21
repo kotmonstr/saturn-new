@@ -24,7 +24,7 @@ use yii\data\Pagination;
 use common\models\GoodsPodCategory;
 use common\models\Message;
 use yii\web\Response;
-
+use ReCaptcha\ReCaptcha;
 
 /**
  * Site controller
@@ -32,6 +32,7 @@ use yii\web\Response;
 class SiteController extends Controller
 {
     const SERVICE = 12;
+    const SECRET_CAPTCHA = '6Ld8OQcUAAAAAMitn5QDeWijahsmWXyYH9akEcOq';
 
     /**
      * @inheritdoc
@@ -383,6 +384,19 @@ class SiteController extends Controller
         $modelReqvizit = Reqvizit::find()->one();
 
         if ($model->load(Yii::$app->request->post())) {
+            //$gRecaptchaResponse = Yii::$app->request->post('g-recaptcha-response');
+        vd(Yii::$app->request->post());
+
+            $recaptcha = new ReCaptcha(self::SECRET_CAPTCHA);
+            $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+            if ($resp->isSuccess()) {
+                // verified!
+            } else {
+                $errors = $resp->getErrorCodes();
+            }
+
+
+
             if ($model->validate()) {
                 $model->save();
                 Yii::$app->session->setFlash('success', 'Ваше сообщение отправленно.');
