@@ -45,10 +45,13 @@ class GoodsController extends CoreController
 
             //$model->validate();
             // vd($model->getErrors());
-            $model->save();
+            if($model->validate() && $model->save()){
+                Yii::$app->session->setFlash('success', 'Товар успешно создан.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-            Yii::$app->session->setFlash('success', 'Товар успешно создан.');
-            return $this->redirect(['view', 'id' => $model->id]);
+
+
         } else {
             return $this->render('create', ['model' => $model,]);
         }

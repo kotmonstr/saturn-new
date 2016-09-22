@@ -1,5 +1,7 @@
 <?php
 namespace app\components;
+
+use Yii;
 use common\models\ImageSlider;
 use yii\base\Widget;
 
@@ -21,7 +23,8 @@ class SliderWidget extends Widget
     }
     public function run()
     {
-        if ($this->model) {
+       
+        if ($this->model && Yii::$app->params['SLIDER_STATUS'] == 1) {
             echo $this->render('slider', ['model' => $this->model]);
         } else {
             return false;

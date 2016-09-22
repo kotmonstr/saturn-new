@@ -338,7 +338,7 @@ class SiteController extends Controller
         }
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>12]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=> Yii::$app->params['GOODS_PER_PAGE'] ? Yii::$app->params['GOODS_PER_PAGE'] : 12]);
 
         $model = $query->offset($pages->getOffset())
                         ->limit($pages->getLimit())
