@@ -1,6 +1,8 @@
 <?
 use yii\helpers\Url;
-//vd($model);
+
+$video = isset($modelVideo) ? '<iframe class="fancybox" width="100%" height="100%" src="https://www.youtube.com/embed/'. $modelVideo->youtube_id .'" frameborder="0" allowfullscreen></iframe>' : '<img src="/PURPOSE/img/portfolio6.jpg" alt="Project Name">';
+$url = isset($modelVideo) ? '/site/video?slug='.$modelVideo->slug : 'javascript:void(0)';
 ?>
 <div class="footer">
     <div class="container">
@@ -9,7 +11,9 @@ use yii\helpers\Url;
                 <h3>Наши последние работы</h3>
                 <div class="portfolio-item">
                     <div class="portfolio-image">
-                        <a href="page-portfolio-item.html"><img src="/PURPOSE/img/portfolio6.jpg" alt="Project Name"></a>
+                        <a href="#">
+                            <?= $video ?>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -19,9 +23,11 @@ use yii\helpers\Url;
                     <li><a href="<?= Url::to('/site/goods'); ?>">Товары</a></li>
                     <li><a href="<?= Url::to('/site/service'); ?>">Услуги</a></li>
                     <li><a href="<?= Url::to('/site/gallery'); ?>">Галерея</a></li>
+                    <li><a href="<?= Url::to('/site/article'); ?>">Блог</a></li>
+                    <li><a href="<?= Url::to('/site/video'); ?>">Видео</a></li>
                     <li><a href="<?= Url::to('/site/about'); ?>">О Нас</a></li>
                     <li><a href="#">Site map</a></li>
-                    <li><a href="#">FAQ</a></li>
+                
                 </ul>
             </div>
             <div class="col-footer col-md-3 col-xs-6">

@@ -38,7 +38,7 @@ use app\components\TopArticleWidget;
 
 
             <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item">
+                <div class="portfolio-item custom-port">
                     <div class="portfolio-image">
                         <a href="<?= Url::to(['/site/article-detail','id'=>$work->id]) ?>"><img src="/upload/article/<?= $work->image ?>" alt="Project Name"></a>
                     </div>
