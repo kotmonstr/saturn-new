@@ -99,7 +99,7 @@ class SiteController extends Controller
         $query = Gallery::find();
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>6]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>Yii::$app->params['GALLARY_PER_PAGE'] ? Yii::$app->params['GALLARY_PER_PAGE'] : 6 ]);
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())
@@ -142,7 +142,7 @@ class SiteController extends Controller
         $query = Article::find()->where(['article_category' => 12]);
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => $pageSize]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['SERVICE_PER_PAGE'] ? Yii::$app->params['SERVICE_PER_PAGE'] : 6 ]);
 
         $model = $query->offset($pages->offset)
             ->orderBy('created_at DESC')
@@ -422,7 +422,7 @@ class SiteController extends Controller
             $model = Article::find()->all();
         }
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>10]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>  Yii::$app->params['BLOG_PER_PAGE'] ? Yii::$app->params['BLOG_PER_PAGE'] : 12]);
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())
@@ -453,7 +453,7 @@ class SiteController extends Controller
         $query = Video::find();
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>6]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=> Yii::$app->params['VIDEO_PER_PAGE'] ? Yii::$app->params['VIDEO_PER_PAGE'] : 12]);
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())

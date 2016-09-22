@@ -4,7 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\BootstrapInterface;
-use common\models\Config;
+
 /*
 /* The base class that you use to retrieve the settings from the database
 */
@@ -16,7 +16,7 @@ class Settings implements BootstrapInterface
 
     public function __construct()
     {
-        //$this->db = Yii::$app->db;
+        $this->db = Yii::$app->db;
     }
 
     /**
@@ -32,7 +32,7 @@ class Settings implements BootstrapInterface
         //$sql = $this->db->createCommand("SELECT setting_name,setting_value FROM settings");
         //$settings = $sql->queryAll();
 
-        $settings = Config::find()->select(['param','value'])->all();
+        $settings = \common\models\Config::find()->select(['param','value'])->all();
 
 // Now let's load the settings into the global params array
 

@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'common\models\settings'
+        'common\models\Settings'
     ],
     'language' => 'ru-RU',
     'charset' => 'utf-8',

@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'inn',
             // 'zip_code',
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}',],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
         ],
     ]); ?>
 
