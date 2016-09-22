@@ -24,7 +24,7 @@ use yii\data\Pagination;
 use common\models\GoodsPodCategory;
 use common\models\Message;
 use yii\web\Response;
-use ReCaptcha\ReCaptcha;
+
 
 /**
  * Site controller
@@ -37,33 +37,33 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post','get'],
-                ],
-            ],
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            'access' => [
+//                'class' => AccessControl::className(),
+//                'only' => ['logout', 'signup'],
+//                'rules' => [
+//                    [
+//                        'actions' => ['signup'],
+//                        'allow' => true,
+//                        'roles' => ['?'],
+//                    ],
+//                    [
+//                        'actions' => ['logout'],
+//                        'allow' => true,
+//                        'roles' => ['@'],
+//                    ],
+//                ],
+//            ],
+//            'verbs' => [
+//                'class' => VerbFilter::className(),
+//                'actions' => [
+//                    'logout' => ['post','get'],
+//                ],
+//            ],
+//        ];
+//    }
 
     /**
      * @inheritdoc
@@ -384,24 +384,11 @@ class SiteController extends Controller
         $modelReqvizit = Reqvizit::find()->one();
 
         if ($model->load(Yii::$app->request->post())) {
-            //$gRecaptchaResponse = Yii::$app->request->post('g-recaptcha-response');
-        vd(Yii::$app->request->post());
-
-            $recaptcha = new ReCaptcha(self::SECRET_CAPTCHA);
-            $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
-            if ($resp->isSuccess()) {
-                // verified!
-            } else {
-                $errors = $resp->getErrorCodes();
-            }
-
-
-
-            if ($model->validate()) {
-                $model->save();
-                Yii::$app->session->setFlash('success', 'Ваше сообщение отправленно.');
-                return $this->refresh();
-            }
+                if ($model->validate()) {
+                    $model->save(false);
+                    Yii::$app->session->setFlash('success', 'Ваше сообщение отправленно.');
+                    return $this->refresh();
+                }
         }
 
         return $this->render('contact-us', [

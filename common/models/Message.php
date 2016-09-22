@@ -44,11 +44,11 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['message', 'subject', 'subject', 'user_name','email'], 'required'],
-            [['message'], 'string'],
+            [['message','user_name','email'], 'required'],
             [['created_at', 'updated_at', 'status'], 'integer'],
-            [['subject', 'email', 'user_name'], 'string', 'max' => 255],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LckOQcUAAAAALOfigoY4XA3YGeGgi4-sita2vdW']
+            [['subject', 'email', 'user_name','message'], 'string', 'max' => 255],
+            ['email', 'email'],
+            [[], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
     }
 
@@ -73,8 +73,6 @@ class Message extends \yii\db\ActiveRecord
     {
         $scenarios = parent::scenarios();
         $scenarios['create'] = ['message', 'email','user_name','subject'];
-
-
         return $scenarios;
     }
 }

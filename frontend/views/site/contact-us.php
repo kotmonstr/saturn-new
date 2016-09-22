@@ -4,9 +4,8 @@ use yii\helpers\Html;
 use frontend\assets\GalleryAsset;
 
 $this->registerJsFile('https://www.google.com/recaptcha/api.js',['depends'=>GalleryAsset::className(),'position'=> \yii\web\View::POS_HEAD]);
+$arrThemes = ['Товары'=>'Товары','Услуги'=> 'Услуги','Заказ'=>'Заказ'];
 
-
-$arrThemes = ['Товары','Услуги','Заказ'];
 ?>
 <div class="section section-breadcrumbs">
     <div class="container">
@@ -52,22 +51,17 @@ $arrThemes = ['Товары','Услуги','Заказ'];
                     <?= isset($modelReqvizit->inn) ? '<b>ИНН: </b>'. $modelReqvizit->inn .'<br>': null ?>
 
                 </p>
-                <!-- End Contact Info -->
             </div>
             <div class="col-sm-5">
-                <!-- Contact Form -->
                 <h3>Отправить нам сообщение</h3>
                 <div class="contact-form-wrapper">
-
                     <?php $form = ActiveForm::begin([
-
                         'options'=>['class'=>'form-horizontal'],
                         'fieldConfig' => [
                            'template' => '{label}<div class="col-sm-9">{input}</div><div class="col-sm-9">{error}</div>',
                            'labelOptions' => ['class' => 'col-sm-3 control-label'],
                     ],
                     ]); ?>
-
 
                     <?= $form->field($model, 'user_name')->textInput(['maxlength' => true,'autofocus' => true])->label('Ваше имя') ?>
 
@@ -77,21 +71,15 @@ $arrThemes = ['Товары','Услуги','Заказ'];
 
                     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-                    <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
-                        'name' => 'reCaptcha',
-                        'siteKey' => '6LckOQcUAAAAAOpv5GS1VRSEI1_tJa2iwtJHTpiz',
-                        'widgetOptions' => ['class' => 'col-sm-offset-3']
-                    ]) ?>
+                    <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className(),['siteKey' => '6LckOQcUAAAAAOpv5GS1VRSEI1_tJa2iwtJHTpiz','widgetOptions' => ['class' => 'pull-right']])->label('') ?>
 
                     <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary pull-right']) ?>
-
-
 
                     <?php ActiveForm::end(); ?>
 
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
