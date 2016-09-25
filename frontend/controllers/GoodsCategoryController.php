@@ -35,6 +35,7 @@ class GoodsCategoryController extends CoreController
 
         $searchModel = new GoodsCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = Yii::$app->params['ADMIN_ITEMS_PER_PAGE'];
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

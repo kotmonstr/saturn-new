@@ -18,6 +18,7 @@ class GoodsController extends CoreController
     {
         $searchModel = new GoodsSearch();
         $dataProvider = $searchModel->search(['user_id' => Yii::$app->user->id]);
+        $dataProvider->pagination->pageSize = Yii::$app->params['ADMIN_ITEMS_PER_PAGE'];
 
         return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
     }

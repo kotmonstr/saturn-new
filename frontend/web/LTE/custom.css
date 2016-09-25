@@ -22,3 +22,6 @@ padding: 10px;
 .bg-yellow{
     background-color: #f39c12 !important;
 }
+.action-column{
+    width: 100px;
+}
