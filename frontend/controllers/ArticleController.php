@@ -146,8 +146,6 @@ class ArticleController extends CoreController
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $model->validate();
-            vd($model->getErrors());
             return $this->render('create', [
                 'model' => $model,
             ]);
