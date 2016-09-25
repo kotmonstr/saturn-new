@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\StringHelper;
 use yii\widgets\LinkPager;
+use common\models\ArticleCategory;
 
 ?>
 
@@ -43,7 +44,13 @@ use yii\widgets\LinkPager;
                 <ul class="blog-categories">
                     <? if(isset($modelCategory)): ?>
                         <? foreach($modelCategory as $b): ?>
-                            <li><a href="<?= Url::to(['/site/article','category_id'=> $b->id]) ?>"><?= $b->name ?></a></li>
+                            <?php
+                            $result = ArticleCategory::is_CatecoryFull($b->id);
+
+                            ?>
+                           <? if(!$result): ?>
+                                <li><a href="<?= Url::to(['/site/article','category_id'=> $b->id]) ?>"><?= $b->name ?></a></li>
+                           <? endif; ?>
                         <? endforeach; ?>
                     <? endif; ?>
                 </ul>

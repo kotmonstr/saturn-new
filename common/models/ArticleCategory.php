@@ -61,4 +61,9 @@ class ArticleCategory extends \yii\db\ActiveRecord
     {
         return new TemplateQuery(get_called_class());
     }
+    
+    public static function is_CatecoryFull($id){
+        $countArticles = Article::find()->where(['article_category'=> $id])->count();
+        return $countArticles > 0 ? false : true;
+    }
 }

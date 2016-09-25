@@ -34,7 +34,7 @@ $url = $controller.'/'.$action;
             <li class="header">ТОВАРЫ</li>
             <li class="treeview <?= $url == 'goods/index' ||  $url == 'goods/create' ? 'active' : null ||  $url == 'goods/view' ? 'active' : null ||  $url == 'goods/update' ? 'active' : null ?>">
                 <a href="#">
-                    <i class="fa fa-diamond"></i>
+                    <i class="ion ion-bag"></i>
                     <span>Товары</span>
                     <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGoods ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -47,7 +47,7 @@ $url = $controller.'/'.$action;
 
             <li class="treeview <?= $url == 'goods-category/index' ||  $url == 'goods-category/create' ? 'active' : null ||  $url == 'goods-category/view' ? 'active' : null ||  $url == 'goods-category/update' ? 'active' : null?>">
                 <a href="#">
-                    <i class="fa fa-diamond"></i>
+                    <i class="ion ion-bag"></i>
                     <span>Категории</span>
                     <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGoodsCategory ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -60,7 +60,7 @@ $url = $controller.'/'.$action;
 
             <li class="treeview <?= $url == 'goods-pod-category/index' ||  $url == 'goods-pod-category/create' ? 'active' : null ||  $url == 'goods-pod-category/view' ? 'active' : null ||  $url == 'goods-pod-category/update' ? 'active' : null?>">
                 <a href="#">
-                    <i class="fa fa-diamond"></i>
+                    <i class="ion ion-bag"></i>
                     <span>Подкатегории</span>
                     <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGoodsPodCategory ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -80,7 +80,7 @@ $url = $controller.'/'.$action;
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Статьи</span>
-                    <span class="label label-primary pull-right from20-px-mr bg-red"><?= $this->context->countAllArticles ?></span>
+                    <span class="label  pull-right from20-px-mr bg-green"><?= $this->context->countAllArticles ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -92,7 +92,7 @@ $url = $controller.'/'.$action;
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Категории статей</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllArticleCategory  ?></span>
+                    <span class="label  pull-right from20-px-mr bg-green"><?= $this->context->countAllArticleCategory  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -106,7 +106,7 @@ $url = $controller.'/'.$action;
                 <a href="#">
                     <i class="fa fa-photo"></i>
                     <span>Cлайдер</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllSliderFotos  ?></span>
+                    <span class="label  pull-right from20-px-mr bg-yellow"><?= $this->context->countAllSliderFotos  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -117,7 +117,7 @@ $url = $controller.'/'.$action;
                 <a href="#">
                     <i class="fa fa-object-ungroup"></i>
                     <span>Галерея</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllGalleryPhotos  ?></span>
+                    <span class="label  pull-right from20-px-mr bg-yellow"><?= $this->context->countAllGalleryPhotos  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -129,7 +129,7 @@ $url = $controller.'/'.$action;
                 <a href="#">
                     <i class="fa fa-video-camera"></i>
                     <span>Видео галерея</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllVideo  ?></span>
+                    <span class="label  pull-right from20-px-mr bg-yellow"><?= $this->context->countAllVideo  ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -144,7 +144,7 @@ $url = $controller.'/'.$action;
                 <a href="#">
                     <i class="fa fa-envelope"></i>
                     <span>Сообщения</span>
-                    <span class="label label-primary pull-right from20-px-mr"><?= $this->context->countAllMessage ?></span>
+                    <span class="label  pull-right from20-px-mr bg-red"><?= $this->context->countAllMessage ?></span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">

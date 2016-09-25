@@ -65,7 +65,7 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['article_category', 'title', 'image', 'src', 'content', 'template', 'slug'], 'required'],
+            [['article_category', 'title', 'image', 'src', 'content', 'template'], 'required'],
             [['article_category', 'created_at', 'updated_at', 'updater_id', 'view', 'template','like'], 'integer'],
             [['content'], 'string'],
             [['title', 'image', 'src'], 'string', 'max' => 255],
