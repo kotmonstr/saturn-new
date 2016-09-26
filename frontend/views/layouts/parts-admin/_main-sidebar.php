@@ -148,7 +148,20 @@ $url = $controller.'/'.$action;
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?= $url == 'message/index' ? 'active' : null ?>"><a href="<?= Url::to('/message/index') ?>"><i class="fa <?= $url == 'messageindex' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'message/index' ? 'active' : null ?>"><a href="<?= Url::to('/message/index') ?>"><i class="fa <?= $url == 'message/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview <?= $url == 'price-list/index'  ? 'active' : null ?>">
+                <a href="#">
+                    <i class="fa fa-list"></i>
+                    <span>Прайс лист</span>
+                    <span class="label  pull-right from20-px-mr bg-red"></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= $url == 'price-list/index' ? 'active' : null ?>"><a href="<?= Url::to('/price-list/index') ?>"><i class="fa <?= $url == 'price-list/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'price-list/create' ? 'active' : null ?>"><a href="<?= Url::to('/price-list/create') ?>"><i class="fa <?= $url == 'price-list/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
                 </ul>
             </li>
 

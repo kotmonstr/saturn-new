@@ -6,7 +6,7 @@ use common\models\GoodsCategory;
 use frontend\assets\AdminAsset;
 use common\models\GoodsPodCategory;
 use yii\helpers\Url;
-
+use vova07\imperavi\Widget;
 
 
 $this->registerJsFile('/js/upload_goods.js', ['depends' => AdminAsset::className()]);
@@ -36,8 +36,44 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
                     <?= $form->field($model, 'category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsCategory, 'id', 'name'), ['prompt'=>'--Выберите--','onchange' => 'getPodCatBycatId(jQuery(this).val())'])->label('Категория товара ' . Html::a(' Создать', '/goods-category/create', ['class' => 'btn btn-primary'])) ?>
                     <?= $form->field($model, 'pod_category_id',['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'),['prompt'=>'--Выберите--'])->label('Подкатегория ' . Html::a(' Создать', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
                 </div>
+                <?= $form->field($model, 'descr')->widget(Widget::className(), [
+                    'settings' => [
+                        'iframe' => true,
+                        'air' => true,
+                        'formatting' => ['iframe'],
+                        'lang' => 'ru',
+                        'minHeight' => 400,
+                        'pastePlainText' => true,
+                        'buttonSource' => true,
+                        'focus' => true,
+                        'imageUpload' => '/article/upload',
+                        'imageManagerJson' => '/article/uploaded',
+                        'plugins' => [
+                            'clips',
+                            'fullscreen',
+                            'imagemanager',
+                            'video'
+                        ],
+                        'buttons' => ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'image', 'file', 'link', 'alignment', 'horizontalrule'],
+                    ]
+                ]) ?>
 
-                <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <? if(!$model->isNewRecord ): ?>
                 <?php if ($model->status == 1) {
