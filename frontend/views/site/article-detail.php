@@ -62,7 +62,7 @@ use yii\helpers\Url;
                         <i class="glyphicon glyphicon-time"></i><?= Yii::$app->formatter->asDate($model->created_at, 'php:F, Y'); ?>
                     </div>
                     <div class="single-post-image">
-                        <img src="/upload/article/<?= $model->image ?>" alt="Post Title">
+                        <img  class="img-post-preview" src="/upload/article/<?= $model->image ?>" alt="Post Title">
                     </div>
                     <div class="single-post-content">
                         <h3><?= $model->title ?></h3>

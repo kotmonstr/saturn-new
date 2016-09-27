@@ -67,7 +67,7 @@ $arrThemes = ['Товары'=>'Товары','Услуги'=> 'Услуги','З
 
                     <?= $form->field($model, 'email')->textInput(['maxlength' => true])->label('Ваш Email') ?>
 
-                    <?= $form->field($model, 'subject')->dropDownList($arrThemes)->label('Выберите тему') ?>
+                    <?= $form->field($model, 'subject')->textInput()->label('Тема') ?>
 
                     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 

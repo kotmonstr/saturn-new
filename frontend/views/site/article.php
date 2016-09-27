@@ -77,7 +77,7 @@ use common\models\ArticleCategory;
                                 <i class="glyphicon glyphicon-time"></i><?= Yii::$app->formatter->asDate($article->created_at, 'php:F, Y'); ?>
                             </div>
                             <div class="single-post-image">
-                                <img src="<?= $article->src ?>/<?= $article->image ?>" alt="Post Title" height="100%">
+                                <img src="<?= $article->src ?>/<?= $article->image ?>" alt="Post Title" height="">
                             </div>
                             <div class="single-post-content">
                                 <h3><?= $article->title ?></h3>

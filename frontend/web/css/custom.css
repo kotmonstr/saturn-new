@@ -58,13 +58,16 @@
 .custom-port{
     height: 400px;
 }
-.blog-post img {
+.img-post-preview {
     max-width: 100%;
-    height: 250px;
+    height: 500px;
     overflow: hidden;
 }
 .section:last-child{
     padding-bottom: 0px!important;
+}
+.fancybox img{
+    height: 270px;
 }
 
 

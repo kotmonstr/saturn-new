@@ -132,8 +132,9 @@ $i = 0;
                                         <?= ceil($goods->price) . ' Руб.' ?>
                                     </div>
                                     <div class="post-more-r col-md-6" style="text-align: center">
-                                        <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"
-                                           class="btn btn-small">Открыть</a>
+                                        <? if($goods->pdf ): ?>
+                                            <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>" class="btn btn-small" <?= $goods->pdf ? "" : 'disabled' ?> >Открыть</a>
+                                        <? endif; ?>
                                     </div>
                                 </div>
 
@@ -182,7 +183,7 @@ $i = 0;
         padding-top: 10px;
     }
     .blog-post {
-        height: 350px !important;
+        height: 330px !important;
     }
 
     .post-image {
