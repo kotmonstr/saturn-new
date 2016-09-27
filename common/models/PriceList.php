@@ -19,6 +19,8 @@ class PriceList extends \yii\db\ActiveRecord
 {
     public $file;
 
+
+
     public function behaviors()
     {
         return [
@@ -42,10 +44,13 @@ class PriceList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file_name','descr','title'], 'required'],
+
+
+            [['descr','title','file_name'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['path', 'descr','title'], 'string', 'max' => 255],
-            [['file_name'], 'file','extensions' => 'pdf'],
+            [['file'], 'file', 'skipOnEmpty' => true,'extensions' => 'pdf']
+
 
         ];
     }
@@ -65,4 +70,20 @@ class PriceList extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+
+            $fullPath = Yii::getAlias('@frontend')  .'/web/upload/pdf/'.$this->file_name;
+            if(file_exists($fullPath)) {
+                unlink($fullPath);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
