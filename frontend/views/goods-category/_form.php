@@ -5,7 +5,7 @@ use frontend\assets\AdminAsset;
 $this->registerJsFile('/js/upload_goods_category_logo.js', ['depends' => AdminAsset::className()]);
 ?>
 
-<div class="goods-category-form">
+
 
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'form-send-file']); ?>
@@ -28,4 +28,3 @@ $this->registerJsFile('/js/upload_goods_category_logo.js', ['depends' => AdminAs
 
     <?php ActiveForm::end(); ?>
 
-</div>

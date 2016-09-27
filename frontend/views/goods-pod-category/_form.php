@@ -9,10 +9,7 @@ $arrGoodsCategory = GoodsCategory::find()->all();
 
 ?>
 
-<section class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
+
 
                 <?php $form = ActiveForm::begin(); ?>
 
@@ -28,7 +25,5 @@ $arrGoodsCategory = GoodsCategory::find()->all();
 
                 <?php ActiveForm::end(); ?>
 
-            </div>
-        </div>
-    </div>
-</section>
+
+

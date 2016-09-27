@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="box-body" style="display: block;">
+
         <div class="table-responsive">
 
 
