@@ -59,13 +59,13 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item', 'price', 'category_id', 'descr','new_image','pod_category_id'], 'required'],
+            [['item', 'price', 'category_id', 'descr'], 'required'],
 
             [['category_id','pod_category_id','currency'], 'integer'],
             [['price'], 'double'],
 
-            [['descr', 'image','slug','pdf'], 'string'],
-            [['item'], 'string', 'max' => 255],
+            [['image','slug','pdf'], 'string'],
+            [['item','descr'], 'string', 'max' => 255],
             [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
             //[['pdf_file'], 'file', 'skipOnEmpty' => false,'extensions' => 'pdf'],
             //[['file'], 'file','extensions' => 'pdf'],

@@ -31,16 +31,18 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
                 <a href="<?= Url::to('/site/gallery'); ?>">Галерея</a>
             </li>
 
-            <li class="<?= $url == 'site/article' ? 'active-bold' : null ?>">
-                <a href="<?= Url::to('/site/article'); ?>">Блог</a>
-            </li>
-
             <li class="<?= $url == 'site/video' ? 'active-bold' : null ?>">
                 <a href="<?= Url::to('/site/video'); ?>">Видео</a>
             </li>
 
-            <li class="<?= $url == 'site/about' ? 'active-bold' : null ?>">
-                <a href="<?= Url::to('/site/about'); ?>">О компании</a>
+            <li class="<?= $url == 'site/article' ? 'active-bold' : null ?>">
+                <a href="<?= Url::to('/site/article'); ?>">Статьи</a>
+            </li>
+
+
+
+            <li class="<?= $url == 'site/price-list' ? 'active-bold' : null ?>">
+                <a href="<?= Url::to('/site/price-list'); ?>">Прайс листы</a>
             </li>
 
             <li class="<?= $url == 'site/contact-us' ? 'active-bold' : null ?>">
@@ -49,19 +51,19 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 
             <?= PageWidget::widget(); ?>
 
-            <? if(yii::$app->user->isGuest): ?>
-                <li class="<?= $url == 'site/signup' ? 'active-bold' : null ?>">
-                    <a href="<?= Url::to('/site/signup'); ?>">Регистрация</a>
-                </li>
-            <? endif; ?>
-
-            <li class="<?= $url == 'site/login' || $url == '/site/logout' ? 'active-bold' : null ?>">
-                <? if(yii::$app->user->isGuest): ?>
-                    <a href="<?= Url::to('/site/login'); ?>">Вход</a>
-                <? else: ?>
-                    <a href="<?= Url::to('/site/logout'); ?>">Выход(<?= Yii::$app->user->identity->username ?>)</a>
-                <? endif ?>
-            </li>
+<!--            --><?// if(yii::$app->user->isGuest): ?>
+<!--                <li class="--><?//= $url == 'site/signup' ? 'active-bold' : null ?><!--">-->
+<!--                    <a href="--><?//= Url::to('/site/signup'); ?><!--">Регистрация</a>-->
+<!--                </li>-->
+<!--            --><?// endif; ?>
+<!---->
+<!--            <li class="--><?//= $url == 'site/login' || $url == '/site/logout' ? 'active-bold' : null ?><!--">-->
+<!--                --><?// if(yii::$app->user->isGuest): ?>
+<!--                    <a href="--><?//= Url::to('/site/login'); ?><!--">Вход</a>-->
+<!--                --><?// else: ?>
+<!--                    <a href="--><?//= Url::to('/site/logout'); ?><!--">Выход(--><?//= Yii::$app->user->identity->username ?><!--)</a>-->
+<!--                --><?// endif ?>
+<!--            </li>-->
 
             <li>
                 <a href="<?= Url::to('/admin/index'); ?>">Админка</a>
@@ -84,9 +86,9 @@ line-height: 40px;
         //float:left;
         width:100%;
         list-style:none;
-        //font-weight:bold;
+        font-weight:bold;
         //margin-bottom:10px;
-        font-size: 12px;
+        font-size: 15px;
     }
     #nav li{
         float:left;
@@ -101,10 +103,10 @@ line-height: 40px;
         //background:#333;
         text-decoration:none;
 
-        text-shadow:1px 1px 1px rgba(0,0,0,0.45); /* Тень текста, чтобы приподнять его на немного */
+        //text-shadow:1px 1px 1px rgba(0,0,0,0.45); /* Тень текста, чтобы приподнять его на немного */
         //-moz-border-radius:2px;
         //-webkit-border-radius:2px;
-       // border-radius:2px;
+        border-radius:2px;
     }
     #nav li a:hover{
         //color:#fff;

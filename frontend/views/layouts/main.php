@@ -109,7 +109,7 @@ SliderAsset::register($this);
                 v_offset:0
             },
             gridwidth:1230,
-            gridheight:720
+            gridheight:420
         });
     });
 </script>

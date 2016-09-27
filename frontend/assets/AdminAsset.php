@@ -48,7 +48,8 @@ class AdminAsset extends AssetBundle
         'LTE/dist/js/app.js',
         //'LTE/dist/js/pages/dashboard.js',
         'LTE/dist/js/demo.js',
-        'switch/bootstrap-switch.min.js'
+        'switch/bootstrap-switch.min.js',
+
 
 
     ];

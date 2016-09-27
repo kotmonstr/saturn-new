@@ -44,8 +44,8 @@ class GoodsController extends CoreController
 
             $model->image = Yii::$app->request->post('Goods')['new_image'];
 
-            //$model->validate();
-            // vd($model->getErrors());
+            $model->validate();
+             vd($model->getErrors());
             if($model->validate() && $model->save()){
                 Yii::$app->session->setFlash('success', 'Товар успешно создан.');
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -63,7 +63,7 @@ class GoodsController extends CoreController
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
-            // vd($model);
+
             $model = $this->changePrice($model);
 
             $model->file = UploadedFile::getInstance($model, 'file');
@@ -77,14 +77,14 @@ class GoodsController extends CoreController
                 $model->image = $image->name;
                 //$model->save();
             }
-            //vd(2);
+            //vd(Yii::$app->request->post());
             //$model->validate();
-            //vd($model->getErrors());
-            $model->updateAttributes($model);
+            //vd($model->getErrors(),false);
+            $model->save();
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', ['model' => $model,]);
+            return $this->render('update', ['model' => $model]);
         }
     }
 

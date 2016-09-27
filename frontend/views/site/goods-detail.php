@@ -53,16 +53,18 @@ use yii\helpers\Html;
                     <div class="tab-content product-detail-info">
                         <div class="tab-pane active" id="tab1">
                             <h4>Описание товара</h4>
-                            <p>
+
                                 <?= $model->descr; ?>
-                            </p>
+
 
                         </div>
                         <!-- Tab Content (Specification) -->
                         <div class="tab-pane" id="tab2">
                        <?= Html::a($model->pdf,'/upload/pdf/'.$model->pdf) ?>
+                       <?= $model->descr; ?>
                         </div>
                     </div>
+                 
                 </div>
             </div>
             <!-- End Full Description & Specification -->

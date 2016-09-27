@@ -11,7 +11,7 @@ use common\models\ArticleCategory;
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Блог</h1>
+                <h1>Статьи</h1>
             </div>
         </div>
     </div>
@@ -77,11 +77,11 @@ use common\models\ArticleCategory;
                                 <i class="glyphicon glyphicon-time"></i><?= Yii::$app->formatter->asDate($article->created_at, 'php:F, Y'); ?>
                             </div>
                             <div class="single-post-image">
-                                <img src="<?= $article->src ?>/<?= $article->image ?>" alt="Post Title" width="100%">
+                                <img src="<?= $article->src ?>/<?= $article->image ?>" alt="Post Title" height="100%">
                             </div>
                             <div class="single-post-content">
                                 <h3><?= $article->title ?></h3>
-                                <p><?= StringHelper::truncate($article->content,200) ?></p>
+                                <p><?= StringHelper::truncate($article->content,100) ?></p>
                                 <a href="<?= Url::to(['/site/article-detail','id'=> $article->id]) ?>" class="btn btn-primary" >Подробнее</a>
 
                             </div>

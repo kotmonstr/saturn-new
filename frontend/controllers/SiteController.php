@@ -465,4 +465,15 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionPriceList()
+    {
+
+        $this->layout = 'goods-detail';
+
+        //$model = Goods::find()->where(['slug' => $slug])->one();
+        return $this->render('price-list', [
+            //'model' => $model,
+        ]);
+    }
+
 }
