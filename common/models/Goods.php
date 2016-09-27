@@ -59,14 +59,12 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item', 'price', 'category_id', 'descr'], 'required'],
-
+            [['item', 'price', 'category_id', 'descr','units'], 'required'],
             [['category_id','pod_category_id','currency'], 'integer'],
             [['price'], 'double'],
-
             [['image','slug','pdf'], 'string'],
-            [['item','descr'], 'string', 'max' => 255],
-            [['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
+            [['item','descr','units'], 'string', 'max' => 255],
+            //[['image_file'], 'file', 'extensions' => 'gif, jpg,png'],
             //[['pdf_file'], 'file', 'skipOnEmpty' => false,'extensions' => 'pdf'],
             //[['file'], 'file','extensions' => 'pdf'],
         ];
@@ -90,7 +88,9 @@ class Goods extends \yii\db\ActiveRecord
             'brend_id' => 'Бренд',
             'rating'=>'Рейтинг',
             'slug'=>'slug',
-            'currency'=>'Валюта'
+            'currency'=>'Валюта',
+            'units'=>'Еденицы измерения',
+            'image_file'=>'Картинка'
         ];
     }
 

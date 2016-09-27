@@ -7,6 +7,7 @@ use common\models\Gallery;
 use common\models\Goods;
 use common\models\GoodsCategory;
 use common\models\Pages;
+use common\models\PriceList;
 use common\models\Reqvizit;
 use common\models\Video;
 use Yii;
@@ -457,6 +458,7 @@ class SiteController extends Controller
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())
+            ->orderBy('id DESC')
             ->all();
 
         return $this->render('video',[
@@ -469,10 +471,10 @@ class SiteController extends Controller
     {
 
         $this->layout = 'goods-detail';
+        $model = PriceList::find()->all();
 
-        //$model = Goods::find()->where(['slug' => $slug])->one();
         return $this->render('price-list', [
-            //'model' => $model,
+            'model' => $model,
         ]);
     }
 

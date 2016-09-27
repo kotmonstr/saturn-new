@@ -21,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="box-body" style="display: block;">
 
-        <h1><?= 'Товар: ' . Html::encode($this->title) ?></h1>
-
         <p>
             <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
@@ -38,19 +36,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'item',
-                'price',
 
+                [
+                    'attribute' => 'price',
+                    'format' => 'raw',
+                    'value' => $model->price .  ' Руб.'
+                ],
+                [
+                    'attribute' => 'units',
+                    'format' => 'raw',
+                    'value' => $model->units
+                ],
                 [
                     'attribute' => 'category_id',
                     'format' => 'raw',
                     'value' => Html::a(GoodsCategory::find()->where(['id' => $model->category_id])->one()->getName(), '/goods-category/view?id=' . $model->category_id)
                 ],
-                // [
-                //'attribute' => 'pod_category_id',
-                //'format' => 'raw',
-                //'value' => Html::a(GoodsPodCategory::find()->where(['id' => $model->pod_category_id])->one()->getName(), '/goods-pod-category/view?id=' . $model->pod_category_id)
-                // ],
-
+                [
+                    'attribute' => 'pod_category_id',
+                    'format' => 'raw',
+                    'value' => isset($model->pod_category_id) ? Html::a(GoodsPodCategory::find()->where(['id' => $model->pod_category_id])->one()->getName(), '/goods-pod-category/view?id=' . $model->pod_category_id) : 'нет'
+                ],
                 'descr:ntext',
 
                 [
@@ -60,12 +66,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 ], [
                     'attribute' => 'pdf',
                     'format' => 'raw',
-                    'value' => $model->pdf ? Html::a($model->pdf, '/upload/pdf/' . $model->pdf) : 'не загружен'
+                    'value' => $model->pdf ? Html::a($model->pdf, '/upload/pdf/' . $model->pdf) : 'нет'
                 ],
                 [
                     'attribute' => 'image',
                     'value' => isset($model->image) && $model->image != '' ? '/upload/goods/' . $model->image : '/img-custom/no_photo.jpg',
-                    'format' => ['image', ['width' => '300', 'height' => '300']],
+                    'format' => ['image', ['width' => '300', 'height' => '200']],
                 ],
             ],
         ]) ?>

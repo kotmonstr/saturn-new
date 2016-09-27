@@ -33,6 +33,7 @@ class GoodsController extends CoreController
 
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
+
             $model = $this->changePrice($model);
             $model->status = 1;
 
@@ -43,12 +44,17 @@ class GoodsController extends CoreController
             }
 
             $model->image = Yii::$app->request->post('Goods')['new_image'];
+            $model->image_file = Yii::$app->request->post('Goods')['new_image'];
 
-            $model->validate();
-             vd($model->getErrors());
-            if($model->validate() && $model->save()){
+            //$model->validate();
+             //vd($model->getErrors());
+            if($model->validate() == true && $model->save()){
                 Yii::$app->session->setFlash('success', 'Товар успешно создан.');
                 return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+
+                    return $this->render('create', ['model' => $model,]);
+
             }
 
 
@@ -63,29 +69,32 @@ class GoodsController extends CoreController
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post())) {
-
-            $model = $this->changePrice($model);
-
+            //vd(Yii::$app->request->post());
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->file) {
                 $model->file->saveAs('upload/pdf/' . $model->file->name);
                 $model->pdf = $model->file->name;
             }
 
-            if (UploadedFile::getInstance($model, 'image_file')) {
-                $image = UploadedFile::getInstance($model, 'image_file');
-                $model->image = $image->name;
-                //$model->save();
+            $model->new_image= UploadedFile::getInstance($model, 'image_file');
+            if ($model->new_image) {
+                $model->image = $model->new_image->name;
             }
+                //$model->save();
+
             //vd(Yii::$app->request->post());
             //$model->validate();
-            //vd($model->getErrors(),false);
-            $model->save();
-
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', ['model' => $model]);
+            //vd($model->getErrors());
+            if($model->validate() == true && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Товар успешно отредактирован.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                //$model->validate();
+                //vd($model->getErrors());
+            }
         }
+            return $this->render('update', ['model' => $model]);
+
     }
 
     public function actionDelete($id)

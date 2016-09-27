@@ -16,6 +16,8 @@ $this->registerJsFile('/js/dropdown.js', ['depends' => AdminAsset::className()])
 $arrGoodsCategory = GoodsCategory::find()->all();
 $arrGoodsPodCategory = GoodsPodCategory::find()->all();
 
+$arrUnits = ['шт'=>'шт','м'=>'м','м²'=>'м²','м³'=>'м³','г'=>'г','кг'=>'кг','тонн'=>'тонн','литр'=>'литр','упак'=>'упак','рул'=>'рул','упак'=>'упак' ];
+
 ?>
 
 
@@ -32,30 +34,34 @@ $arrGoodsPodCategory = GoodsPodCategory::find()->all();
     <?= $form->field($model, 'pod_category_id', ['options' => ['class' => 'col-md-6']])->dropDownList(ArrayHelper::map($arrGoodsPodCategory, 'id', 'name'), ['prompt' => '--Выберите--'])->label('Подкатегория ' . Html::a(' Создать', '/goods-pod-category/create', ['class' => 'btn btn-primary'])) ?>
 </div>
 
-<?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
+<?= $form->field($model, 'descr')->textarea(['rows' => 12]) ?>
 
-<? if (!$model->isNewRecord): ?>
-    <?php if ($model->status == 1) {
-        echo $form->field($model, 'status')->checkbox(['class' => 'act'])->label('');
-    } else {
-        echo $form->field($model, 'status')->checkbox(['class' => 'non-act'])->label('');
-    } ?>
-<? endif ?>
+
 
 <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-md-3">
+        <? if (!$model->isNewRecord): ?>
+            <?php if ($model->status == 1) {
+                echo $form->field($model, 'status')->checkbox(['class' => 'act'])->label(' ');
+            } else {
+                echo $form->field($model, 'status')->checkbox(['class' => 'non-act'])->label(' ');
+            } ?>
+        <? endif ?>
+    </div>
+
+    <div class="col-md-3">
+        <?= $form->field($model, 'units', ['options' => ['class' => 'col-md-6']])->dropDownList($arrUnits, ['prompt' => '--Выберите--']) ?>
+    </div>
+
+    <div class="col-md-3">
         <?= $model->pdf ? $model->pdf : 'Выберите файл в формате Pdf'; ?>
         <?= $form->field($model, 'file')->fileInput()->label('Pdf file') ?>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $model->image != '' ? Html::img('/upload/goods/' . $model->image, ['width' => '200px', 'height' => '200px', 'class' => 'target_image']) : Html::img('/images/no_photo.png', ['width' => '200px', 'height' => '200px', 'class' => 'target_image']); ?>
-
         <?= $form->field($model, 'image_file')->fileInput(['class' => 'send-file', 'onchange' => 'sendfile()'])->label('Картинка') ?>
-        <? //= $form->field($model, 'image_file_extra[]')->fileInput(['class' => 'hidden', 'onchange' => 'uploadExtraImage(' . $model->id . ')', 'multiple' => true])->label('') ?>
 
-        <?php if (!$model->isNewRecord) { ?>
-            <?= Html::Button('<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить фото', ['class' => 'btn', 'onclick' => '$("#goods-image_file_extra").click()']) ?>
-        <?php } ?>
         <div style="width:700px;display: none">
             <?= $form->field($model, 'new_image')->hiddenInput(['class' => 'new_image', 'value' => $model->image])->label('') ?>
         </div>

@@ -32,7 +32,7 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
                                 <div class="post-image">
                                     <?= Html::a(Html::img($galerySlide->file_path . $galerySlide->file_name, []), $galerySlide->file_path . $galerySlide->file_name, ['class' => 'fancybox', 'title' => $galerySlide->text, 'rel' => 'fancybox-thumb']) ?>
                                 </div>
-                                <div>
+                                <div class="text-font-lr">
                                     <?= $galerySlide->text ?>
                                 </div>
                             </div>
@@ -122,6 +122,10 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
     h5 a {
         color: #53555c;
     !important;
+    }
+
+    .text-font-lr , .fancybox-title{
+        font-size: 20px;
     }
 </style>
 
