@@ -116,23 +116,27 @@ $i = 0;
                                     <? endif ?>
                                 </div>
 
-                                <a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"><img
+                                <a class="goods-image-a" href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"><img
                                         src="<?= '/upload/goods/' . $goods->image ?>"
                                         class="post-image"
                                         alt="Post Title"></a>
 
                                 <div class="post-title">
-                                    <h5><a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
+                                    <h5 class="goods-h5"><a href="<?= Url::to(['/site/goods-detail/', 'slug' => $goods->slug]) ?>"
                                            title="<?= $goods->item ?>"><?= StringHelper::truncate($goods->item, 100); ?></a>
                                     </h5>
                                 </div>
-                                <div class="good-price" style="text-align: center">
-                                    <?= ceil($goods->price) . ' Руб' ?>
+
+                                <div class="col-md-12 goods-md" >
+                                    <div class="good-price col-md-6" style="text-align: center;margin-bottom: 5px ">
+                                        <?= ceil($goods->price) . ' Руб.' ?>
+                                    </div>
+                                    <div class="post-more-r col-md-6" style="text-align: center">
+                                        <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"
+                                           class="btn btn-small">Открыть</a>
+                                    </div>
                                 </div>
-                                <div class="post-more">
-                                    <a href="<?= Url::to('/upload/pdf/' . $goods->pdf) ?>"
-                                       class="btn btn-small">Открыть</a>
-                                </div>
+
                             </div>
                         </div>
                     <? endforeach; ?>
@@ -173,8 +177,12 @@ $i = 0;
 </div>
 <!-- End Posts List -->
 <style>
+    .goods-md{
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+    }
     .blog-post {
-        height: 355px !important;
+        height: 350px !important;
     }
 
     .post-image {
@@ -215,6 +223,15 @@ $i = 0;
 
     .secnd-tab {
         margin-left: 20px;
+    }
+    .goods-image-a{
+        text-align: center;
+    display: block;
+    }
+    .goods-h5{
+        height: 46px;
+        overflow: hidden;
+        text-align: center;
     }
 </style>
 
