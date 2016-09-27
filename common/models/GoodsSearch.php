@@ -19,7 +19,7 @@ class GoodsSearch extends Goods
     {
         return [
             [['id', 'price', 'category_id', 'status','pod_category_id'], 'integer'],
-            [['item', 'descr','slug'], 'safe'],
+            [['item', 'descr','slug','units'], 'safe'],
         ];
     }
 

@@ -34,7 +34,7 @@ class Reqvizit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_name', 'country', 'address', 'mobile', 'fax', 'email', 'schet', 'inn', 'zip_code'], 'required'],
+            [['company_name', 'country', 'address', 'mobile'], 'required'],
             [['zip_code'], 'integer'],
             [['company_name', 'country', 'mobile', 'fax'], 'string', 'max' => 100],
             [['address', 'email', 'schet', 'inn'], 'string', 'max' => 255]

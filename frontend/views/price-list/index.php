@@ -33,8 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'file_name',
+            'title',
+
+            [
+                'attribute' => 'file_name',
+                'format' => 'html',
+                'value' => function ($dataProvider) {
+                    return Html::a($dataProvider->file_name, '/upload/pdf/'. $dataProvider->file_name);
+                }
+            ],
             //'path',
             'descr',
             //'created_at',

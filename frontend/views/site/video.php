@@ -31,11 +31,11 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
                         <div class="col-md-4 col-sm-6">
                             <div class="blog-post ">
                                 <div class="post-image">
-                                    <iframe class="fancybox" width="100%" height="100%" src="https://www.youtube.com/embed/<?= $youtube->youtube_id ?>" frameborder="0" allowfullscreen></iframe>
+                                    <iframe class="fancybox" width="100%" height="200px" src="https://www.youtube.com/embed/<?= $youtube->youtube_id ?>" frameborder="0" allowfullscreen></iframe>
 
                                 </div>
                                 <div>
-                                    <?= $youtube->title ?>
+                                    <?= StringHelper::truncate($youtube->title,40) ?>
                                 </div>
                             </div>
 
