@@ -28,12 +28,12 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
                     <? foreach ($model as $galerySlide): ?>
 
                         <div class="col-md-4 col-sm-6">
-                            <div class="blog-post ">
+                            <div class="blog-post " style="height: 325px;overflow: hidden">
                                 <div class="post-image">
                                     <?= Html::a(Html::img($galerySlide->file_path . $galerySlide->file_name, []), $galerySlide->file_path . $galerySlide->file_name, ['class' => 'fancybox', 'title' => $galerySlide->text, 'rel' => 'fancybox-thumb']) ?>
                                 </div>
-                                <div class="text-font-lr">
-                                    <?= $galerySlide->text ?>
+                                <div class="text-font-lr" style="text-align: center">
+                                    <?= StringHelper::truncate($galerySlide->text,60) ?>
                                 </div>
                             </div>
 
