@@ -126,11 +126,15 @@ class SiteController extends Controller
             ->limit(9)
             ->orderBy('id DESC')
             ->all();
+
+        $modelCategory = ArticleCategory::find()->limit(10)->all();
+
         
         return $this->render('article-detail',
             [
                 'model' => $model,
                 'modelArticleLast' => $modelArticleLast,
+                'modelCategory'=> $modelCategory
             ]
         );
     }

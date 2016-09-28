@@ -33,22 +33,22 @@ $arrThemes = ['Товары'=>'Товары','Услуги'=> 'Услуги','З
             <div class="col-sm-7">
                 <!-- Map -->
                 <div id="contact-us-map">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=tm1pJFyb_UhoJeLWxcFEGTTX0wHY4emR&amp;width=653&amp;height=300&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
 
-                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=67WOuEMjZVH5_zD6AWCf4ALTdsaM5mea&amp;width=653&amp;height=300&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
                 </div>
                 <!-- End Map -->
                 <!-- Contact Info -->
                 <p class="contact-us-details">
 
-                    <?= isset($modelReqvizit->company_name) ? '<b>Компания: </b>'. $modelReqvizit->company_name.'<br>' : null ?>
-                    <?= isset($modelReqvizit->zip_code) ? '<b>Индекс: </b>'. $modelReqvizit->zip_code .'<br>': null ?>
-                    <?= isset($modelReqvizit->country) ? '<b>Страна: </b>'. $modelReqvizit->country .'<br>': null ?>
-                    <?= isset($modelReqvizit->address) ? '<b>Адрес: </b>'. $modelReqvizit->address .'<br>': null ?>
-                    <?= isset($modelReqvizit->mobile) ? '<b>Телефон: </b>'. $modelReqvizit->mobile .'<br>': null ?>
-                    <?= isset($modelReqvizit->fax) ? '<b>Fax: </b>'. $modelReqvizit->fax .'<br>': null ?>
-                    <?= isset($modelReqvizit->email) ? '<b>Email: </b><a href="mailto:">'. $modelReqvizit->email .'</a><br>': null ?>
-                    <?= isset($modelReqvizit->schet) ? '<b>P/счет: </b>'. $modelReqvizit->schet.'<br>' : null ?>
-                    <?= isset($modelReqvizit->inn) ? '<b>ИНН: </b>'. $modelReqvizit->inn .'<br>': null ?>
+                    <?= $modelReqvizit->company_name ? '<b>Компания: </b>'. $modelReqvizit->company_name.'<br>' : null ?>
+                    <?= $modelReqvizit->zip_code ? '<b>Индекс: </b>'. $modelReqvizit->zip_code .'<br>': null ?>
+                    <?= $modelReqvizit->country ? '<b>Страна: </b>'. $modelReqvizit->country .'<br>': null ?>
+                    <?= $modelReqvizit->address ? '<b>Адрес: </b>'. $modelReqvizit->address .'<br>': null ?>
+                    <?= $modelReqvizit->mobile ? '<b>Телефон: </b>'. $modelReqvizit->mobile .'<br>': null ?>
+                    <?= $modelReqvizit->fax ? '<b>Fax: </b>'. $modelReqvizit->fax .'<br>': null ?>
+                    <?= $modelReqvizit->email ? '<b>Email: </b><a href="mailto:">'. $modelReqvizit->email .'</a><br>': null ?>
+                    <?= $modelReqvizit->schet ? '<b>P/счет: </b>'. $modelReqvizit->schet.'<br>' : null ?>
+                    <?= $modelReqvizit->inn ? '<b>ИНН: </b>'. $modelReqvizit->inn .'<br>': null ?>
 
                 </p>
             </div>

@@ -21,7 +21,7 @@ use common\models\ArticleCategory;
     <div class="container">
         <div class="row">
             <div class="col-sm-4 blog-sidebar">
-                <h4>Поиск по блогам</h4>
+                <h4>Поиск по статьям</h4>
                 <form>
                     <div class="input-group">
                         <input class="form-control input-md" id="appendedInputButtons" type="text">

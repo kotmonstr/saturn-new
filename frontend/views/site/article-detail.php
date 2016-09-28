@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use common\models\ArticleCategory;
 ?>
 
 <!-- Page Title -->
@@ -18,7 +19,7 @@ use yii\helpers\Url;
         <div class="row">
             <!-- Sidebar -->
             <div class="col-sm-4 blog-sidebar">
-                <h4>Поиск по блогу</h4>
+                <h4>Поиск по статьям</h4>
                 <form>
                     <div class="input-group">
                         <input class="form-control input-md" id="appendedInputButtons" type="text">
@@ -39,10 +40,20 @@ use yii\helpers\Url;
                 </ul>
                 <h4>Категории</h4>
                 <ul class="blog-categories">
-                    <li><a href="#">Lorem ipsum</a></li>
-                    <li><a href="#">Sed sit amet metus</a></li>
-                    <li><a href="#">Nunc et diam </a></li>
-                    <li><a href="#">Quisque</a></li>
+
+
+                    <? if(isset($modelCategory)): ?>
+                        <? foreach($modelCategory as $b): ?>
+                            <?php
+                            $result = ArticleCategory::is_CatecoryFull($b->id);
+
+                            ?>
+                            <? if(!$result): ?>
+                                <li><a href="<?= Url::to(['/site/article','category_id'=> $b->id]) ?>"><?= $b->name ?></a></li>
+                            <? endif; ?>
+                        <? endforeach; ?>
+                    <? endif; ?>
+
                 </ul>
                 <h4>Архив</h4>
                 <ul>

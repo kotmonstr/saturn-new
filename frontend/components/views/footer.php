@@ -17,37 +17,36 @@ $url = isset($modelVideo) ? '/site/video?slug='.$modelVideo->slug : 'javascript:
                     </div>
                 </div>
             </div>
-            <div class="col-footer col-md-3 col-xs-6">
+            <div class="col-footer col-md-2 col-xs-6">
                 <h3>Страницы</h3>
                 <ul class="no-list-style footer-navigate-section">
                     <li><a href="<?= Url::to('/site/goods'); ?>">Товары</a></li>
                     <li><a href="<?= Url::to('/site/service'); ?>">Услуги</a></li>
                     <li><a href="<?= Url::to('/site/gallery'); ?>">Галерея</a></li>
-                    <li><a href="<?= Url::to('/site/article'); ?>">Блог</a></li>
                     <li><a href="<?= Url::to('/site/video'); ?>">Видео</a></li>
-                    <li><a href="<?= Url::to('/site/about'); ?>">О Нас</a></li>
+                    <li><a href="<?= Url::to('/site/article'); ?>">Cтатьи</a></li>
+                    <li><a href="<?= Url::to('/site/price-list'); ?>">Прайс-листы</a></li>
                     <li><a href="#">Site map</a></li>
                 
                 </ul>
             </div>
-            <div class="col-footer col-md-3 col-xs-6">
+            <div class="col-footer col-md-4 col-xs-6">
                 <h3>Контактные данные</h3>
                 <p class="contact-us-details">
-                    <?= isset($model->company_name) ? '<b>Компания: </b>'. $model->company_name.'<br>' : null ?>
-                    <?= isset($model->zip_code) ? '<b>Индекс: </b>'. $model->zip_code .'<br>': null ?>
-                    <?= isset($model->country) ? '<b>Страна: </b>'. $model->country .'<br>': null ?>
-                    <?= isset($model->address) ? '<b>Адрес: </b>'. $model->address .'<br>': null ?>
-                    <?= isset($model->mobile) ? '<b>Телефон: </b>'. $model->mobile .'<br>': null ?>
-                    <?= isset($model->fax) ? '<b>Fax: </b>'. $model->fax .'<br>': null ?>
-                    <?= isset($model->email) ? '<b>Email: </b><a href="mailto:4444">'. $model->email .'</a><br>': null ?>
-
+                    <?= $model->company_name ? '<b>Компания: </b>'. $model->company_name.'<br>' : null ?>
+                    <?= $model->zip_code ? '<b>Индекс: </b>'. $model->zip_code .'<br>': null ?>
+                    <?= $model->country ? '<b>Страна: </b>'. $model->country .'<br>': null ?>
+                    <?= $model->address ? '<b>Адрес: </b>'. $model->address .'<br>': null ?>
+                    <?= $model->mobile ? '<b>Телефон: </b>'. $model->mobile .'<br>': null ?>
+                    <?= $model->fax && $model->fax != '' ? '<b>Fax: </b>'. $model->fax .'<br>' : null ?>
+                    <?= $model->email ? '<b>Email: </b><a href="mailto:4443">'. $model->email .'</a><br>': null ?>
                 </p>
             </div>
             <div class="col-footer col-md-3 col-xs-6">
                 <h3>Связаться с нами</h3>
                 <ul class="footer-stay-connected no-list-style">
-                    <?= isset($model->schet) ? '<b>P/счет: </b>'. $model->schet.'<br>' : null ?>
-                    <?= isset($model->inn) ? '<b>ИНН: </b>'. $model->inn .'<br>': null ?>
+                    <?= $model->schet ? '<b>P/счет: </b>'. $model->schet.'<br>' : null ?>
+                    <?= $model->inn ? '<b>ИНН: </b>'. $model->inn .'<br>': null ?>
 
                 </ul>
             </div>

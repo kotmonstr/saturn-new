@@ -34,7 +34,7 @@ use yii\helpers\Html;
             <p class="col-sm-6 product-details">
                 <h4><?= $model->item ?></h4>
                 <div class="price">
-                    </span> <?= $model->price.' Руб' ?>
+                    </span> <?= ceil($model->price).' Руб. за ' . $model->units ?>
                 </div>
 
 
@@ -61,7 +61,7 @@ use yii\helpers\Html;
                         <!-- Tab Content (Specification) -->
                         <div class="tab-pane" id="tab2">
                        <?= Html::a($model->pdf,'/upload/pdf/'.$model->pdf) ?>
-                       <?= $model->descr; ?>
+                       <p><?= $model->descr; ?></p>
                         </div>
                     </div>
                  
