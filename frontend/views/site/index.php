@@ -41,13 +41,13 @@ use app\components\TopArticleWidget;
 
 
             <div class="col-md-4 col-sm-6">
-                <div class="portfolio-item custom-port">
+                <div class="portfolio-item ">
                     <div class="portfolio-image">
-                        <a href="<?= Url::to(['/site/article-detail','id'=>$work->id]) ?>"><img src="/upload/article/<?= $work->image ?>" alt="Project Name"></a>
+                        <a href="<?= Url::to(['/site/article-detail','id'=>$work->id]) ?>"><img src="/upload/article/<?= $work->image ?>" alt="Project Name"  style="height: 260px"></a>
                     </div>
                     <div class="portfolio-info">
                         <ul>
-                            <li class="portfolio-project-name"><?= StringHelper::truncate($work->title,70) ?></li>
+                            <li class="portfolio-project-name"><?= StringHelper::truncate($work->title,23) ?></li>
                       
 
                             <li class="read-more"><a href="<?= Url::to(['/site/article-detail','id'=>$work->id]) ?>" class="btn">Подробнее</a></li>
