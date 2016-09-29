@@ -13,13 +13,20 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 <div class="mainmenu-wrapper">
     <div class="container">
 
+
         <ul id="nav" class="mainmenu">
-            <li class="logo-wrapper"><a href="/"><img src="/PURPOSE/img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+            <li class="mn logo-wrapper stand-no-change">
+
+                <a class="mn" href="/">
+                    <img src="/PURPOSE/img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template">
+                </a>
+
+            </li>
             <li class="<?= $url == 'site/index' ? 'active-bold' : null ?>">
                 <a href="<?= Url::to('/'); ?>">Главная</a>
             </li>
 
-            <li class="<?= $url == 'site/goods' ? 'active-bold' : null ?>">
+            <li class=" <?= $url == 'site/goods' ? 'active-bold' : null ?>">
                 <a href="<?= Url::to('/site/goods'); ?>">Товары</a>
             </li>
 
@@ -77,6 +84,9 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 </div>
 
 <style>
+    .mn a:hover{
+        background-color:  #ffffff!important;
+    }
 .active-bold{
     font-weight: bold;
     text-decoration:none;
