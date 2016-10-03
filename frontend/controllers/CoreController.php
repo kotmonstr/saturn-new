@@ -12,6 +12,7 @@ use common\models\ImageSlider;
 use common\models\GoodsPodCategory;
 use common\models\Gallery;
 use common\models\Message;
+use yii\filters\AccessControl;
 
 class CoreController extends Controller {
 
@@ -28,6 +29,30 @@ class CoreController extends Controller {
     public $countAllVideo = false;
 
     protected $data = array();
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions'=>['login','error'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+
+    ];
+}
+
+
+
 
     public function init()
     {
