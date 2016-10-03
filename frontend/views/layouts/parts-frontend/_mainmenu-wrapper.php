@@ -64,17 +64,18 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 <!--                </li>-->
 <!--            --><?// endif; ?>
 <!---->
-<!--            <li class="--><?//= $url == 'site/login' || $url == '/site/logout' ? 'active-bold' : null ?><!--">-->
-<!--                --><?// if(yii::$app->user->isGuest): ?>
-<!--                    <a href="--><?//= Url::to('/site/login'); ?><!--">Вход</a>-->
-<!--                --><?// else: ?>
+            <li class="<?= $url == 'site/login' || $url == '/site/logout' ? 'active-bold' : null ?>">
+                <? if(yii::$app->user->isGuest): ?>
+                    <a href="<?= Url::to('/site/login'); ?>">Вход</a>
+                <? else: ?>
 <!--                    <a href="--><?//= Url::to('/site/logout'); ?><!--">Выход(--><?//= Yii::$app->user->identity->username ?><!--)</a>-->
-<!--                --><?// endif ?>
-<!--            </li>-->
+
+            </li>
 
             <li>
                 <a href="<?= Url::to('/admin/index'); ?>">Админка</a>
             </li>
+        <? endif ?>
         </ul>
 
 
