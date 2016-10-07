@@ -1,12 +1,17 @@
 <h3>
-    Cообщение от <? ' ' . $name ?>
+    Cообщение от <?= ' ' . $name ?>
 </h3>
-<p>
-    <?= $message ?>
-</p>
+<hr>
+<h5>
+    Тема: <?= $subject ?>
+</h5>
+<h5>
+    Сообщение: <?= $message ?>
+</h5>
 
-<p>
-    <?= $date ?>
-</p>
+<h5>
+    <?= Yii::$app->formatter->asDatetime($date, "php:d-m-Y  H:i:s"); ?>
+
+</h5>
 
 

@@ -400,12 +400,16 @@ class SiteController extends Controller
                     [
                         'name' => $model->user_name,
                         'message' => $model->message,
+                        'subject' => $model->subject,
                         'date' => Yii::$app->formatter->asDatetime($model->created_at)
                     ])
-                    ->setFrom('saturn@admin.com')
+                    ->setFrom('kotkrim+c3b12fc18561@yandex.ru')
                     ->setTo(Yii::$app->params['ADMIN_EMAIL'])
                     ->setSubject($model->subject)
                     ->send();
+
+
+                
             }
             return $this->refresh();
         }

@@ -24,12 +24,19 @@ return [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.yandex.ru',
-                'username' => 'kotkrim@yandex.ru',
-                'password' => 'jokers12',
-                'port' => '465',
-                'encryption' => 'ssl',
+                'host' => 'smtp.gmail.com',
+                'username' => 'monstrkot@gmail.com',
+                'password' => 'jokers123',
+                'port' => '587',
+                'encryption' => 'tls',
+                'plugins' => [
+                    [
+                        'class' => 'Swift_Plugins_LoggerPlugin',
+                        'constructArgs' => [new Swift_Plugins_Loggers_ArrayLogger],
+                    ],
+                ],
             ],
+
         ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
