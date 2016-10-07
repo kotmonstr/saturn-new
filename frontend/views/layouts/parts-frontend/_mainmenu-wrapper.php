@@ -13,13 +13,20 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 <div class="mainmenu-wrapper">
     <div class="container">
 
+
         <ul id="nav" class="mainmenu">
-            <li class="logo-wrapper"><a href="/"><img src="/PURPOSE/img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+            <li class="mn logo-wrapper stand-no-change">
+
+                <a class="mn" href="/">
+                    <img src="/PURPOSE/img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template">
+                </a>
+
+            </li>
             <li class="<?= $url == 'site/index' ? 'active-bold' : null ?>">
                 <a href="<?= Url::to('/'); ?>">Главная</a>
             </li>
 
-            <li class="<?= $url == 'site/goods' ? 'active-bold' : null ?>">
+            <li class=" <?= $url == 'site/goods' ? 'active-bold' : null ?>">
                 <a href="<?= Url::to('/site/goods'); ?>">Товары</a>
             </li>
 
@@ -57,17 +64,18 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 <!--                </li>-->
 <!--            --><?// endif; ?>
 <!---->
-<!--            <li class="--><?//= $url == 'site/login' || $url == '/site/logout' ? 'active-bold' : null ?><!--">-->
-<!--                --><?// if(yii::$app->user->isGuest): ?>
-<!--                    <a href="--><?//= Url::to('/site/login'); ?><!--">Вход</a>-->
-<!--                --><?// else: ?>
+            <li class="<?= $url == 'site/login' || $url == '/site/logout' ? 'active-bold' : null ?>">
+                <? if(yii::$app->user->isGuest): ?>
+                    <a href="<?= Url::to('/site/login'); ?>">Вход</a>
+                <? else: ?>
 <!--                    <a href="--><?//= Url::to('/site/logout'); ?><!--">Выход(--><?//= Yii::$app->user->identity->username ?><!--)</a>-->
-<!--                --><?// endif ?>
-<!--            </li>-->
+
+            </li>
 
             <li>
                 <a href="<?= Url::to('/admin/index'); ?>">Админка</a>
             </li>
+        <? endif ?>
         </ul>
 
 
@@ -77,9 +85,18 @@ $modelPages = Pages::find()->where(['status'=>1])->all();
 </div>
 
 <style>
+    .mn a:hover{
+        background-color:  #ffffff!important;
+    }
 .active-bold{
     font-weight: bold;
-    text-decoration:underline;
+    text-decoration:none;
+    //background-color: #e3eaea;
+    background-color:  #4f8db3;
+
+}.active-bold a{
+  color: #ffffff;
+
 }
     #nav{
 line-height: 40px;
@@ -88,17 +105,18 @@ line-height: 40px;
         list-style:none;
         font-weight:bold;
         //margin-bottom:10px;
-        font-size: 15px;
+        font-size: 16px;
     }
     #nav li{
         float:left;
-        margin-right:10px;
+        //padding-right:5px;
+        //padding-left:5px;
         position:relative;
         display:block;
     }
     #nav li a{
         display:block;
-        padding:5px 5px 0px 5px;
+        padding:5px 8px 0px 8px;
         //color:#fff;
         //background:#333;
         text-decoration:none;
@@ -106,13 +124,14 @@ line-height: 40px;
         //text-shadow:1px 1px 1px rgba(0,0,0,0.45); /* Тень текста, чтобы приподнять его на немного */
         //-moz-border-radius:2px;
         //-webkit-border-radius:2px;
-        border-radius:2px;
+        //border-radius:2px;
     }
     #nav li a:hover{
-        //color:#fff;
-        //background:#6b0c36;
+        color:#fff;
+        opacity: 0.8;
+        background-color:  #4f8db3;
         //background:rgba(107,12,54,0.75); /* Выглядит полупрозрачным */
-        text-decoration:underline;
+        //text-decoration:underline;
     }
 
     /*--- ВЫПАДАЮЩИЕ ПУНКТЫ ---*/
