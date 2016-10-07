@@ -48,7 +48,7 @@ class Message extends \yii\db\ActiveRecord
             [['created_at', 'updated_at', 'status'], 'integer'],
             [['subject', 'email', 'user_name','message'], 'string', 'max' => 255],
             ['email', 'email'],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
+            //[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
     }
 

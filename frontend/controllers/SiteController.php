@@ -100,7 +100,7 @@ class SiteController extends Controller
         $query = Gallery::find();
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>Yii::$app->params['GALLARY_PER_PAGE'] ? Yii::$app->params['GALLARY_PER_PAGE'] : 6 ]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['GALLARY_PER_PAGE'] ? Yii::$app->params['GALLARY_PER_PAGE'] : 6]);
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())
@@ -110,7 +110,7 @@ class SiteController extends Controller
         return $this->render('gallery',
             [
                 'model' => $model,
-                'pages'=> $pages,
+                'pages' => $pages,
             ]
         );
     }
@@ -118,7 +118,7 @@ class SiteController extends Controller
     public function actionArticleDetail($id)
     {
         $this->layout = 'goods';
-        
+
         $model = Article::find()->where(['id' => $id])->one();
 
         $modelArticleLast = Article::find()
@@ -129,12 +129,12 @@ class SiteController extends Controller
 
         $modelCategory = ArticleCategory::find()->limit(10)->all();
 
-        
+
         return $this->render('article-detail',
             [
                 'model' => $model,
                 'modelArticleLast' => $modelArticleLast,
-                'modelCategory'=> $modelCategory
+                'modelCategory' => $modelCategory
             ]
         );
     }
@@ -147,7 +147,7 @@ class SiteController extends Controller
         $query = Article::find()->where(['article_category' => 12]);
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['SERVICE_PER_PAGE'] ? Yii::$app->params['SERVICE_PER_PAGE'] : 6 ]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['SERVICE_PER_PAGE'] ? Yii::$app->params['SERVICE_PER_PAGE'] : 6]);
 
         $model = $query->offset($pages->offset)
             ->orderBy('created_at DESC')
@@ -328,26 +328,25 @@ class SiteController extends Controller
 
         $query = Goods::find();
 
-        if( $pod_category_id) {
+        if ($pod_category_id) {
             $query = $query->orderBy('created_at DESC')
-                            ->where(['status' => 1, 'pod_category_id' => $pod_category_id,]);
-        }
-        elseif( $item){
+                ->where(['status' => 1, 'pod_category_id' => $pod_category_id,]);
+        } elseif ($item) {
             $query = $query
                 ->orderBy('created_at DESC')
-                ->where(['status'=> 1])
+                ->where(['status' => 1])
                 ->andWhere(['like', 'item', $item]);
-        }else{
+        } else {
             $query = $query->orderBy('created_at DESC')
-                ->where(['status'=> 1]);
+                ->where(['status' => 1]);
         }
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=> Yii::$app->params['GOODS_PER_PAGE'] ? Yii::$app->params['GOODS_PER_PAGE'] : 12]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['GOODS_PER_PAGE'] ? Yii::$app->params['GOODS_PER_PAGE'] : 12]);
 
         $model = $query->offset($pages->getOffset())
-                        ->limit($pages->getLimit())
-                        ->all();
+            ->limit($pages->getLimit())
+            ->all();
 
 
         return $this->render('goods', [
@@ -357,8 +356,8 @@ class SiteController extends Controller
             'modelGoodsPodCategory' => $modelGoodsPodCategory,
             'pod_category_id' => $pod_category_id ? $pod_category_id : null,
             'pod_cat_name' => $pod_cat_name,
-            'cat'=>$cat,
-            'cat_name'=> $cat_name
+            'cat' => $cat,
+            'cat_name' => $cat_name
         ]);
     }
 
@@ -378,10 +377,11 @@ class SiteController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $id = Yii::$app->request->post('id');// category_id
         $model = GoodsPodCategory::find()->where(['category_id' => $id])->all();
-        return $this->renderAjax('dropdown',['model' => $model]);
+        return $this->renderAjax('dropdown', ['model' => $model]);
     }
 
-    public function actionContactUs(){
+    public function actionContactUs()
+    {
 
         $this->layout = 'goods-detail';
 
@@ -389,20 +389,36 @@ class SiteController extends Controller
         $modelReqvizit = Reqvizit::find()->one();
 
         if ($model->load(Yii::$app->request->post())) {
-                if ($model->validate()) {
-                    $model->save(false);
-                    Yii::$app->session->setFlash('success', 'Ваше сообщение отправленно.');
-                    return $this->refresh();
-                }
+            if ($model->validate()) {
+                $model->save(false);
+                Yii::$app->session->setFlash('success', 'Ваше сообщение отправленно.');
+
+                Yii::$app->mailer->compose(
+                    [
+                        'html' => '@common/mail/letter'
+                    ],
+                    [
+                        'name' => $model->user_name,
+                        'message' => $model->message,
+                        'date' => Yii::$app->formatter->asDatetime($model->created_at)
+                    ])
+                    ->setFrom('saturn@admin.com')
+                    ->setTo(Yii::$app->params['ADMIN_EMAIL'])
+                    ->setSubject($model->subject)
+                    ->send();
+            }
+            return $this->refresh();
         }
 
+
         return $this->render('contact-us', [
-            'model'=>$model,
-            'modelReqvizit'=> $modelReqvizit
+            'model' => $model,
+            'modelReqvizit' => $modelReqvizit
         ]);
     }
 
-    public function actionPage($slug){
+    public function actionPage($slug)
+    {
         $this->layout = 'goods-detail';
         $model = Pages::find()->where(['slug' => $slug])->one();
         return $this->render('page', [
@@ -419,15 +435,15 @@ class SiteController extends Controller
         $category_id = Yii::$app->request->get('category_id');
         $query = Article::find();
 
-        if( $category_id) {
+        if ($category_id) {
             $query = $query->orderBy('created_at DESC')
                 ->where(['article_category' => $category_id]);
-        }else{
+        } else {
             $query = $query->orderBy('created_at DESC');
             $model = Article::find()->all();
         }
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=>  Yii::$app->params['BLOG_PER_PAGE'] ? Yii::$app->params['BLOG_PER_PAGE'] : 12]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['BLOG_PER_PAGE'] ? Yii::$app->params['BLOG_PER_PAGE'] : 12]);
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())
@@ -436,38 +452,38 @@ class SiteController extends Controller
 
         $current_month = date('m');
         for ($i = 0; $i >= -5; $i--) {
-            $monthList[] = date("F",mktime(0, 0, 0, $current_month + $i, 1, date("Y"))).' '.date("Y");
+            $monthList[] = date("F", mktime(0, 0, 0, $current_month + $i, 1, date("Y"))) . ' ' . date("Y");
         }
 //vd($monthList);
 
 
-
-        return $this->render('article',[
+        return $this->render('article', [
             'model' => $model,
-            'pages'=> $pages,
-            'modelLast'=> $modelLast,
-            'modelCategory'=> $modelCategory,
-            'monthList'=> $monthList
-            ]);
+            'pages' => $pages,
+            'modelLast' => $modelLast,
+            'modelCategory' => $modelCategory,
+            'monthList' => $monthList
+        ]);
     }
 
-    public function actionVideo(){
+    public function actionVideo()
+    {
 
         $this->layout = 'gallery';
 
         $query = Video::find();
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=> Yii::$app->params['VIDEO_PER_PAGE'] ? Yii::$app->params['VIDEO_PER_PAGE'] : 12]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['VIDEO_PER_PAGE'] ? Yii::$app->params['VIDEO_PER_PAGE'] : 12]);
 
         $model = $query->offset($pages->getOffset())
             ->limit($pages->getLimit())
             ->orderBy('id DESC')
             ->all();
 
-        return $this->render('video',[
+        return $this->render('video', [
             'model' => $model,
-            'pages'=> $pages,
+            'pages' => $pages,
         ]);
     }
 

@@ -18,6 +18,19 @@ return [
     'timeZone' => 'Europe/Moscow',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'htmlLayout' => '@common/mail/layouts/html',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'kotkrim@yandex.ru',
+                'password' => 'jokers12',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
+        ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
             'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
@@ -60,7 +73,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -70,7 +82,6 @@ return [
 
             ],
         ],
-
     ],
     'params' => $params,
 ];
