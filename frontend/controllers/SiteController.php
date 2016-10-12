@@ -35,6 +35,36 @@ class SiteController extends Controller
     const SERVICE = 12;
     const SECRET_CAPTCHA = '6Ld8OQcUAAAAAMitn5QDeWijahsmWXyYH9akEcOq';
 
+    public function afterAction($action, $result)
+    {
+        $result = parent::afterAction($action, $result);
+        
+        $userHost = Yii::$app->request->userHost;
+        $userIP = Yii::$app->request->userIP;
+        
+//        Yii::$app->mailer->compose(
+//            [
+//                'html' => '@common/mail/letter2'
+//            ],
+//            [
+//                'userHost'=> $userHost,
+//                'userIP'=>$userIP,
+//                'controller'=> Yii::$app->controller->id,
+//                'action'=> Yii::$app->controller->action->id,
+//                'message' => 'Кто то зашел на сайт',
+//                'subject' => 'посетитель',
+//                'date' => Yii::$app->formatter->asDatetime(time())
+//            ])
+//            ->setFrom('localhost@yandex.ru')
+//            ->setTo(Yii::$app->params['ADMIN_EMAIL'])
+//            ->setSubject('посетитель')
+//            ->send();
+
+
+        return $result;
+    }
+
+
     /**
      * @inheritdoc
      */

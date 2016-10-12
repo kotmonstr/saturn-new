@@ -59,4 +59,9 @@ class Reqvizit extends \yii\db\ActiveRecord
             'zip_code' => 'Почтовый код',
         ];
     }
+
+    public static function getPhoneNumber(){
+        $model  = self::find()->select(['mobile'])->where(['id'=> 1])->one();
+            return $model->mobile ? $model->mobile : false;
+    }
 }

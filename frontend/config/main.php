@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'common\models\Settings'
+        'common\models\Settings',
     ],
     'language' => 'ru-RU',
     'charset' => 'utf-8',
@@ -44,17 +44,6 @@ return [
             'siteKey' => '6LckOQcUAAAAAOpv5GS1VRSEI1_tJa2iwtJHTpiz',
             'secret' => '6LckOQcUAAAAALOfigoY4XA3YGeGgi4-sita2vdW',
         ],
-//        'assetManager' => [
-//            'bundles' => [
-//                'yii\web\JqueryAsset' => [
-//                    'sourcePath' => null,
-//                    'js' => [
-//                        'http://code.jquery.com/jquery-3.1.0.js',
-//                        'http://code.jquery.com/ui/1.12.0/jquery-ui.js'
-//                    ],
-//                ],
-//            ],
-//        ],
         'request' => [
             'baseUrl' => '',
             'csrfParam' => '_csrf-frontend',
@@ -87,6 +76,22 @@ return [
                 //''=>'site/default/index',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 
+            ],
+        ],
+        'LogerClass'=>[
+            'class'=>'app\components\LogerClass'
+        ],
+        'view' => [
+            'theme' => [
+                //'pathMap' => ['@app/views' => '@app/themes/saturn/views/'],
+                'pathMap' => ['@app/views' => '@app/themes/carlate/views'],
+                'baseUrl' => '@web/themes/carlate',
+                'basePath' => '@app/themes/carlate',
+                //'baseUrl' => '@web/themes/saturn',
+                //'basePath' => '@app/themes/saturn',
+
+                'baseUrl' => '@web/themes/carlate',
+                'basePath' => '@app/themes/carlate',
             ],
         ],
     ],
