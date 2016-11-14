@@ -5,12 +5,18 @@ use frontend\assets\AdminAsset;
 use backend\assets\AppAsset;
 use yii\widgets\ActiveForm;
 use common\models\Gallery;
+use common\models\PhotoAlbum;
+use yii\helpers\ArrayHelper;
+
 
 $this->registerJsFile('/js/switch-gallery.js', ['depends' => AdminAsset::className()]);
 $this->registerJsFile('/js/upload-gallery.js', ['depends' => AppAsset::className()]);
 
 $model = new Gallery();
+$arrPhotoAlbum = PhotoAlbum::getAllAlbum();
+$items = ArrayHelper::map($arrPhotoAlbum, 'id', 'name');
 
+//vd($arrPhotoAlbum);
 $this->title = 'Галерея.';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,64 +25,87 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-12">
             <div class="box box-primary">
 
-                    <h1><?= Html::encode($this->title) ?></h1>
+                <h1><?= Html::encode($this->title) ?></h1>
 
-                <div class="outer">
-                    <div class="inner bg-light lter">
-                        <div id="collapse4" class="body">
-                            <div class="video-categoria-index">
-                                <?php
-                                $form = ActiveForm::begin([
-                                    //'action' => ['/slider-photo/submit'],
-                                    'options' => ['enctype' => 'multipart/form-data'],
-                                    'id' => 'form-send-file']);
-                                ?>
-                                <?= $form->field($model, 'file[]')->fileInput(['class' => 'send-file', 'multiple' => true]) ?>
-                                <? //= Html::submitButton('Загрузить', ['class' => 'btn btn-success send-file-submit' ]) ?>
-                                <?= Html::Button('Загрузить', ['class' => 'btn btn-success send-file-submit', 'onclick' => 'sendfile()']) ?>
-                                <?php ActiveForm::end(); ?>
 
+                <?php
+                $form = ActiveForm::begin([
+                    'options' => ['enctype' => 'multipart/form-data', 'class' => ''],
+                    'id' => 'form-send-file',
+
+                ]);
+                ?>
+                <div class="well">
+
+                    <div class="row">
+
+                            <div class="col-xs-4">
+                                <?= $form->field($model, 'album_id')->dropDownList($items, ['class' => 'form-control','prompt'=>'--Select--','onChange' => 'ChangeButton()' ])->label('Имя альбома',['class' => 'control-label']); ?>
                             </div>
+                            <div class="col-xs-3">
+                                <?= Html::a('Создать новый альбом', '/photo-album/create', ['class' => 'btn btn-default','style'=>'margin-top:27px']) ?>
+                            </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-4">
+
+                            <?= $form->field($model, 'file[]')->fileInput(['class' => 'send-file btn btn-warning', 'multiple' => true])->label('Выберите картинки') ?>
+                        </div>
+                        <div class="col-xs-3">
+                            <?= Html::Button('Загрузить', ['class' => 'btn btn-success send-file-submit', 'onclick' => 'sendfile()', 'style' => 'margin-top:27px','disabled'=>'true']) ?>
                         </div>
                     </div>
                 </div>
 
 
-                    <?=
-                    GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        'columns' => [
-                            //'name',
-                            [
-                                'attribute' => 'file_name',
-                                'format' => 'html',
-                                'value' => function ($dataProvider) {
-                                    return '<img src='.$dataProvider->file_path . $dataProvider->file_name . ' height="100px">';
-                                },
-                                'label' => 'Предпросмотр',
-                            ],
-                            [
-                                'attribute' => 'status',
-                                'format' => 'raw',
-                                'value' => function ($dataProvider) {
-                                    if($dataProvider->status == 1){
-                                        return '<input type="checkbox" id="'.$dataProvider->id.'"  class="act">';
-                                    }
-                                    else{
-                                        return '<input type="checkbox" id="'.$dataProvider->id.'" class=non-act>';
-                                    }
-                                },
-                                'label' => 'Активо/ Не активно',
-                            ],
+                <?php ActiveForm::end(); ?>
 
-                            'text',
-                           ['class' => 'yii\grid\ActionColumn'],
-                           //['class' => 'yii\grid\ActionColumn','template' => '{delete}'],
+
+                <?=
+                GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'columns' => [
+                        //'album_id',
+                        [
+                            'attribute' => 'album_id',
+                            //'format' => 'row',
+                            'value' => function ($dataProvider) {
+                                return $dataProvider->photoAlbum->name;
+                            },
+                            'label' => 'Имя альбома',
                         ],
-                    ]);
-                    ?>
+                        [
+                            'attribute' => 'file_name',
+                            'format' => 'html',
+                            'value' => function ($dataProvider) {
+                                return '<img src=' . '/upload/multy-thumbs/' . $dataProvider->file_name . ' height="100px">';
+                            },
+                            'label' => 'Предпросмотр',
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'format' => 'raw',
+                            'value' => function ($dataProvider) {
+                                if ($dataProvider->status == 1) {
+                                    return '<input type="checkbox" id="' . $dataProvider->id . '"  class="act">';
+                                } else {
+                                    return '<input type="checkbox" id="' . $dataProvider->id . '" class=non-act>';
+                                }
+                            },
+                            'label' => 'Активо/ Не активно',
+                        ],
 
-                </div>
+                        'text',
+                        ['class' => 'yii\grid\ActionColumn'],
+                        //['class' => 'yii\grid\ActionColumn','template' => '{delete}'],
+                    ],
+                ]);
+                ?>
+
             </div>
         </div>
+    </div>
 </section>

@@ -18,7 +18,7 @@ class GallerySearch extends Gallery
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'status'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'status','album_id'], 'integer'],
             [['file_name', 'file_path'], 'safe'],
         ];
     }

@@ -22,7 +22,49 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
 
 <div class="section blog-posts-wrapper">
     <div class="container">
-        <div class="row">
+        <div class="col-sm-3 blog-sidebar">
+            <h4>Поиск по альбомам</h4>
+            <form>
+                <div class="input-group">
+                    <input class="form-control input-md" id="appendedInputButtons" type="text">
+                        <span class="input-group-btn">
+									<button class="btn btn-md" type="button">Искать</button>
+								</span>
+                </div>
+            </form>
+            <h4>Последние</h4>
+            <ul class="recent-posts">
+
+                <? if(isset($modelPhotoAlbumLast)): ?>
+                    <? foreach($modelPhotoAlbumLast as $a): ?>
+                        <li><a href="<?= Url::to(['/site/gallery','slug'=> $a->slug]) ?>"><?= $a->name ?></a></li>
+                    <? endforeach; ?>
+                <? endif; ?>
+
+            </ul>
+            <h4>Альбомы</h4>
+            <ul class="blog-categories">
+                <? if(isset($modelPhotoAlbum)): ?>
+                    <? foreach($modelPhotoAlbum as $b): ?>
+
+                            <li><a href="<?= Url::to(['/site/gallery','slug'=> $b->slug]) ?>"><?= $b->name ?></a></li>
+
+                    <? endforeach; ?>
+                <? endif; ?>
+            </ul>
+            <h4>Архив</h4>
+            <ul>
+
+
+                <? if(isset($monthList)): ?>
+                    <? foreach($monthList as $c): ?>
+                        <li><a href=""><?= $c ?></a></li>
+                    <? endforeach; ?>
+                <? endif; ?>
+
+            </ul>
+        </div>
+        <div class="col-sm-9">
 
                 <? if (!empty($model)): ?>
                     <? foreach ($model as $galerySlide): ?>
@@ -83,6 +125,7 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
 </div>
 
 
+
 <style>
     .blog-post {
     / / height: 155 px !important;
@@ -126,6 +169,12 @@ $this->registerJsFile('/js/fancy-init.js', ['depends' => GalleryAsset::className
 
     .text-font-lr , .fancybox-title{
         font-size: 20px;
+    }
+    .blog-post img {
+        max-width: none; !important;
+    }
+    .fancybox img {
+        height: 310px; !important;
     }
 </style>
 

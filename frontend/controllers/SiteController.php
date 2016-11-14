@@ -25,6 +25,7 @@ use yii\data\Pagination;
 use common\models\GoodsPodCategory;
 use common\models\Message;
 use yii\web\Response;
+use common\models\PhotoAlbum;
 
 
 /**
@@ -34,36 +35,6 @@ class SiteController extends Controller
 {
     const SERVICE = 12;
     const SECRET_CAPTCHA = '6Ld8OQcUAAAAAMitn5QDeWijahsmWXyYH9akEcOq';
-
-    public function afterAction($action, $result)
-    {
-        $result = parent::afterAction($action, $result);
-        
-        $userHost = Yii::$app->request->userHost;
-        $userIP = Yii::$app->request->userIP;
-        
-//        Yii::$app->mailer->compose(
-//            [
-//                'html' => '@common/mail/letter2'
-//            ],
-//            [
-//                'userHost'=> $userHost,
-//                'userIP'=>$userIP,
-//                'controller'=> Yii::$app->controller->id,
-//                'action'=> Yii::$app->controller->action->id,
-//                'message' => 'Кто то зашел на сайт',
-//                'subject' => 'посетитель',
-//                'date' => Yii::$app->formatter->asDatetime(time())
-//            ])
-//            ->setFrom('localhost@yandex.ru')
-//            ->setTo(Yii::$app->params['ADMIN_EMAIL'])
-//            ->setSubject('посетитель')
-//            ->send();
-
-
-        return $result;
-    }
-
 
     /**
      * @inheritdoc
@@ -126,21 +97,39 @@ class SiteController extends Controller
     public function actionGallery()
     {
         $this->layout = 'gallery';
+        $modelPhotoAlbum = PhotoAlbum::find()
+            ->rightJoin('gallery', 'gallery.album_id = Photo_album.id')
+            ->all();
+
+        $modelPhotoAlbumLast = PhotoAlbum::find()
+            ->rightJoin('gallery', 'gallery.album_id = Photo_album.id')
+            ->orderBy('created_at')
+            ->limit(5)
+            ->all();
 
         $query = Gallery::find();
+        if (Yii::$app->request->get('slug')) {
+            $query = $query
+                ->rightJoin('Photo_album', 'Photo_album.id = gallery.album_id')
+                ->where(['status' => 1, 'album_id' => PhotoAlbum::getIdBySlug(Yii::$app->request->get('slug'))]);
+        } else {
+            $query = $query
+                ->where(['status' => 1]);
+        }
 
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => Yii::$app->params['GALLARY_PER_PAGE'] ? Yii::$app->params['GALLARY_PER_PAGE'] : 6]);
-
         $model = $query->offset($pages->getOffset())
-            ->limit($pages->getLimit())
-            ->where(['status' => 1])
-            ->all();
+                ->limit($pages->getLimit())
+                ->all();
+
 
         return $this->render('gallery',
             [
                 'model' => $model,
                 'pages' => $pages,
+                'modelPhotoAlbum' => $modelPhotoAlbum,
+                'modelPhotoAlbumLast' => $modelPhotoAlbumLast
             ]
         );
     }
@@ -439,7 +428,6 @@ class SiteController extends Controller
                     ->send();
 
 
-                
             }
             return $this->refresh();
         }

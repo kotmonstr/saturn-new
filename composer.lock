@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9971d19ea2ccb3cb631c4bc5d72eaea",
-    "content-hash": "0403d1353b43f7fa71a39759797c1192",
+    "hash": "af60997db1c436c462b9cf0f2b22950d",
+    "content-hash": "16dd48f5b2b91472f85183556842933d",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -177,16 +177,16 @@
         },
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
-            "version": "v3.3.0",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/JavaScript-Canvas-to-Blob.git",
-                "reference": "cb5add6fd18abba567c4824a601f57b9a9e30e04"
+                "reference": "4ff69f17a93ff04f827ad651d598bdeb7ce5aa4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/cb5add6fd18abba567c4824a601f57b9a9e30e04",
-                "reference": "cb5add6fd18abba567c4824a601f57b9a9e30e04",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/4ff69f17a93ff04f827ad651d598bdeb7ce5aa4d",
+                "reference": "4ff69f17a93ff04f827ad651d598bdeb7ce5aa4d",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -272,32 +272,32 @@
         },
         {
             "name": "bower-asset/blueimp-load-image",
-            "version": "v2.6.2",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/JavaScript-Load-Image.git",
-                "reference": "5cae749216b942ae663a0daabf5dfde4afeaa355"
+                "reference": "133ef9b55cf9e620ad37120f643e15cfef9e581c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/5cae749216b942ae663a0daabf5dfde4afeaa355",
-                "reference": "5cae749216b942ae663a0daabf5dfde4afeaa355",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/133ef9b55cf9e620ad37120f643e15cfef9e581c",
+                "reference": "133ef9b55cf9e620ad37120f643e15cfef9e581c",
                 "shasum": ""
             },
             "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/blueimp-tmpl",
-            "version": "v3.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/JavaScript-Templates.git",
-                "reference": "9dc414739a4d23663018575c5036b88e0de2ba4d"
+                "reference": "3d603941a16e453ae22bfbd664b911917933fd54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/9dc414739a4d23663018575c5036b88e0de2ba4d",
-                "reference": "9dc414739a4d23663018575c5036b88e0de2ba4d",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/3d603941a16e453ae22bfbd664b911917933fd54",
+                "reference": "3d603941a16e453ae22bfbd664b911917933fd54",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -426,6 +426,65 @@
                 "jquery",
                 "mask",
                 "plugins"
+            ]
+        },
+        {
+            "name": "bower-asset/materialize",
+            "version": "v0.97.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dogfalo/materialize.git",
+                "reference": "c0bf0b7e71e4763bb2aa31f8100c7e0e97964cec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dogfalo/materialize/zipball/c0bf0b7e71e4763bb2aa31f8100c7e0e97964cec",
+                "reference": "c0bf0b7e71e4763bb2aa31f8100c7e0e97964cec",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=2.1.1"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "bin/materialize.css",
+                    "bin/materialize.js"
+                ],
+                "bower-asset-ignore": [
+                    "jade/",
+                    ".gitignore",
+                    "CNAME",
+                    "css/",
+                    "bower.json",
+                    "README.md",
+                    "images/",
+                    "js/jquery.timeago.js",
+                    "js/init.js",
+                    "js/prism.js",
+                    "res/",
+                    "sass/style.scss",
+                    "sass/ghpages-materialize.scss",
+                    "**/*.html",
+                    "**/*.zip",
+                    "**/*.txt",
+                    "sitemap.xml",
+                    "package.json",
+                    "Gruntfile.js"
+                ]
+            },
+            "description": "A modern responsive front-end framework based on Material Design",
+            "keywords": [
+                "css",
+                "design",
+                "framework",
+                "front-end",
+                "js",
+                "material",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "ux"
             ]
         },
         {
@@ -695,6 +754,51 @@
             "time": "2013-07-10 17:25:36"
         },
         {
+            "name": "jacmoe/yii2-tale-jade",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jacmoe/yii2-tale-jade.git",
+                "reference": "9fa78245ec7b3085fc15bd664087ebe693fd4082"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jacmoe/yii2-tale-jade/zipball/9fa78245ec7b3085fc15bd664087ebe693fd4082",
+                "reference": "9fa78245ec7b3085fc15bd664087ebe693fd4082",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "talesoft/tale-jade": "^1.4",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "jacmoe\\talejade\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Moen",
+                    "email": "jacmoe.dk@gmail.com",
+                    "homepage": "https://jacmoe.dk"
+                }
+            ],
+            "description": "A Tale Jade for PHP integration for the Yii2 framework",
+            "keywords": [
+                "jade",
+                "renderer",
+                "tale",
+                "yii2"
+            ],
+            "time": "2016-03-02 07:17:47"
+        },
+        {
             "name": "madcoda/php-youtube-api",
             "version": "1.2",
             "source": {
@@ -791,6 +895,270 @@
                 "mailer"
             ],
             "time": "2016-07-08 11:51:25"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "dff51f72b0706335131b00a7f49606168c582594"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
+                "reference": "dff51f72b0706335131b00a7f49606168c582594",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-05-18 14:26:46"
+        },
+        {
+            "name": "talesoft/tale-config",
+            "version": "0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Talesoft/tale-config.git",
+                "reference": "1a9304e99753fa74c4f43722b52388df8015eb03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Talesoft/tale-config/zipball/1a9304e99753fa74c4f43722b52388df8015eb03",
+                "reference": "1a9304e99753fa74c4f43722b52388df8015eb03",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "talesoft/tale-factory": "~0.1"
+            },
+            "suggest": {
+                "symfony/yaml": "for YAML-configuration",
+                "talesoft/tale-dom": "for XML-configuration"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tale\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Torben Koehn",
+                    "email": "tk@talesoft.io"
+                },
+                {
+                    "name": "Talesoft",
+                    "email": "info@talesoft.io",
+                    "homepage": "http://talesoft.io"
+                }
+            ],
+            "description": "Lightweight configuration interfaces and utilities",
+            "homepage": "http://docs.talesoft.io/tale-framework/tale/config",
+            "keywords": [
+                "config",
+                "options"
+            ],
+            "time": "2016-03-01 22:39:06"
+        },
+        {
+            "name": "talesoft/tale-factory",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Talesoft/tale-factory.git",
+                "reference": "63335da0e6b435aa481ea2917b017cf482efa043"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Talesoft/tale-factory/zipball/63335da0e6b435aa481ea2917b017cf482efa043",
+                "reference": "63335da0e6b435aa481ea2917b017cf482efa043",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tale\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Torben Koehn",
+                    "email": "tk@talesoft.io"
+                }
+            ],
+            "description": "A small and lightweight implementation of the factory pattern",
+            "homepage": "http://docs.talesoft.io/tale-framework/tale/factory",
+            "keywords": [
+                "factory"
+            ],
+            "time": "2016-05-20 21:20:47"
+        },
+        {
+            "name": "talesoft/tale-jade",
+            "version": "1.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Talesoft/tale-jade.git",
+                "reference": "e15a8d513fc9ceba999bfa4f338c601968334862"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Talesoft/tale-jade/zipball/e15a8d513fc9ceba999bfa4f338c601968334862",
+                "reference": "e15a8d513fc9ceba999bfa4f338c601968334862",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "symfony/polyfill-mbstring": "*",
+                "talesoft/tale-config": "0.2"
+            },
+            "suggest": {
+                "coffeescript/coffeescript": "Enables CoffeeScript filtering",
+                "erusev/parsedown": "Enables Markdown filtering",
+                "leafo/lessphp": "Enables LESS filtering",
+                "leafo/scssphp": "Enables SASS filtering",
+                "neemzy/stylus": "Enables Stylus filtering"
+            },
+            "bin": [
+                "tale-jade"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tale\\Jade\\": ""
+                },
+                "files": [
+                    "functions.php",
+                    "Compiler/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Torben Koehn",
+                    "email": "torben@talesoft.codes"
+                }
+            ],
+            "description": "A clean, lightweight and easy-to-use templating engine for PHP based on Jade/Pug",
+            "homepage": "http://jade.talesoft.codes",
+            "keywords": [
+                "dialect",
+                "html",
+                "jade",
+                "php",
+                "phtml",
+                "presentation",
+                "render",
+                "template",
+                "views"
+            ],
+            "time": "2016-08-23 15:00:44"
+        },
+        {
+            "name": "tuyakhov/yii2-materialize",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tuyakhov/yii2-materialize.git",
+                "reference": "9629eecbbefebe15c87ff96922d2a6b7e285d3f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tuyakhov/yii2-materialize/zipball/9629eecbbefebe15c87ff96922d2a6b7e285d3f3",
+                "reference": "9629eecbbefebe15c87ff96922d2a6b7e285d3f3",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/materialize": "0.97.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "tuyakhov\\materialize\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Tuyakhov",
+                    "email": "atuyakhov@gmail.com"
+                }
+            ],
+            "description": "This is the Materialize extension for Yii framework 2.0. It encapsulates Materialize components and plugins in terms of Yii widgets, and thus makes using Materialize components/plugins in Yii applications extremely easy.",
+            "keywords": [
+                "extension",
+                "material design",
+                "materialize",
+                "materializecss",
+                "yii2"
+            ],
+            "time": "2015-10-10 18:48:31"
         },
         {
             "name": "vova07/yii2-imperavi-widget",

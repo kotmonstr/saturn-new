@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "photo".
  *
@@ -13,16 +14,17 @@ use yii\behaviors\TimestampBehavior;
  */
 class Photo extends \yii\db\ActiveRecord
 {
-        public function behaviors()
-{
-    return [
-        [
-            'class' => TimestampBehavior::className(),
-            'createdAtAttribute' => 'created_at',
-            'updatedAtAttribute' => 'updated_at'
-        ],
-    ];
-}
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at'
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -38,7 +40,7 @@ class Photo extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['created_at','updated_at'], 'integer'],
+            [['created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }

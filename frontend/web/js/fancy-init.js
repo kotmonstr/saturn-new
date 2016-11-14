@@ -2,12 +2,12 @@
     jQuery(document).ready(function() {
         jQuery(".fancybox").fancybox(
             {
-                maxWidth	: 800,
-                maxHeight	: 600,
-                fitToView	: false,
+                maxWidth	: 1000,
+                maxHeight	: 800,
+                fitToView	: true,
                 width		: '70%',
                 height		: '70%',
-                autoSize	: false,
+                autoSize	: true,
                 closeClick	: false,
                 openEffect	: 'none',
                 closeEffect	: 'none',
@@ -16,8 +16,8 @@
                         type: 'outside'
                     },
                     thumbs	: {
-                        width	: 50,
-                        height	: 50
+                        width	: 150,
+                        height	: 150
                     }
                 }
             }

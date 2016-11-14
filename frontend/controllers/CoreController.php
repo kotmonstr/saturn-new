@@ -1,5 +1,6 @@
 <?php
 namespace frontend\controllers;
+use common\models\PhotoAlbum;
 use common\models\Video;
 use Yii;
 use yii\web\Controller;
@@ -27,6 +28,7 @@ class CoreController extends Controller {
     public $countAllGalleryPhotos = false;
     public $countAllMessage = false;
     public $countAllVideo = false;
+    public $countAllAlbum = false;
 
     protected $data = array();
 
@@ -75,5 +77,6 @@ class CoreController extends Controller {
         $this->countAllGalleryPhotos = Gallery::find()->count();
         $this->countAllMessage = Message::find()->count();
         $this->countAllVideo = Video::find()->count();
+        $this->countAllAlbum = PhotoAlbum::find()->count();
     }
 }

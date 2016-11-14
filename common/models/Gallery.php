@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use common\models\PhotoAlbum;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "gallery".
@@ -17,6 +19,14 @@ use Yii;
  */
 class Gallery extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\behaviors\TimestampBehavior',
+            ],
+        ];
+    }
     public $file;
     /**
      * @inheritdoc
@@ -32,7 +42,7 @@ class Gallery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at', 'status'], 'integer'],
+            [['created_at', 'updated_at', 'status','album_id'], 'integer'],
             [['file_name', 'file_path','text'], 'string', 'max' => 255],
         ];
     }
@@ -44,6 +54,7 @@ class Gallery extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'album_id'=> 'Album id',
             'file_name' => 'File Name',
             'file_path' => 'File Path',
             'created_at' => 'Created At',
@@ -70,4 +81,10 @@ class Gallery extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    public function getPhotoAlbum()
+    {
+        return $this->hasOne(PhotoAlbum::className(), ['id' => 'album_id']);
+    }
+
 }

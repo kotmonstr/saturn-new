@@ -50,6 +50,7 @@ class GalleryController extends CoreController
         $arr = [];
         $i = 0;
         $model = new Gallery();
+
         $name = date("dmYHis", time());
         if (\yii\web\UploadedFile::getInstances($model, 'file')) {
             $model->file = \yii\web\UploadedFile::getInstances($model, 'file');
@@ -59,6 +60,7 @@ class GalleryController extends CoreController
                 Image::thumbnail(Yii::getAlias('@frontend') . '/web/upload/multy-big/' . $name . '-' . $i . '.' . $file->extension, 1200, 500)
                     ->save(Yii::getAlias(Yii::getAlias('@frontend') . '/web/upload/multy-thumbs/' . $name . '-' . $i . '.' . $file->extension), ['quality' => 80]);
                 $_model = new Gallery();
+                $_model->load(Yii::$app->request->post());
                 $_model->file_name = $name . '-' . $i . '.' . $file->extension;
                 $_model->file_path = '/upload/multy-big/';
                 //$_model->validate();
@@ -66,12 +68,15 @@ class GalleryController extends CoreController
                 $_model->save();
                 $arr[] = $name . '-' . $i . '.' . $file->extension;
             }
+
             Yii::$app->session->setFlash('success', 'Фотография(и) успешно загруженны');
             return $this->redirect('index');
 
             //Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             //return $arr;
         }
+        Yii::$app->session->setFlash('error', 'выберите Фотография(и) ');
+        return $this->redirect('index');
     }
 
     public function actionChangeActivety()

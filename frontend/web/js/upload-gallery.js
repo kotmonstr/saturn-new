@@ -10,23 +10,15 @@ function sendfile() {
         beforeSend: function (xhr) {
             jpreloader('show');
         },
-        success: function (data) {
-            //console.log(data);
+        done: function (data) {
+            //alert(data.result);
+            //console.log(data.result);
             jpreloader('hide');
-            var csrf_token = $("meta[name=csrf-token]").attr("content");
-           /* $.ajax({
-                url: '/slider-photo/get-photo',
-                type: 'POST',
-                dataType: 'json',
-                cache: false,
-                data: {
-                    _csrf: csrf_token,
-                },
-                success: function (data) {
-                    $('.photo-target').html(data);
-                }
-            }); */
-        }
+
+
+        },
+
+
     });
 
     /* Preloader */
@@ -87,7 +79,8 @@ function Delete() {
             });
         }
     });
-    ;/* Preloader */
+    ;
+    /* Preloader */
     function jpreloader(item) {
         if (item == 'show') {
             $(document.body).append('<div class="back_background jpreloader" style="z-index: 90000;"></div>');
@@ -96,3 +89,12 @@ function Delete() {
         }
     }
 }
+
+function ChangeButton() {
+    //alert($('#gallery-album_id').val());
+    if ($('#gallery-album_id').val() > 0) {
+        $('.send-file-submit').attr('disabled',false);
+     } else {
+        $('.send-file-submit').attr('disabled',true);
+    }
+};

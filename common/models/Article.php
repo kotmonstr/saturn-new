@@ -35,6 +35,7 @@ class Article extends \yii\db\ActiveRecord
 {
     public $file;
     public $filename;
+
     //public $slug;
 
     public function behaviors()
@@ -66,7 +67,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['article_category', 'title', 'image', 'src', 'content', 'template'], 'required'],
-            [['article_category', 'created_at', 'updated_at', 'updater_id', 'view', 'template','like'], 'integer'],
+            [['article_category', 'created_at', 'updated_at', 'updater_id', 'view', 'template', 'like'], 'integer'],
             [['content'], 'string'],
             [['title', 'image', 'src'], 'string', 'max' => 255],
             [['author'], 'string', 'max' => 100],

@@ -23,7 +23,9 @@
         "2amigos/yii2-file-upload-widget": "1.0.4",
         "madcoda/php-youtube-api": "1.2",
         "himiklab/yii2-recaptcha-widget" : "*",
-        "behat/transliterator": "1.1.0"
+        "behat/transliterator": "1.1.0",
+        "jacmoe/yii2-tale-jade": "1.5.0",
+        "tuyakhov/yii2-materialize": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -113,6 +113,19 @@ $url = $controller.'/'.$action;
                     <li class="<?= $url == 'slider-photo/index' ? 'active' : null ?>"><a href="<?= Url::to('/slider-photo/index') ?>"><i class="fa <?= $url == 'slider-photo/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
                 </ul>
 
+            <li class="treeview <?= $url == 'photo-album/index' ||  $url == 'photo-album/create' ? 'active' : null ||  $url == 'photo-album/view' ? 'active' : null ||  $url == 'photo-album/update' ? 'active' : null ?>">
+                <a href="#">
+                    <i class="fa fa-bookmark-o "></i>
+                    <span>Фото альбомы</span>
+                    <span class="label pull-right from20-px-mr bg-yellow"><?= $this->context->countAllAlbum;   ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= $url == 'photo-album/index' ? 'active' : null ?>"><a href="<?= Url::to('/photo-album/index') ?>"><i class="fa <?= $url == 'photo-album/index' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Просмотреть</a></li>
+                    <li class="<?= $url == 'photo-album/create' ? 'active' : null ?>"><a href="<?= Url::to('/photo-album/create') ?>"><i class="fa <?= $url == 'photo-album/create' ? 'fa-circle' : 'fa-circle-o' ?> text-aqua"></i> Добавить</a></li>
+                </ul>
+            </li>
+
             <li class="treeview <?= $url == 'gallery/index' ||  $url == 'gallery/create' ? 'active' : null ?>" >
                 <a href="#">
                     <i class="fa fa-object-ungroup"></i>
